@@ -11,5 +11,5 @@ export {
   type CasParserCamsKfintechParams,
   type CasParserCdslParams,
   type CasParserNsdlParams,
-  type CasParserParseCasPdfParams,
+  type CasParserSmartParseParams,
 } from './cas-parser';

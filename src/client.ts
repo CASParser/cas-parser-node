@@ -25,8 +25,8 @@ import {
   CasParserCamsKfintechParams,
   CasParserCdslParams,
   CasParserNsdlParams,
-  CasParserParseCasPdfParams,
   CasParserResource,
+  CasParserSmartParseParams,
   UnifiedResponse,
 } from './resources/cas-parser';
 import { type Fetch } from './internal/builtin-types';
@@ -761,7 +761,7 @@ export declare namespace CasParser {
     type CasParserCamsKfintechParams as CasParserCamsKfintechParams,
     type CasParserCdslParams as CasParserCdslParams,
     type CasParserNsdlParams as CasParserNsdlParams,
-    type CasParserParseCasPdfParams as CasParserParseCasPdfParams,
+    type CasParserSmartParseParams as CasParserSmartParseParams,
   };
 
   export {
