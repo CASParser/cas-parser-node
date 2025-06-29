@@ -44,7 +44,7 @@ import { isEmptyObj } from './internal/utils/values';
 
 const environments = {
   production: 'https://portfolio-parser.api.casparser.in',
-  environment_1: 'http://localhost:5000',
+  local: 'http://localhost:5000',
 };
 type Environment = keyof typeof environments;
 
@@ -61,7 +61,7 @@ export interface ClientOptions {
    *
    * Each environment maps to a different base URL:
    * - `production` corresponds to `https://portfolio-parser.api.casparser.in`
-   * - `environment_1` corresponds to `http://localhost:5000`
+   * - `local` corresponds to `http://localhost:5000`
    */
   environment?: Environment | undefined;
 

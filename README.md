@@ -27,7 +27,7 @@ import CasParser from 'cas-parser';
 
 const client = new CasParser({
   apiKey: process.env['CAS_PARSER_API_KEY'], // This is the default and can be omitted
-  environment: 'environment_1', // defaults to 'production'
+  environment: 'local', // defaults to 'production'
 });
 
 const unifiedResponse = await client.casParser.camsKfintech();
@@ -45,7 +45,7 @@ import CasParser from 'cas-parser';
 
 const client = new CasParser({
   apiKey: process.env['CAS_PARSER_API_KEY'], // This is the default and can be omitted
-  environment: 'environment_1', // defaults to 'production'
+  environment: 'local', // defaults to 'production'
 });
 
 const unifiedResponse: CasParser.UnifiedResponse = await client.casParser.camsKfintech();
