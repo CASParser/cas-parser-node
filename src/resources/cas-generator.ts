@@ -4,7 +4,7 @@ import { APIResource } from '../core/resource';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 
-export class Generate extends APIResource {
+export class CasGenerator extends APIResource {
   /**
    * This endpoint generates CAS (Consolidated Account Statement) documents by
    * submitting a mailback request to the specified CAS authority. Currently only
@@ -12,7 +12,7 @@ export class Generate extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await client.generate.createCas({
+   * const response = await client.casGenerator.generateCas({
    *   email: 'user@example.com',
    *   from_date: '2023-01-01',
    *   password: 'Abcdefghi12$',
@@ -20,18 +20,21 @@ export class Generate extends APIResource {
    * });
    * ```
    */
-  createCas(body: GenerateCreateCasParams, options?: RequestOptions): APIPromise<GenerateCreateCasResponse> {
+  generateCas(
+    body: CasGeneratorGenerateCasParams,
+    options?: RequestOptions,
+  ): APIPromise<CasGeneratorGenerateCasResponse> {
     return this._client.post('/v4/generate', { body, ...options });
   }
 }
 
-export interface GenerateCreateCasResponse {
+export interface CasGeneratorGenerateCasResponse {
   msg?: string;
 
   status?: string;
 }
 
-export interface GenerateCreateCasParams {
+export interface CasGeneratorGenerateCasParams {
   /**
    * Email address to receive the CAS document
    */
@@ -64,9 +67,9 @@ export interface GenerateCreateCasParams {
   pan_no?: string;
 }
 
-export declare namespace Generate {
+export declare namespace CasGenerator {
   export {
-    type GenerateCreateCasResponse as GenerateCreateCasResponse,
-    type GenerateCreateCasParams as GenerateCreateCasParams,
+    type CasGeneratorGenerateCasResponse as CasGeneratorGenerateCasResponse,
+    type CasGeneratorGenerateCasParams as CasGeneratorGenerateCasParams,
   };
 }
