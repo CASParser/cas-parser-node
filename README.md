@@ -4,7 +4,7 @@
 
 This library provides convenient access to the Cas Parser REST API from server-side TypeScript or JavaScript.
 
-The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found on [docs.casparser.in](https://docs.casparser.in/reference). The full API of this library can be found in [api.md](api.md).
 
 It is generated with [Stainless](https://www.stainless.com/).
 
@@ -30,9 +30,9 @@ const client = new CasParser({
   environment: 'environment_1', // defaults to 'production'
 });
 
-const unifiedResponse = await client.camsKfintech.parse();
+const response = await client.casParser.camsKfintech();
 
-console.log(unifiedResponse.demat_accounts);
+console.log(response.demat_accounts);
 ```
 
 ### Request & Response types
@@ -48,7 +48,7 @@ const client = new CasParser({
   environment: 'environment_1', // defaults to 'production'
 });
 
-const unifiedResponse: CasParser.UnifiedResponse = await client.camsKfintech.parse();
+const response: CasParser.CasParserCamsKfintechResponse = await client.casParser.camsKfintech();
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -61,7 +61,7 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-const unifiedResponse = await client.camsKfintech.parse().catch(async (err) => {
+const response = await client.casParser.camsKfintech().catch(async (err) => {
   if (err instanceof CasParser.APIError) {
     console.log(err.status); // 400
     console.log(err.name); // BadRequestError
@@ -101,7 +101,7 @@ const client = new CasParser({
 });
 
 // Or, configure per-request:
-await client.camsKfintech.parse({
+await client.casParser.camsKfintech({
   maxRetries: 5,
 });
 ```
@@ -118,7 +118,7 @@ const client = new CasParser({
 });
 
 // Override per-request:
-await client.camsKfintech.parse({
+await client.casParser.camsKfintech({
   timeout: 5 * 1000,
 });
 ```
@@ -141,13 +141,13 @@ Unlike `.asResponse()` this method consumes the body, returning once it is parse
 ```ts
 const client = new CasParser();
 
-const response = await client.camsKfintech.parse().asResponse();
+const response = await client.casParser.camsKfintech().asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: unifiedResponse, response: raw } = await client.camsKfintech.parse().withResponse();
+const { data: response, response: raw } = await client.casParser.camsKfintech().withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(unifiedResponse.demat_accounts);
+console.log(response.demat_accounts);
 ```
 
 ### Logging
@@ -227,7 +227,7 @@ parameter. This library doesn't validate at runtime that the request matches the
 send will be sent as-is.
 
 ```ts
-client.camsKfintech.parse({
+client.casParser.camsKfintech({
   // ...
   // @ts-expect-error baz is not yet public
   baz: 'undocumented option',

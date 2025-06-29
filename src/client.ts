@@ -16,11 +16,22 @@ import * as Errors from './core/error';
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
-import { CamsKfintech, CamsKfintechParseParams, UnifiedResponse } from './resources/cams-kfintech';
-import { Cdsl, CdslParseParams } from './resources/cdsl';
-import { Generate, GenerateCreateCasParams, GenerateCreateCasResponse } from './resources/generate';
-import { Nsdl, NsdlParseParams } from './resources/nsdl';
-import { Smart, SmartParseCasPdfParams } from './resources/smart';
+import {
+  CasGenerator,
+  CasGeneratorGenerateCasParams,
+  CasGeneratorGenerateCasResponse,
+} from './resources/cas-generator';
+import {
+  CasParserCamsKfintechParams,
+  CasParserCamsKfintechResponse,
+  CasParserCdslParams,
+  CasParserCdslResponse,
+  CasParserNsdlParams,
+  CasParserNsdlResponse,
+  CasParserParseCasPdfParams,
+  CasParserParseCasPdfResponse,
+  CasParserResource,
+} from './resources/cas-parser';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
@@ -739,35 +750,29 @@ export class CasParser {
 
   static toFile = Uploads.toFile;
 
-  camsKfintech: API.CamsKfintech = new API.CamsKfintech(this);
-  cdsl: API.Cdsl = new API.Cdsl(this);
-  generate: API.Generate = new API.Generate(this);
-  nsdl: API.Nsdl = new API.Nsdl(this);
-  smart: API.Smart = new API.Smart(this);
+  casParser: API.CasParserResource = new API.CasParserResource(this);
+  casGenerator: API.CasGenerator = new API.CasGenerator(this);
 }
-CasParser.CamsKfintech = CamsKfintech;
-CasParser.Cdsl = Cdsl;
-CasParser.Generate = Generate;
-CasParser.Nsdl = Nsdl;
-CasParser.Smart = Smart;
+CasParser.CasParserResource = CasParserResource;
+CasParser.CasGenerator = CasGenerator;
 export declare namespace CasParser {
   export type RequestOptions = Opts.RequestOptions;
 
   export {
-    CamsKfintech as CamsKfintech,
-    type UnifiedResponse as UnifiedResponse,
-    type CamsKfintechParseParams as CamsKfintechParseParams,
+    CasParserResource as CasParserResource,
+    type CasParserCamsKfintechResponse as CasParserCamsKfintechResponse,
+    type CasParserCdslResponse as CasParserCdslResponse,
+    type CasParserNsdlResponse as CasParserNsdlResponse,
+    type CasParserParseCasPdfResponse as CasParserParseCasPdfResponse,
+    type CasParserCamsKfintechParams as CasParserCamsKfintechParams,
+    type CasParserCdslParams as CasParserCdslParams,
+    type CasParserNsdlParams as CasParserNsdlParams,
+    type CasParserParseCasPdfParams as CasParserParseCasPdfParams,
   };
-
-  export { Cdsl as Cdsl, type CdslParseParams as CdslParseParams };
 
   export {
-    Generate as Generate,
-    type GenerateCreateCasResponse as GenerateCreateCasResponse,
-    type GenerateCreateCasParams as GenerateCreateCasParams,
+    CasGenerator as CasGenerator,
+    type CasGeneratorGenerateCasResponse as CasGeneratorGenerateCasResponse,
+    type CasGeneratorGenerateCasParams as CasGeneratorGenerateCasParams,
   };
-
-  export { Nsdl as Nsdl, type NsdlParseParams as NsdlParseParams };
-
-  export { Smart as Smart, type SmartParseCasPdfParams as SmartParseCasPdfParams };
 }
