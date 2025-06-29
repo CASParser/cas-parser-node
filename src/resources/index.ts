@@ -7,10 +7,7 @@ export {
 } from './cas-generator';
 export {
   CasParserResource,
-  type CasParserCamsKfintechResponse,
-  type CasParserCdslResponse,
-  type CasParserNsdlResponse,
-  type CasParserParseCasPdfResponse,
+  type UnifiedResponse,
   type CasParserCamsKfintechParams,
   type CasParserCdslParams,
   type CasParserNsdlParams,
