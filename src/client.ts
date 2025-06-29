@@ -23,14 +23,11 @@ import {
 } from './resources/cas-generator';
 import {
   CasParserCamsKfintechParams,
-  CasParserCamsKfintechResponse,
   CasParserCdslParams,
-  CasParserCdslResponse,
   CasParserNsdlParams,
-  CasParserNsdlResponse,
   CasParserParseCasPdfParams,
-  CasParserParseCasPdfResponse,
   CasParserResource,
+  UnifiedResponse,
 } from './resources/cas-parser';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
@@ -760,10 +757,7 @@ export declare namespace CasParser {
 
   export {
     CasParserResource as CasParserResource,
-    type CasParserCamsKfintechResponse as CasParserCamsKfintechResponse,
-    type CasParserCdslResponse as CasParserCdslResponse,
-    type CasParserNsdlResponse as CasParserNsdlResponse,
-    type CasParserParseCasPdfResponse as CasParserParseCasPdfResponse,
+    type UnifiedResponse as UnifiedResponse,
     type CasParserCamsKfintechParams as CasParserCamsKfintechParams,
     type CasParserCdslParams as CasParserCdslParams,
     type CasParserNsdlParams as CasParserNsdlParams,

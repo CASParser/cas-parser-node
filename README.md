@@ -30,9 +30,9 @@ const client = new CasParser({
   environment: 'environment_1', // defaults to 'production'
 });
 
-const response = await client.casParser.camsKfintech();
+const unifiedResponse = await client.casParser.camsKfintech();
 
-console.log(response.demat_accounts);
+console.log(unifiedResponse.demat_accounts);
 ```
 
 ### Request & Response types
@@ -48,7 +48,7 @@ const client = new CasParser({
   environment: 'environment_1', // defaults to 'production'
 });
 
-const response: CasParser.CasParserCamsKfintechResponse = await client.casParser.camsKfintech();
+const unifiedResponse: CasParser.UnifiedResponse = await client.casParser.camsKfintech();
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -61,7 +61,7 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-const response = await client.casParser.camsKfintech().catch(async (err) => {
+const unifiedResponse = await client.casParser.camsKfintech().catch(async (err) => {
   if (err instanceof CasParser.APIError) {
     console.log(err.status); // 400
     console.log(err.name); // BadRequestError
@@ -145,9 +145,9 @@ const response = await client.casParser.camsKfintech().asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: response, response: raw } = await client.casParser.camsKfintech().withResponse();
+const { data: unifiedResponse, response: raw } = await client.casParser.camsKfintech().withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(response.demat_accounts);
+console.log(unifiedResponse.demat_accounts);
 ```
 
 ### Logging
