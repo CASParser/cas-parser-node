@@ -48,7 +48,7 @@ export class CasParserResource extends APIResource {
    * CAS type and transforms the data into a consistent structure regardless of the
    * source.
    */
-  parseCasPdf(body: CasParserParseCasPdfParams, options?: RequestOptions): APIPromise<UnifiedResponse> {
+  smartParse(body: CasParserSmartParseParams, options?: RequestOptions): APIPromise<UnifiedResponse> {
     return this._client.post(
       '/v4/smart/parse',
       maybeMultipartFormRequestOptions({ body, ...options }, this._client),
@@ -724,7 +724,7 @@ export interface CasParserNsdlParams {
   pdf_url?: string;
 }
 
-export interface CasParserParseCasPdfParams {
+export interface CasParserSmartParseParams {
   /**
    * Password for the PDF file (if required)
    */
@@ -747,6 +747,6 @@ export declare namespace CasParserResource {
     type CasParserCamsKfintechParams as CasParserCamsKfintechParams,
     type CasParserCdslParams as CasParserCdslParams,
     type CasParserNsdlParams as CasParserNsdlParams,
-    type CasParserParseCasPdfParams as CasParserParseCasPdfParams,
+    type CasParserSmartParseParams as CasParserSmartParseParams,
   };
 }

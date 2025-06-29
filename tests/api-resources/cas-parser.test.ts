@@ -45,8 +45,8 @@ describe('resource casParser', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('parseCasPdf', async () => {
-    const responsePromise = client.casParser.parseCasPdf({});
+  test.skip('smartParse', async () => {
+    const responsePromise = client.casParser.smartParse({});
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
