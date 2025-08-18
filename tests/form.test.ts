@@ -1,5 +1,5 @@
-import { multipartFormRequestOptions, createForm } from 'cas-parser/internal/uploads';
-import { toFile } from 'cas-parser/core/uploads';
+import { multipartFormRequestOptions, createForm } from 'cas-parser-node/internal/uploads';
+import { toFile } from 'cas-parser-node/core/uploads';
 
 describe('form data validation', () => {
   test('valid values do not error', async () => {
