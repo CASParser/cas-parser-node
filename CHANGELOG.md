@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.0 (2025-08-18)
+
+Full Changelog: [v1.0.0...v1.1.0](https://github.com/CASParser/cas-parser-node/compare/v1.0.0...v1.1.0)
+
+### Features
+
+* **api:** api update ([6108aea](https://github.com/CASParser/cas-parser-node/commit/6108aea7cb4622bb475866a49784a9f519bb487e))
+
 ## 1.0.0 (2025-08-18)
 
 Full Changelog: [v0.0.1-alpha.0...v1.0.0](https://github.com/CASParser/cas-parser-node/compare/v0.0.1-alpha.0...v1.0.0)
