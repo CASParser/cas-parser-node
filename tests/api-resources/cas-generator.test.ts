@@ -8,7 +8,7 @@ const client = new CasParser({
 });
 
 describe('resource casGenerator', () => {
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('generateCas: only required params', async () => {
     const responsePromise = client.casGenerator.generateCas({
       email: 'user@example.com',
@@ -25,7 +25,7 @@ describe('resource casGenerator', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('generateCas: required and optional params', async () => {
     const response = await client.casGenerator.generateCas({
       email: 'user@example.com',
