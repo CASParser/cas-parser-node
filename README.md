@@ -24,10 +24,12 @@ import CasParser from 'cas-parser-node';
 
 const client = new CasParser({
   apiKey: process.env['CAS_PARSER_API_KEY'], // This is the default and can be omitted
-  environment: 'local', // defaults to 'production'
 });
 
-const unifiedResponse = await client.casParser.camsKfintech();
+const unifiedResponse = await client.casParser.smartParse({
+  password: 'ABCDF',
+  pdf_url: 'https://your-cas-pdf-url-here.com',
+});
 
 console.log(unifiedResponse.demat_accounts);
 ```
@@ -42,10 +44,13 @@ import CasParser from 'cas-parser-node';
 
 const client = new CasParser({
   apiKey: process.env['CAS_PARSER_API_KEY'], // This is the default and can be omitted
-  environment: 'local', // defaults to 'production'
 });
 
-const unifiedResponse: CasParser.UnifiedResponse = await client.casParser.camsKfintech();
+const params: CasParser.CasParserSmartParseParams = {
+  password: 'ABCDF',
+  pdf_url: 'https://you-cas-pdf-url-here.com',
+};
+const unifiedResponse: CasParser.UnifiedResponse = await client.casParser.smartParse(params);
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -58,15 +63,17 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-const unifiedResponse = await client.casParser.camsKfintech().catch(async (err) => {
-  if (err instanceof CasParser.APIError) {
-    console.log(err.status); // 400
-    console.log(err.name); // BadRequestError
-    console.log(err.headers); // {server: 'nginx', ...}
-  } else {
-    throw err;
-  }
-});
+const unifiedResponse = await client.casParser
+  .smartParse({ password: 'ABCDF', pdf_url: 'https://you-cas-pdf-url-here.com' })
+  .catch(async (err) => {
+    if (err instanceof CasParser.APIError) {
+      console.log(err.status); // 400
+      console.log(err.name); // BadRequestError
+      console.log(err.headers); // {server: 'nginx', ...}
+    } else {
+      throw err;
+    }
+  });
 ```
 
 Error codes are as follows:
@@ -98,7 +105,7 @@ const client = new CasParser({
 });
 
 // Or, configure per-request:
-await client.casParser.camsKfintech({
+await client.casParser.smartParse({ password: 'ABCDF', pdf_url: 'https://you-cas-pdf-url-here.com' }, {
   maxRetries: 5,
 });
 ```
@@ -115,7 +122,7 @@ const client = new CasParser({
 });
 
 // Override per-request:
-await client.casParser.camsKfintech({
+await client.casParser.smartParse({ password: 'ABCDF', pdf_url: 'https://you-cas-pdf-url-here.com' }, {
   timeout: 5 * 1000,
 });
 ```
@@ -138,11 +145,15 @@ Unlike `.asResponse()` this method consumes the body, returning once it is parse
 ```ts
 const client = new CasParser();
 
-const response = await client.casParser.camsKfintech().asResponse();
+const response = await client.casParser
+  .smartParse({ password: 'ABCDF', pdf_url: 'https://you-cas-pdf-url-here.com' })
+  .asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: unifiedResponse, response: raw } = await client.casParser.camsKfintech().withResponse();
+const { data: unifiedResponse, response: raw } = await client.casParser
+  .smartParse({ password: 'ABCDF', pdf_url: 'https://you-cas-pdf-url-here.com' })
+  .withResponse();
 console.log(raw.headers.get('X-My-Header'));
 console.log(unifiedResponse.demat_accounts);
 ```
@@ -224,7 +235,7 @@ parameter. This library doesn't validate at runtime that the request matches the
 send will be sent as-is.
 
 ```ts
-client.casParser.camsKfintech({
+client.casParser.smartParse({
   // ...
   // @ts-expect-error baz is not yet public
   baz: 'undocumented option',

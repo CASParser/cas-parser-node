@@ -10,7 +10,6 @@ You can run the MCP Server directly via `npx`:
 
 ```sh
 export CAS_PARSER_API_KEY="My API Key"
-export CAS_PARSER_ENVIRONMENT="production"
 npx -y cas-parser-node-mcp@latest
 ```
 
@@ -28,8 +27,7 @@ For clients with a configuration JSON, it might look something like this:
       "command": "npx",
       "args": ["-y", "cas-parser-node-mcp", "--client=claude", "--tools=all"],
       "env": {
-        "CAS_PARSER_API_KEY": "My API Key",
-        "CAS_PARSER_ENVIRONMENT": "production"
+        "CAS_PARSER_API_KEY": "My API Key"
       }
     }
   }

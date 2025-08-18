@@ -26,7 +26,7 @@ export const newMcpServer = () =>
   new McpServer(
     {
       name: 'cas_parser_node_api',
-      version: '1.1.0',
+      version: '1.2.0',
     },
     { capabilities: { tools: {}, logging: {} } },
   );
@@ -80,12 +80,7 @@ export function init(params: {
   };
 
   const client =
-    params.client ||
-    new CasParser({
-      environment: (readEnv('CAS_PARSER_ENVIRONMENT') || undefined) as any,
-      defaultHeaders: { 'X-Stainless-MCP': 'true' },
-      logger: logger,
-    });
+    params.client || new CasParser({ defaultHeaders: { 'X-Stainless-MCP': 'true' }, logger: logger });
 
   server.setRequestHandler(ListToolsRequestSchema, async () => {
     return {
