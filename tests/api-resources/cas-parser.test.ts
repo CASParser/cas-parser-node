@@ -8,7 +8,7 @@ const client = new CasParser({
 });
 
 describe('resource casParser', () => {
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('camsKfintech', async () => {
     const responsePromise = client.casParser.camsKfintech({});
     const rawResponse = await responsePromise.asResponse();
@@ -20,7 +20,7 @@ describe('resource casParser', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('cdsl', async () => {
     const responsePromise = client.casParser.cdsl({});
     const rawResponse = await responsePromise.asResponse();
@@ -32,7 +32,7 @@ describe('resource casParser', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('nsdl', async () => {
     const responsePromise = client.casParser.nsdl({});
     const rawResponse = await responsePromise.asResponse();
@@ -44,7 +44,7 @@ describe('resource casParser', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('smartParse', async () => {
     const responsePromise = client.casParser.smartParse({});
     const rawResponse = await responsePromise.asResponse();

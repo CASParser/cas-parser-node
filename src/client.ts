@@ -755,8 +755,10 @@ export class CasParser {
   casParser: API.CasParserResource = new API.CasParserResource(this);
   casGenerator: API.CasGenerator = new API.CasGenerator(this);
 }
+
 CasParser.CasParserResource = CasParserResource;
 CasParser.CasGenerator = CasGenerator;
+
 export declare namespace CasParser {
   export type RequestOptions = Opts.RequestOptions;
 
