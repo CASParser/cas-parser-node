@@ -2,7 +2,6 @@
 
 import { APIResource } from '../core/resource';
 import { APIPromise } from '../core/api-promise';
-import { type Uploadable } from '../core/uploads';
 import { RequestOptions } from '../internal/request-options';
 import { maybeMultipartFormRequestOptions } from '../internal/uploads';
 
@@ -683,7 +682,7 @@ export interface CasParserCamsKfintechParams {
   /**
    * Base64 encoded CAS PDF file
    */
-  pdf_file?: Uploadable;
+  pdf_file?: string;
 
   /**
    * URL to the CAS PDF file
@@ -700,7 +699,7 @@ export interface CasParserCdslParams {
   /**
    * Base64 encoded CAS PDF file
    */
-  pdf_file?: Uploadable;
+  pdf_file?: string;
 
   /**
    * URL to the CAS PDF file
@@ -717,7 +716,7 @@ export interface CasParserNsdlParams {
   /**
    * Base64 encoded CAS PDF file
    */
-  pdf_file?: Uploadable;
+  pdf_file?: string;
 
   /**
    * URL to the CAS PDF file
@@ -734,7 +733,7 @@ export interface CasParserSmartParseParams {
   /**
    * Base64 encoded CAS PDF file
    */
-  pdf_file?: Uploadable;
+  pdf_file?: string;
 
   /**
    * URL to the CAS PDF file
