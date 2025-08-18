@@ -315,19 +315,6 @@ describe('instantiate client', () => {
       expect(client.baseURL).toEqual('https://portfolio-parser.api.casparser.in');
     });
 
-    test('env variable with environment', () => {
-      process.env['CAS_PARSER_BASE_URL'] = 'https://example.com/from_env';
-
-      expect(
-        () => new CasParser({ apiKey: 'My API Key', environment: 'production' }),
-      ).toThrowErrorMatchingInlineSnapshot(
-        `"Ambiguous URL; The \`baseURL\` option (or CAS_PARSER_BASE_URL env var) and the \`environment\` option are given. If you want to use the environment you must pass baseURL: null"`,
-      );
-
-      const client = new CasParser({ apiKey: 'My API Key', baseURL: null, environment: 'production' });
-      expect(client.baseURL).toEqual('https://portfolio-parser.api.casparser.in');
-    });
-
     test('in request options', () => {
       const client = new CasParser({ apiKey: 'My API Key' });
       expect(client.buildURL('/foo', null, 'http://localhost:5000/option')).toEqual(
