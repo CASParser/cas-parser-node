@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { type ClientOptions } from 'cas-parser-node/client';
+import { ClientOptions } from 'cas-parser-node';
 
 export type WorkerInput = {
   opts: ClientOptions;
