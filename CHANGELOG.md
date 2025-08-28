@@ -1,5 +1,29 @@
 # Changelog
 
+## 1.3.0 (2025-08-24)
+
+Full Changelog: [v1.2.0...v1.3.0](https://github.com/CASParser/cas-parser-node/compare/v1.2.0...v1.3.0)
+
+### Features
+
+* **mcp:** add code execution tool ([84904a7](https://github.com/CASParser/cas-parser-node/commit/84904a7f558053aa211b8f483a7b4f6c2b13b8f6))
+* **mcp:** add option to infer mcp client ([c190ccd](https://github.com/CASParser/cas-parser-node/commit/c190ccdd5cb6342dc620c26a3d06c0514f693a37))
+* **mcp:** parse query string as mcp client options in mcp server ([1f6e085](https://github.com/CASParser/cas-parser-node/commit/1f6e085c4e7e9edf497585587fc3e6603b53a3e3))
+
+
+### Chores
+
+* add package to package.json ([9a166fa](https://github.com/CASParser/cas-parser-node/commit/9a166fa5baf70f7d0114d1c4dce14a1ac8bf956f))
+* **client:** qualify global Blob ([902939b](https://github.com/CASParser/cas-parser-node/commit/902939be47f74826e00ca6b8f73e94f969d96952))
+* **internal:** codegen related update ([033f0ef](https://github.com/CASParser/cas-parser-node/commit/033f0ef5142b7f37ec8ccf9c276d5bd9bb3dbe76))
+* **internal:** codegen related update ([8463673](https://github.com/CASParser/cas-parser-node/commit/8463673b3bdd581f5d58b7ed18fb782b42cb94d9))
+* **internal:** make mcp-server publishing public by defaut ([4bbdb37](https://github.com/CASParser/cas-parser-node/commit/4bbdb3749a70bc35a4e9fdd4b9763a6f79f78a24))
+* **internal:** refactor array check ([00cc94f](https://github.com/CASParser/cas-parser-node/commit/00cc94fb85746fc3a79136d22214864673a3c93f))
+* **mcp:** add cors to oauth metadata route ([3833155](https://github.com/CASParser/cas-parser-node/commit/3833155c5d3bcca5a7bf6ca0f513e8365db316cc))
+* **mcp:** update package.json ([02b1e54](https://github.com/CASParser/cas-parser-node/commit/02b1e541dcf8d3a253c91f55266be3edb3db60e8))
+* **mcp:** update types ([db1c76c](https://github.com/CASParser/cas-parser-node/commit/db1c76c3d2a76789d4dc3e5de57a875b7fa091db))
+* update CI script ([b359ebc](https://github.com/CASParser/cas-parser-node/commit/b359ebce43e80eead9d0ff40b45a13e6af4c82b1))
+
 ## 1.2.0 (2025-08-18)
 
 Full Changelog: [v1.1.0...v1.2.0](https://github.com/CASParser/cas-parser-node/compare/v1.1.0...v1.2.0)
