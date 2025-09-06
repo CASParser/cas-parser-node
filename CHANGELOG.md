@@ -1,5 +1,27 @@
 # Changelog
 
+## 1.4.0 (2025-09-06)
+
+Full Changelog: [v1.3.0...v1.4.0](https://github.com/CASParser/cas-parser-node/compare/v1.3.0...v1.4.0)
+
+### Features
+
+* **mcp:** allow setting logging level ([09e1385](https://github.com/CASParser/cas-parser-node/commit/09e1385c6aca980373b2e306a322ededef76a968))
+* **mcp:** expose client options in `streamableHTTPApp` ([8b00452](https://github.com/CASParser/cas-parser-node/commit/8b00452cbb7fce7b4d63e240021c2088f3ff1724))
+
+
+### Bug Fixes
+
+* **mcp:** fix query options parsing ([c0c48c9](https://github.com/CASParser/cas-parser-node/commit/c0c48c931043e8a4ca2154ea128589b19e0c0d24))
+
+
+### Chores
+
+* ci build action ([52509dd](https://github.com/CASParser/cas-parser-node/commit/52509ddf57d2452be7194a560a77f497668e75ae))
+* **internal:** codegen related update ([fbd7b14](https://github.com/CASParser/cas-parser-node/commit/fbd7b14ecce310840c07c198b070b3546178a2ae))
+* **internal:** codegen related update ([328471e](https://github.com/CASParser/cas-parser-node/commit/328471eb93f460fbf4e56139ed85c6565e0c3f72))
+* **internal:** update global Error reference ([a1c4a4b](https://github.com/CASParser/cas-parser-node/commit/a1c4a4b62f88fe05201137ae92a934f9248dc237))
+
 ## 1.3.0 (2025-08-24)
 
 Full Changelog: [v1.2.0...v1.3.0](https://github.com/CASParser/cas-parser-node/compare/v1.2.0...v1.3.0)
