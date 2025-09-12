@@ -33,7 +33,7 @@ export const newMcpServer = () =>
   new McpServer(
     {
       name: 'cas_parser_node_api',
-      version: '1.4.0',
+      version: '1.4.1',
     },
     { capabilities: { tools: {}, logging: {} } },
   );

@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.4.1 (2025-09-12)
+
+Full Changelog: [v1.4.0...v1.4.1](https://github.com/CASParser/cas-parser-node/compare/v1.4.0...v1.4.1)
+
+### Bug Fixes
+
+* coerce nullable values to undefined ([5355e4d](https://github.com/CASParser/cas-parser-node/commit/5355e4dc9d5acca9d1c0fbb58539c4106af4d1b0))
+* **mcp:** fix uploading dxt release assets ([a6e483b](https://github.com/CASParser/cas-parser-node/commit/a6e483ba375b7d97278928526ed10b2cc564bfa3))
+
+
+### Chores
+
+* **mcp:** upload dxt as release asset ([334e4d3](https://github.com/CASParser/cas-parser-node/commit/334e4d3dc3124709dc485d968d07fde384d3b23f))
+
 ## 1.4.0 (2025-09-06)
 
 Full Changelog: [v1.3.0...v1.4.0](https://github.com/CASParser/cas-parser-node/compare/v1.3.0...v1.4.0)
