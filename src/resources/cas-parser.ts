@@ -67,6 +67,11 @@ export interface UnifiedResponse {
 
   mutual_funds?: Array<UnifiedResponse.MutualFund>;
 
+  /**
+   * List of NPS accounts
+   */
+  nps?: Array<UnifiedResponse.Np>;
+
   summary?: UnifiedResponse.Summary;
 }
 
@@ -103,6 +108,11 @@ export namespace UnifiedResponse {
     dp_name?: string;
 
     holdings?: DematAccount.Holdings;
+
+    /**
+     * List of account holders linked to this demat account
+     */
+    linked_holders?: Array<DematAccount.LinkedHolder>;
 
     /**
      * Total value of the demat account
@@ -304,6 +314,18 @@ export namespace UnifiedResponse {
         value?: number;
       }
     }
+
+    export interface LinkedHolder {
+      /**
+       * Name of the account holder
+       */
+      name?: string;
+
+      /**
+       * PAN of the account holder
+       */
+      pan?: string;
+    }
   }
 
   export interface Insurance {
@@ -441,6 +463,11 @@ export namespace UnifiedResponse {
     folio_number?: string;
 
     /**
+     * List of account holders linked to this mutual fund folio
+     */
+    linked_holders?: Array<MutualFund.LinkedHolder>;
+
+    /**
      * Registrar and Transfer Agent name
      */
     registrar?: string;
@@ -472,6 +499,18 @@ export namespace UnifiedResponse {
        * PAN KYC status
        */
       pankyc?: string;
+    }
+
+    export interface LinkedHolder {
+      /**
+       * Name of the account holder
+       */
+      name?: string;
+
+      /**
+       * PAN of the account holder
+       */
+      pan?: string;
     }
 
     export interface Scheme {
@@ -615,6 +654,98 @@ export namespace UnifiedResponse {
     }
   }
 
+  export interface Np {
+    /**
+     * Additional information specific to the NPS account
+     */
+    additional_info?: unknown;
+
+    /**
+     * Central Record Keeping Agency name
+     */
+    cra?: string;
+
+    funds?: Array<Np.Fund>;
+
+    /**
+     * List of account holders linked to this NPS account
+     */
+    linked_holders?: Array<Np.LinkedHolder>;
+
+    /**
+     * Permanent Retirement Account Number (PRAN)
+     */
+    pran?: string;
+
+    /**
+     * Total value of the NPS account
+     */
+    value?: number;
+  }
+
+  export namespace Np {
+    export interface Fund {
+      /**
+       * Additional information specific to the NPS fund
+       */
+      additional_info?: Fund.AdditionalInfo;
+
+      /**
+       * Cost of investment
+       */
+      cost?: number;
+
+      /**
+       * Name of the NPS fund
+       */
+      name?: string;
+
+      /**
+       * Net Asset Value per unit
+       */
+      nav?: number;
+
+      /**
+       * Number of units held
+       */
+      units?: number;
+
+      /**
+       * Current market value of the holding
+       */
+      value?: number;
+    }
+
+    export namespace Fund {
+      /**
+       * Additional information specific to the NPS fund
+       */
+      export interface AdditionalInfo {
+        /**
+         * Fund manager name
+         */
+        manager?: string;
+
+        /**
+         * NPS tier (Tier I or Tier II)
+         */
+        tier?: 1 | 2 | null;
+      }
+    }
+
+    export interface LinkedHolder {
+      /**
+       * Name of the account holder
+       */
+      name?: string;
+
+      /**
+       * PAN of the account holder
+       */
+      pan?: string;
+    }
+  }
+
   export interface Summary {
     accounts?: Summary.Accounts;
 
@@ -631,6 +762,8 @@ export namespace UnifiedResponse {
       insurance?: Accounts.Insurance;
 
       mutual_funds?: Accounts.MutualFunds;
+
+      nps?: Accounts.Nps;
     }
 
     export namespace Accounts {
@@ -666,6 +799,18 @@ export namespace UnifiedResponse {
 
         /**
          * Total value of mutual funds
+         */
+        total_value?: number;
+      }
+
+      export interface Nps {
+        /**
+         * Number of NPS accounts
+         */
+        count?: number;
+
+        /**
+         * Total value of NPS accounts
          */
         total_value?: number;
       }
