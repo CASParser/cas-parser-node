@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'generate_cas_cas_generator',
   description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nThis endpoint generates CAS (Consolidated Account Statement) documents by submitting a mailback request to the specified CAS authority.\nCurrently only supports KFintech, with plans to support CAMS, CDSL, and NSDL in the future.\n\n\n# Response Schema\n```json\n{\n  type: 'object',\n  properties: {\n    msg: {\n      type: 'string'\n    },\n    status: {\n      type: 'string'\n    }\n  }\n}\n```",
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nThis endpoint generates CAS (Consolidated Account Statement) documents by submitting a mailback request to the specified CAS authority.\nCurrently only supports KFintech, with plans to support CAMS, CDSL, and NSDL in the future.\n\n\n# Response Schema\n```json\n{\n  $ref: '#/$defs/cas_generator_generate_cas_response',\n  $defs: {\n    cas_generator_generate_cas_response: {\n      type: 'object',\n      properties: {\n        msg: {\n          type: 'string'\n        },\n        status: {\n          type: 'string'\n        }\n      }\n    }\n  }\n}\n```",
   inputSchema: {
     type: 'object',
     properties: {
