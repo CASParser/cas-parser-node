@@ -12,11 +12,3 @@ Methods:
 - <code title="post /v4/smart/parse">client.casParser.<a href="./src/resources/cas-parser.ts">smartParse</a>({ ...params }) -> UnifiedResponse</code>
 
 # CasGenerator
-
-Types:
-
-- <code><a href="./src/resources/cas-generator.ts">CasGeneratorGenerateCasResponse</a></code>
-
-Methods:
-
-- <code title="post /v4/generate">client.casGenerator.<a href="./src/resources/cas-generator.ts">generateCas</a>({ ...params }) -> CasGeneratorGenerateCasResponse</code>

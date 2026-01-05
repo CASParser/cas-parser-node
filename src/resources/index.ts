@@ -1,10 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export {
-  CasGenerator,
-  type CasGeneratorGenerateCasResponse,
-  type CasGeneratorGenerateCasParams,
-} from './cas-generator';
+export { CasGenerator } from './cas-generator';
 export {
   CasParserResource,
   type UnifiedResponse,
