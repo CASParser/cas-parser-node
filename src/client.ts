@@ -16,11 +16,7 @@ import * as Errors from './core/error';
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
-import {
-  CasGenerator,
-  CasGeneratorGenerateCasParams,
-  CasGeneratorGenerateCasResponse,
-} from './resources/cas-generator';
+import { CasGenerator } from './resources/cas-generator';
 import {
   CasParserCamsKfintechParams,
   CasParserCdslParams,
@@ -747,9 +743,5 @@ export declare namespace CasParser {
     type CasParserSmartParseParams as CasParserSmartParseParams,
   };
 
-  export {
-    CasGenerator as CasGenerator,
-    type CasGeneratorGenerateCasResponse as CasGeneratorGenerateCasResponse,
-    type CasGeneratorGenerateCasParams as CasGeneratorGenerateCasParams,
-  };
+  export { CasGenerator as CasGenerator };
 }
