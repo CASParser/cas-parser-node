@@ -2,8 +2,9 @@
 
 import { McpTool, Metadata, ToolCallResult, asErrorResult, asTextContentResult } from './types';
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import { readEnv, readEnvOrError } from './server';
+import { readEnv, requireValue } from './server';
 import { WorkerInput, WorkerOutput } from './code-tool-types';
+import { CasParser } from 'cas-parser-node';
 
 const prompt = `Runs JavaScript code to interact with the Cas Parser API.
 
@@ -54,7 +55,7 @@ export function codeTool(): McpTool {
       required: ['code'],
     },
   };
-  const handler = async (_: unknown, args: any): Promise<ToolCallResult> => {
+  const handler = async (client: CasParser, args: any): Promise<ToolCallResult> => {
     const code = args.code as string;
     const intent = args.intent as string | undefined;
 
@@ -70,8 +71,11 @@ export function codeTool(): McpTool {
         ...(stainlessAPIKey && { Authorization: stainlessAPIKey }),
         'Content-Type': 'application/json',
         client_envs: JSON.stringify({
-          CAS_PARSER_API_KEY: readEnvOrError('CAS_PARSER_API_KEY'),
-          CAS_PARSER_BASE_URL: readEnv('CAS_PARSER_BASE_URL'),
+          CAS_PARSER_API_KEY: requireValue(
+            readEnv('CAS_PARSER_API_KEY') ?? client.apiKey,
+            'set CAS_PARSER_API_KEY environment variable or provide apiKey client option',
+          ),
+          CAS_PARSER_BASE_URL: readEnv('CAS_PARSER_BASE_URL') ?? client.baseURL ?? undefined,
         }),
       },
       body: JSON.stringify({
