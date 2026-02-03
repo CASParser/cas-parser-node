@@ -1562,12 +1562,12 @@ export interface CasParserCamsKfintechParams {
   password?: string;
 
   /**
-   * Base64 encoded CAS PDF file
+   * Base64 encoded CAS PDF file (required if pdf_url not provided)
    */
   pdf_file?: string;
 
   /**
-   * URL to the CAS PDF file
+   * URL to the CAS PDF file (required if pdf_file not provided)
    */
   pdf_url?: string;
 }
@@ -1579,12 +1579,12 @@ export interface CasParserCdslParams {
   password?: string;
 
   /**
-   * Base64 encoded CAS PDF file
+   * Base64 encoded CAS PDF file (required if pdf_url not provided)
    */
   pdf_file?: string;
 
   /**
-   * URL to the CAS PDF file
+   * URL to the CAS PDF file (required if pdf_file not provided)
    */
   pdf_url?: string;
 }
@@ -1596,12 +1596,12 @@ export interface CasParserNsdlParams {
   password?: string;
 
   /**
-   * Base64 encoded CAS PDF file
+   * Base64 encoded CAS PDF file (required if pdf_url not provided)
    */
   pdf_file?: string;
 
   /**
-   * URL to the CAS PDF file
+   * URL to the CAS PDF file (required if pdf_file not provided)
    */
   pdf_url?: string;
 }
@@ -1613,12 +1613,12 @@ export interface CasParserSmartParseParams {
   password?: string;
 
   /**
-   * Base64 encoded CAS PDF file
+   * Base64 encoded CAS PDF file (required if pdf_url not provided)
    */
   pdf_file?: string;
 
   /**
-   * URL to the CAS PDF file
+   * URL to the CAS PDF file (required if pdf_file not provided)
    */
   pdf_url?: string;
 }
