@@ -56,7 +56,7 @@ export const newMcpServer = async () =>
   new McpServer(
     {
       name: 'cas_parser_node_api',
-      version: '1.4.1',
+      version: '1.5.0',
     },
     {
       instructions: await getInstructions(),
