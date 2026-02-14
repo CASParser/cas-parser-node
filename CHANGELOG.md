@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.6.2 (2026-02-14)
+
+Full Changelog: [v1.6.1...v1.6.2](https://github.com/CASParser/cas-parser-node/compare/v1.6.1...v1.6.2)
+
+### Chores
+
+* update SDK settings ([05b29e9](https://github.com/CASParser/cas-parser-node/commit/05b29e9d60bfd19087cb14cabc32f2c8221e8e8a))
+* update SDK settings ([2361eff](https://github.com/CASParser/cas-parser-node/commit/2361eff0fb2b2cad4781d0bcf3cbe04524446732))
+
 ## 1.6.1 (2026-02-14)
 
 Full Changelog: [v1.6.0...v1.6.1](https://github.com/CASParser/cas-parser-node/compare/v1.6.0...v1.6.1)
