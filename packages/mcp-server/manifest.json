@@ -12,6 +12,7 @@
     "url": "git+https://github.com/CASParser/cas-parser-node.git"
   },
   "homepage": "https://github.com/CASParser/cas-parser-node/tree/main/packages/mcp-server#readme",
+  "documentation": "https://docs.casparser.in",
   "server": {
     "type": "node",
     "entry_point": "index.js",
