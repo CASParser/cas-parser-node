@@ -4,32 +4,17 @@ It is generated with [Stainless](https://www.stainless.com/).
 
 ## Installation
 
-### Building
+### Direct invocation
 
-Because it's not published yet, clone the repo and build it:
-
-```sh
-git clone git@github.com:CASParser/cas-parser-node.git
-cd cas-parser-node
-./scripts/bootstrap
-./scripts/build
-```
-
-### Running
+You can run the MCP Server directly via `npx`:
 
 ```sh
-# set env vars as needed
 export CAS_PARSER_API_KEY="My API Key"
 export CAS_PARSER_ENVIRONMENT="production"
-node ./packages/mcp-server/dist/index.js
+npx -y cas-parser-mcp@latest
 ```
 
-> [!NOTE]
-> Once this package is [published to npm](https://www.stainless.com/docs/guides/publish), this will become: `npx -y cas-parser-mcp`
-
 ### Via MCP Client
-
-[Build the project](#building) as mentioned above.
 
 There is a partial list of existing clients at [modelcontextprotocol.io](https://modelcontextprotocol.io/clients). If you already
 have a client, consult their documentation to install the MCP server.
@@ -39,9 +24,9 @@ For clients with a configuration JSON, it might look something like this:
 ```json
 {
   "mcpServers": {
-    "cas_parser_api": {
-      "command": "node",
-      "args": ["/path/to/local/cas-parser-node/packages/mcp-server"],
+    "cas_parser_node_api": {
+      "command": "npx",
+      "args": ["-y", "cas-parser-mcp"],
       "env": {
         "CAS_PARSER_API_KEY": "My API Key",
         "CAS_PARSER_ENVIRONMENT": "production"
@@ -49,6 +34,29 @@ For clients with a configuration JSON, it might look something like this:
     }
   }
 }
+```
+
+### Cursor
+
+If you use Cursor, you can install the MCP server by using the button below. You will need to set your environment variables
+in Cursor's `mcp.json`, which can be found in Cursor Settings > Tools & MCP > New MCP Server.
+
+[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=cas-parser-mcp&config=eyJuYW1lIjoiY2FzLXBhcnNlci1tY3AiLCJ0cmFuc3BvcnQiOiJodHRwIiwidXJsIjoiaHR0cHM6Ly9jYXMtcGFyc2VyLnN0bG1jcC5jb20iLCJoZWFkZXJzIjp7IngtYXBpLWtleSI6Ik15IEFQSSBLZXkifX0)
+
+### VS Code
+
+If you use MCP, you can install the MCP server by clicking the link below. You will need to set your environment variables
+in VS Code's `mcp.json`, which can be found via Command Palette > MCP: Open User Configuration.
+
+[Open VS Code](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22cas-parser-mcp%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fcas-parser.stlmcp.com%22%2C%22headers%22%3A%7B%22x-api-key%22%3A%22My%20API%20Key%22%7D%7D)
+
+### Claude Code
+
+If you use Claude Code, you can install the MCP server by running the command below in your terminal. You will need to set your
+environment variables in Claude Code's `.claude.json`, which can be found in your home directory.
+
+```
+claude mcp add cas_parser_mcp_api --header "x-api-key: My API Key" --transport http https://cas-parser.stlmcp.com
 ```
 
 ## Code Mode
@@ -82,7 +90,7 @@ A configuration JSON for this server might look like this, assuming the server i
 ```json
 {
   "mcpServers": {
-    "cas_parser_api": {
+    "cas_parser_node_api": {
       "url": "http://localhost:3000",
       "headers": {
         "x-api-key": "My API Key"

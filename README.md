@@ -1,6 +1,6 @@
 # Cas Parser TypeScript API Library
 
-[![NPM version](<https://img.shields.io/npm/v/cas-parser.svg?label=npm%20(stable)>)](https://npmjs.org/package/cas-parser) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/cas-parser)
+[![NPM version](<https://img.shields.io/npm/v/cas-parser-node.svg?label=npm%20(stable)>)](https://npmjs.org/package/cas-parser-node) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/cas-parser-node)
 
 This library provides convenient access to the Cas Parser REST API from server-side TypeScript or JavaScript.
 
@@ -20,11 +20,8 @@ Use the Cas Parser MCP Server to enable AI assistants to interact with this API,
 ## Installation
 
 ```sh
-npm install git+ssh://git@github.com:CASParser/cas-parser-node.git
+npm install cas-parser-node
 ```
-
-> [!NOTE]
-> Once this package is [published to npm](https://www.stainless.com/docs/guides/publish), this will become: `npm install cas-parser`
 
 ## Usage
 
@@ -32,7 +29,7 @@ The full API of this library can be found in [api.md](api.md).
 
 <!-- prettier-ignore -->
 ```js
-import CasParser from 'cas-parser';
+import CasParser from 'cas-parser-node';
 
 const client = new CasParser({
   apiKey: process.env['CAS_PARSER_API_KEY'], // This is the default and can be omitted
@@ -50,7 +47,7 @@ This library includes TypeScript definitions for all request params and response
 
 <!-- prettier-ignore -->
 ```ts
-import CasParser from 'cas-parser';
+import CasParser from 'cas-parser-node';
 
 const client = new CasParser({
   apiKey: process.env['CAS_PARSER_API_KEY'], // This is the default and can be omitted
@@ -173,7 +170,7 @@ The log level can be configured in two ways:
 2. Using the `logLevel` client option (overrides the environment variable if set)
 
 ```ts
-import CasParser from 'cas-parser';
+import CasParser from 'cas-parser-node';
 
 const client = new CasParser({
   logLevel: 'debug', // Show all log messages
@@ -201,7 +198,7 @@ When providing a custom logger, the `logLevel` option still controls which messa
 below the configured level will not be sent to your logger.
 
 ```ts
-import CasParser from 'cas-parser';
+import CasParser from 'cas-parser-node';
 import pino from 'pino';
 
 const logger = pino();
@@ -270,7 +267,7 @@ globalThis.fetch = fetch;
 Or pass it to the client:
 
 ```ts
-import CasParser from 'cas-parser';
+import CasParser from 'cas-parser-node';
 import fetch from 'my-fetch';
 
 const client = new CasParser({ fetch });
@@ -281,7 +278,7 @@ const client = new CasParser({ fetch });
 If you want to set custom `fetch` options without overriding the `fetch` function, you can provide a `fetchOptions` object when instantiating the client or making a request. (Request-specific options override client options.)
 
 ```ts
-import CasParser from 'cas-parser';
+import CasParser from 'cas-parser-node';
 
 const client = new CasParser({
   fetchOptions: {
@@ -298,7 +295,7 @@ options to requests:
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/node.svg" align="top" width="18" height="21"> **Node** <sup>[[docs](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md#example---proxyagent-with-fetch)]</sup>
 
 ```ts
-import CasParser from 'cas-parser';
+import CasParser from 'cas-parser-node';
 import * as undici from 'undici';
 
 const proxyAgent = new undici.ProxyAgent('http://localhost:8888');
@@ -312,7 +309,7 @@ const client = new CasParser({
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/bun.svg" align="top" width="18" height="21"> **Bun** <sup>[[docs](https://bun.sh/guides/http/proxy)]</sup>
 
 ```ts
-import CasParser from 'cas-parser';
+import CasParser from 'cas-parser-node';
 
 const client = new CasParser({
   fetchOptions: {
@@ -324,7 +321,7 @@ const client = new CasParser({
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/deno.svg" align="top" width="18" height="21"> **Deno** <sup>[[docs](https://docs.deno.com/api/deno/~/Deno.createHttpClient)]</sup>
 
 ```ts
-import CasParser from 'npm:cas-parser';
+import CasParser from 'npm:cas-parser-node';
 
 const httpClient = Deno.createHttpClient({ proxy: { url: 'http://localhost:8888' } });
 const client = new CasParser({

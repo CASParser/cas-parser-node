@@ -2,7 +2,7 @@
 
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
-import { ClientOptions } from 'cas-parser';
+import { ClientOptions } from 'cas-parser-node';
 import express from 'express';
 import morgan from 'morgan';
 import morganBody from 'morgan-body';
