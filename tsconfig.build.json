@@ -5,8 +5,8 @@
   "compilerOptions": {
     "rootDir": "./dist/src",
     "paths": {
-      "cas-parser/*": ["./dist/src/*"],
-      "cas-parser": ["./dist/src/index.ts"]
+      "cas-parser-node/*": ["./dist/src/*"],
+      "cas-parser-node": ["./dist/src/index.ts"]
     },
     "noEmit": false,
     "declaration": true,

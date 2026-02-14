@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { CasParser } from 'cas-parser';
+import { CasParser } from 'cas-parser-node';
 
 const { stringifyQuery } = CasParser.prototype as any;
 

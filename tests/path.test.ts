@@ -1,4 +1,4 @@
-import { createPathTagFunction, encodeURIPath } from 'cas-parser/internal/utils/path';
+import { createPathTagFunction, encodeURIPath } from 'cas-parser-node/internal/utils/path';
 import { inspect } from 'node:util';
 import { runInNewContext } from 'node:vm';
 

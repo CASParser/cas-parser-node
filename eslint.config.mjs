@@ -25,7 +25,7 @@ export default tseslint.config(
         {
           patterns: [
             {
-              regex: '^cas-parser(/.*)?',
+              regex: '^cas-parser-node(/.*)?',
               message: 'Use a relative import, not a package import.',
             },
           ],

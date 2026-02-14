@@ -55,8 +55,8 @@ WORKDIR /app
 # Copy the build results, preserving directory structure
 COPY --from=builder /build .
 
-# Copy the built cas-parser into node_modules
-COPY --from=builder /build/dist ./node_modules/cas-parser
+# Copy the built cas-parser-node into node_modules
+COPY --from=builder /build/dist ./node_modules/cas-parser-node
 
 # Change ownership to nodejs user
 RUN chown -R nodejs:nodejs /app

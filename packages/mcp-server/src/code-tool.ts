@@ -5,7 +5,7 @@ import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import { readEnv, requireValue } from './util';
 import { WorkerInput, WorkerOutput } from './code-tool-types';
 import { SdkMethod } from './methods';
-import { CasParser } from 'cas-parser';
+import { CasParser } from 'cas-parser-node';
 
 const prompt = `Runs JavaScript code to interact with the Cas Parser API.
 
