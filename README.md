@@ -1,27 +1,21 @@
 # Cas Parser TypeScript API Library
 
-[![NPM version](<https://img.shields.io/npm/v/cas-parser-node.svg?label=npm%20(stable)>)](https://npmjs.org/package/cas-parser-node) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/cas-parser-node)
+[![NPM version](<https://img.shields.io/npm/v/cas-parser.svg?label=npm%20(stable)>)](https://npmjs.org/package/cas-parser) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/cas-parser)
 
 This library provides convenient access to the Cas Parser REST API from server-side TypeScript or JavaScript.
 
-The REST API documentation can be found on [docs.casparser.in](https://docs.casparser.in/reference). The full API of this library can be found in [api.md](api.md).
+The full API of this library can be found in [api.md](api.md).
 
 It is generated with [Stainless](https://www.stainless.com/).
-
-## MCP Server
-
-Use the Cas Parser MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.
-
-[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=cas-parser-node-mcp&config=eyJuYW1lIjoiY2FzLXBhcnNlci1ub2RlLW1jcCIsInRyYW5zcG9ydCI6Imh0dHAiLCJ1cmwiOiJodHRwczovL2Nhcy1wYXJzZXIuc3RsbWNwLmNvbSIsImhlYWRlcnMiOnsieC1hcGkta2V5IjoiTXkgQVBJIEtleSJ9fQ)
-[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22cas-parser-node-mcp%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fcas-parser.stlmcp.com%22%2C%22headers%22%3A%7B%22x-api-key%22%3A%22My%20API%20Key%22%7D%7D)
-
-> Note: You may need to set environment variables in your MCP client.
 
 ## Installation
 
 ```sh
-npm install cas-parser-node
+npm install git+ssh://git@github.com:stainless-sdks/cas-parser-typescript.git
 ```
+
+> [!NOTE]
+> Once this package is [published to npm](https://www.stainless.com/docs/guides/publish), this will become: `npm install cas-parser`
 
 ## Usage
 
@@ -29,18 +23,16 @@ The full API of this library can be found in [api.md](api.md).
 
 <!-- prettier-ignore -->
 ```js
-import CasParser from 'cas-parser-node';
+import CasParser from 'cas-parser';
 
 const client = new CasParser({
   apiKey: process.env['CAS_PARSER_API_KEY'], // This is the default and can be omitted
+  environment: 'environment_1', // or 'production' | 'environment_2'; defaults to 'production'
 });
 
-const unifiedResponse = await client.casParser.smartParse({
-  password: 'ABCDF',
-  pdf_url: 'https://your-cas-pdf-url-here.com',
-});
+const response = await client.credits.check();
 
-console.log(unifiedResponse.demat_accounts);
+console.log(response.enabled_features);
 ```
 
 ### Request & Response types
@@ -49,17 +41,14 @@ This library includes TypeScript definitions for all request params and response
 
 <!-- prettier-ignore -->
 ```ts
-import CasParser from 'cas-parser-node';
+import CasParser from 'cas-parser';
 
 const client = new CasParser({
   apiKey: process.env['CAS_PARSER_API_KEY'], // This is the default and can be omitted
+  environment: 'environment_1', // or 'production' | 'environment_2'; defaults to 'production'
 });
 
-const params: CasParser.CasParserSmartParseParams = {
-  password: 'ABCDF',
-  pdf_url: 'https://you-cas-pdf-url-here.com',
-};
-const unifiedResponse: CasParser.UnifiedResponse = await client.casParser.smartParse(params);
+const response: CasParser.CreditCheckResponse = await client.credits.check();
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -72,17 +61,15 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-const unifiedResponse = await client.casParser
-  .smartParse({ password: 'ABCDF', pdf_url: 'https://you-cas-pdf-url-here.com' })
-  .catch(async (err) => {
-    if (err instanceof CasParser.APIError) {
-      console.log(err.status); // 400
-      console.log(err.name); // BadRequestError
-      console.log(err.headers); // {server: 'nginx', ...}
-    } else {
-      throw err;
-    }
-  });
+const response = await client.credits.check().catch(async (err) => {
+  if (err instanceof CasParser.APIError) {
+    console.log(err.status); // 400
+    console.log(err.name); // BadRequestError
+    console.log(err.headers); // {server: 'nginx', ...}
+  } else {
+    throw err;
+  }
+});
 ```
 
 Error codes are as follows:
@@ -114,7 +101,7 @@ const client = new CasParser({
 });
 
 // Or, configure per-request:
-await client.casParser.smartParse({ password: 'ABCDF', pdf_url: 'https://you-cas-pdf-url-here.com' }, {
+await client.credits.check({
   maxRetries: 5,
 });
 ```
@@ -131,7 +118,7 @@ const client = new CasParser({
 });
 
 // Override per-request:
-await client.casParser.smartParse({ password: 'ABCDF', pdf_url: 'https://you-cas-pdf-url-here.com' }, {
+await client.credits.check({
   timeout: 5 * 1000,
 });
 ```
@@ -154,17 +141,13 @@ Unlike `.asResponse()` this method consumes the body, returning once it is parse
 ```ts
 const client = new CasParser();
 
-const response = await client.casParser
-  .smartParse({ password: 'ABCDF', pdf_url: 'https://you-cas-pdf-url-here.com' })
-  .asResponse();
+const response = await client.credits.check().asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: unifiedResponse, response: raw } = await client.casParser
-  .smartParse({ password: 'ABCDF', pdf_url: 'https://you-cas-pdf-url-here.com' })
-  .withResponse();
+const { data: response, response: raw } = await client.credits.check().withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(unifiedResponse.demat_accounts);
+console.log(response.enabled_features);
 ```
 
 ### Logging
@@ -181,7 +164,7 @@ The log level can be configured in two ways:
 2. Using the `logLevel` client option (overrides the environment variable if set)
 
 ```ts
-import CasParser from 'cas-parser-node';
+import CasParser from 'cas-parser';
 
 const client = new CasParser({
   logLevel: 'debug', // Show all log messages
@@ -209,7 +192,7 @@ When providing a custom logger, the `logLevel` option still controls which messa
 below the configured level will not be sent to your logger.
 
 ```ts
-import CasParser from 'cas-parser-node';
+import CasParser from 'cas-parser';
 import pino from 'pino';
 
 const logger = pino();
@@ -244,7 +227,7 @@ parameter. This library doesn't validate at runtime that the request matches the
 send will be sent as-is.
 
 ```ts
-client.casParser.smartParse({
+client.credits.check({
   // ...
   // @ts-expect-error baz is not yet public
   baz: 'undocumented option',
@@ -278,7 +261,7 @@ globalThis.fetch = fetch;
 Or pass it to the client:
 
 ```ts
-import CasParser from 'cas-parser-node';
+import CasParser from 'cas-parser';
 import fetch from 'my-fetch';
 
 const client = new CasParser({ fetch });
@@ -289,7 +272,7 @@ const client = new CasParser({ fetch });
 If you want to set custom `fetch` options without overriding the `fetch` function, you can provide a `fetchOptions` object when instantiating the client or making a request. (Request-specific options override client options.)
 
 ```ts
-import CasParser from 'cas-parser-node';
+import CasParser from 'cas-parser';
 
 const client = new CasParser({
   fetchOptions: {
@@ -306,7 +289,7 @@ options to requests:
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/node.svg" align="top" width="18" height="21"> **Node** <sup>[[docs](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md#example---proxyagent-with-fetch)]</sup>
 
 ```ts
-import CasParser from 'cas-parser-node';
+import CasParser from 'cas-parser';
 import * as undici from 'undici';
 
 const proxyAgent = new undici.ProxyAgent('http://localhost:8888');
@@ -320,7 +303,7 @@ const client = new CasParser({
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/bun.svg" align="top" width="18" height="21"> **Bun** <sup>[[docs](https://bun.sh/guides/http/proxy)]</sup>
 
 ```ts
-import CasParser from 'cas-parser-node';
+import CasParser from 'cas-parser';
 
 const client = new CasParser({
   fetchOptions: {
@@ -332,7 +315,7 @@ const client = new CasParser({
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/deno.svg" align="top" width="18" height="21"> **Deno** <sup>[[docs](https://docs.deno.com/api/deno/~/Deno.createHttpClient)]</sup>
 
 ```ts
-import CasParser from 'npm:cas-parser-node';
+import CasParser from 'npm:cas-parser';
 
 const httpClient = Deno.createHttpClient({ proxy: { url: 'http://localhost:8888' } });
 const client = new CasParser({
@@ -354,7 +337,7 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/CASParser/cas-parser-node/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/cas-parser-typescript/issues) with questions, bugs, or suggestions.
 
 ## Requirements
 
