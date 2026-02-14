@@ -16,11 +16,7 @@ import * as Errors from './core/error';
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
-import {
-  CasGenerator,
-  CasGeneratorGenerateCasParams,
-  CasGeneratorGenerateCasResponse,
-} from './resources/cas-generator';
+import { CasGenerator } from './resources/cas-generator';
 import {
   CasParserCamsKfintechParams,
   CasParserCdslParams,
@@ -128,7 +124,7 @@ export class CasParser {
   baseURL: string;
   maxRetries: number;
   timeout: number;
-  logger: Logger | undefined;
+  logger: Logger;
   logLevel: LogLevel | undefined;
   fetchOptions: MergedRequestInit | undefined;
 
@@ -462,7 +458,7 @@ export class CasParser {
       loggerFor(this).info(`${responseInfo} - ${retryMessage}`);
 
       const errText = await response.text().catch((err: any) => castToError(err).message);
-      const errJSON = safeJSON(errText);
+      const errJSON = safeJSON(errText) as any;
       const errMessage = errJSON ? undefined : errText;
 
       loggerFor(this).debug(
@@ -503,9 +499,10 @@ export class CasParser {
     controller: AbortController,
   ): Promise<Response> {
     const { signal, method, ...options } = init || {};
-    if (signal) signal.addEventListener('abort', () => controller.abort());
+    const abort = this._makeAbort(controller);
+    if (signal) signal.addEventListener('abort', abort, { once: true });
 
-    const timeout = setTimeout(() => controller.abort(), ms);
+    const timeout = setTimeout(abort, ms);
 
     const isReadableBody =
       ((globalThis as any).ReadableStream && options.body instanceof (globalThis as any).ReadableStream) ||
@@ -672,6 +669,12 @@ export class CasParser {
     return headers.values;
   }
 
+  private _makeAbort(controller: AbortController) {
+    // note: we can't just inline this method inside `fetchWithTimeout()` because then the closure
+    //       would capture all request options, and cause a memory leak.
+    return () => controller.abort();
+  }
+
   private buildBody({ options: { body, headers: rawHeaders } }: { options: FinalRequestOptions }): {
     bodyHeaders: HeadersLike;
     body: BodyInit | undefined;
@@ -747,9 +750,5 @@ export declare namespace CasParser {
     type CasParserSmartParseParams as CasParserSmartParseParams,
   };
 
-  export {
-    CasGenerator as CasGenerator,
-    type CasGeneratorGenerateCasResponse as CasGeneratorGenerateCasResponse,
-    type CasGeneratorGenerateCasParams as CasGeneratorGenerateCasParams,
-  };
+  export { CasGenerator as CasGenerator };
 }

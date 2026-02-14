@@ -7,10 +7,9 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "baseUrl": "./",
     "paths": {
-      "cas-parser-node/*": ["src/*"],
-      "cas-parser-node": ["src/index.ts"]
+      "cas-parser-node/*": ["./src/*"],
+      "cas-parser-node": ["./src/index.ts"]
     },
     "noEmit": true,
 

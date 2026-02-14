@@ -67,6 +67,11 @@ export interface UnifiedResponse {
 
   mutual_funds?: Array<UnifiedResponse.MutualFund>;
 
+  /**
+   * List of NPS accounts
+   */
+  nps?: Array<UnifiedResponse.Np>;
+
   summary?: UnifiedResponse.Summary;
 }
 
@@ -103,6 +108,11 @@ export namespace UnifiedResponse {
     dp_name?: string;
 
     holdings?: DematAccount.Holdings;
+
+    /**
+     * List of account holders linked to this demat account
+     */
+    linked_holders?: Array<DematAccount.LinkedHolder>;
 
     /**
      * Total value of the demat account
@@ -173,7 +183,7 @@ export namespace UnifiedResponse {
         /**
          * Additional information specific to the AIF
          */
-        additional_info?: unknown;
+        additional_info?: Aif.AdditionalInfo;
 
         /**
          * ISIN code of the AIF
@@ -186,6 +196,11 @@ export namespace UnifiedResponse {
         name?: string;
 
         /**
+         * List of transactions for this holding (beta)
+         */
+        transactions?: Array<Aif.Transaction>;
+
+        /**
          * Number of units held
          */
         units?: number;
@@ -196,11 +211,140 @@ export namespace UnifiedResponse {
         value?: number;
       }
 
+      export namespace Aif {
+        /**
+         * Additional information specific to the AIF
+         */
+        export interface AdditionalInfo {
+          /**
+           * Closing balance units for the statement period (beta)
+           */
+          close_units?: number | null;
+
+          /**
+           * Opening balance units for the statement period (beta)
+           */
+          open_units?: number | null;
+        }
+
+        /**
+         * Unified transaction schema for all holding types (MF folios, equities, bonds,
+         * etc.)
+         */
+        export interface Transaction {
+          /**
+           * Additional transaction-specific fields that vary by source
+           */
+          additional_info?: Transaction.AdditionalInfo;
+
+          /**
+           * Transaction amount in currency (computed from units × price/NAV)
+           */
+          amount?: number | null;
+
+          /**
+           * Balance units after transaction
+           */
+          balance?: number;
+
+          /**
+           * Transaction date (YYYY-MM-DD)
+           */
+          date?: string;
+
+          /**
+           * Transaction description/particulars
+           */
+          description?: string;
+
+          /**
+           * Dividend rate (for DIVIDEND_PAYOUT transactions)
+           */
+          dividend_rate?: number | null;
+
+          /**
+           * NAV/price per unit on transaction date
+           */
+          nav?: number | null;
+
+          /**
+           * Transaction type. Possible values are PURCHASE, PURCHASE_SIP, REDEMPTION,
+           * SWITCH_IN, SWITCH_IN_MERGER, SWITCH_OUT, SWITCH_OUT_MERGER, DIVIDEND_PAYOUT,
+           * DIVIDEND_REINVEST, SEGREGATION, STAMP_DUTY_TAX, TDS_TAX, STT_TAX, MISC,
+           * REVERSAL, UNKNOWN.
+           */
+          type?:
+            | 'PURCHASE'
+            | 'PURCHASE_SIP'
+            | 'REDEMPTION'
+            | 'SWITCH_IN'
+            | 'SWITCH_IN_MERGER'
+            | 'SWITCH_OUT'
+            | 'SWITCH_OUT_MERGER'
+            | 'DIVIDEND_PAYOUT'
+            | 'DIVIDEND_REINVEST'
+            | 'SEGREGATION'
+            | 'STAMP_DUTY_TAX'
+            | 'TDS_TAX'
+            | 'STT_TAX'
+            | 'MISC'
+            | 'REVERSAL'
+            | 'UNKNOWN';
+
+          /**
+           * Number of units involved in transaction
+           */
+          units?: number;
+        }
+
+        export namespace Transaction {
+          /**
+           * Additional transaction-specific fields that vary by source
+           */
+          export interface AdditionalInfo {
+            /**
+             * Capital withdrawal amount (CDSL MF transactions)
+             */
+            capital_withdrawal?: number;
+
+            /**
+             * Units credited (demat transactions)
+             */
+            credit?: number;
+
+            /**
+             * Units debited (demat transactions)
+             */
+            debit?: number;
+
+            /**
+             * Income distribution amount (CDSL MF transactions)
+             */
+            income_distribution?: number;
+
+            /**
+             * Order/transaction reference number (demat transactions)
+             */
+            order_no?: string;
+
+            /**
+             * Price per unit (NSDL/CDSL MF transactions)
+             */
+            price?: number;
+
+            /**
+             * Stamp duty charged
+             */
+            stamp_duty?: number;
+          }
+        }
+      }
+
       export interface CorporateBond {
         /**
          * Additional information specific to the corporate bond
          */
-        additional_info?: unknown;
+        additional_info?: CorporateBond.AdditionalInfo;
 
         /**
          * ISIN code of the corporate bond
@@ -213,6 +357,11 @@ export namespace UnifiedResponse {
         name?: string;
 
         /**
+         * List of transactions for this holding (beta)
+         */
+        transactions?: Array<CorporateBond.Transaction>;
+
+        /**
          * Number of units held
          */
         units?: number;
@@ -223,11 +372,140 @@ export namespace UnifiedResponse {
         value?: number;
       }
 
+      export namespace CorporateBond {
+        /**
+         * Additional information specific to the corporate bond
+         */
+        export interface AdditionalInfo {
+          /**
+           * Closing balance units for the statement period (beta)
+           */
+          close_units?: number | null;
+
+          /**
+           * Opening balance units for the statement period (beta)
+           */
+          open_units?: number | null;
+        }
+
+        /**
+         * Unified transaction schema for all holding types (MF folios, equities, bonds,
+         * etc.)
+         */
+        export interface Transaction {
+          /**
+           * Additional transaction-specific fields that vary by source
+           */
+          additional_info?: Transaction.AdditionalInfo;
+
+          /**
+           * Transaction amount in currency (computed from units × price/NAV)
+           */
+          amount?: number | null;
+
+          /**
+           * Balance units after transaction
+           */
+          balance?: number;
+
+          /**
+           * Transaction date (YYYY-MM-DD)
+           */
+          date?: string;
+
+          /**
+           * Transaction description/particulars
+           */
+          description?: string;
+
+          /**
+           * Dividend rate (for DIVIDEND_PAYOUT transactions)
+           */
+          dividend_rate?: number | null;
+
+          /**
+           * NAV/price per unit on transaction date
+           */
+          nav?: number | null;
+
+          /**
+           * Transaction type. Possible values are PURCHASE, PURCHASE_SIP, REDEMPTION,
+           * SWITCH_IN, SWITCH_IN_MERGER, SWITCH_OUT, SWITCH_OUT_MERGER, DIVIDEND_PAYOUT,
+           * DIVIDEND_REINVEST, SEGREGATION, STAMP_DUTY_TAX, TDS_TAX, STT_TAX, MISC,
+           * REVERSAL, UNKNOWN.
+           */
+          type?:
+            | 'PURCHASE'
+            | 'PURCHASE_SIP'
+            | 'REDEMPTION'
+            | 'SWITCH_IN'
+            | 'SWITCH_IN_MERGER'
+            | 'SWITCH_OUT'
+            | 'SWITCH_OUT_MERGER'
+            | 'DIVIDEND_PAYOUT'
+            | 'DIVIDEND_REINVEST'
+            | 'SEGREGATION'
+            | 'STAMP_DUTY_TAX'
+            | 'TDS_TAX'
+            | 'STT_TAX'
+            | 'MISC'
+            | 'REVERSAL'
+            | 'UNKNOWN';
+
+          /**
+           * Number of units involved in transaction
+           */
+          units?: number;
+        }
+
+        export namespace Transaction {
+          /**
+           * Additional transaction-specific fields that vary by source
+           */
+          export interface AdditionalInfo {
+            /**
+             * Capital withdrawal amount (CDSL MF transactions)
+             */
+            capital_withdrawal?: number;
+
+            /**
+             * Units credited (demat transactions)
+             */
+            credit?: number;
+
+            /**
+             * Units debited (demat transactions)
+             */
+            debit?: number;
+
+            /**
+             * Income distribution amount (CDSL MF transactions)
+             */
+            income_distribution?: number;
+
+            /**
+             * Order/transaction reference number (demat transactions)
+             */
+            order_no?: string;
+
+            /**
+             * Price per unit (NSDL/CDSL MF transactions)
+             */
+            price?: number;
+
+            /**
+             * Stamp duty charged
+             */
+            stamp_duty?: number;
+          }
+        }
+      }
+
       export interface DematMutualFund {
         /**
          * Additional information specific to the mutual fund
          */
-        additional_info?: unknown;
+        additional_info?: DematMutualFund.AdditionalInfo;
 
         /**
          * ISIN code of the mutual fund
@@ -240,6 +518,11 @@ export namespace UnifiedResponse {
         name?: string;
 
         /**
+         * List of transactions for this holding (beta)
+         */
+        transactions?: Array<DematMutualFund.Transaction>;
+
+        /**
          * Number of units held
          */
         units?: number;
@@ -250,11 +533,140 @@ export namespace UnifiedResponse {
         value?: number;
       }
 
+      export namespace DematMutualFund {
+        /**
+         * Additional information specific to the mutual fund
+         */
+        export interface AdditionalInfo {
+          /**
+           * Closing balance units for the statement period (beta)
+           */
+          close_units?: number | null;
+
+          /**
+           * Opening balance units for the statement period (beta)
+           */
+          open_units?: number | null;
+        }
+
+        /**
+         * Unified transaction schema for all holding types (MF folios, equities, bonds,
+         * etc.)
+         */
+        export interface Transaction {
+          /**
+           * Additional transaction-specific fields that vary by source
+           */
+          additional_info?: Transaction.AdditionalInfo;
+
+          /**
+           * Transaction amount in currency (computed from units × price/NAV)
+           */
+          amount?: number | null;
+
+          /**
+           * Balance units after transaction
+           */
+          balance?: number;
+
+          /**
+           * Transaction date (YYYY-MM-DD)
+           */
+          date?: string;
+
+          /**
+           * Transaction description/particulars
+           */
+          description?: string;
+
+          /**
+           * Dividend rate (for DIVIDEND_PAYOUT transactions)
+           */
+          dividend_rate?: number | null;
+
+          /**
+           * NAV/price per unit on transaction date
+           */
+          nav?: number | null;
+
+          /**
+           * Transaction type. Possible values are PURCHASE, PURCHASE_SIP, REDEMPTION,
+           * SWITCH_IN, SWITCH_IN_MERGER, SWITCH_OUT, SWITCH_OUT_MERGER, DIVIDEND_PAYOUT,
+           * DIVIDEND_REINVEST, SEGREGATION, STAMP_DUTY_TAX, TDS_TAX, STT_TAX, MISC,
+           * REVERSAL, UNKNOWN.
+           */
+          type?:
+            | 'PURCHASE'
+            | 'PURCHASE_SIP'
+            | 'REDEMPTION'
+            | 'SWITCH_IN'
+            | 'SWITCH_IN_MERGER'
+            | 'SWITCH_OUT'
+            | 'SWITCH_OUT_MERGER'
+            | 'DIVIDEND_PAYOUT'
+            | 'DIVIDEND_REINVEST'
+            | 'SEGREGATION'
+            | 'STAMP_DUTY_TAX'
+            | 'TDS_TAX'
+            | 'STT_TAX'
+            | 'MISC'
+            | 'REVERSAL'
+            | 'UNKNOWN';
+
+          /**
+           * Number of units involved in transaction
+           */
+          units?: number;
+        }
+
+        export namespace Transaction {
+          /**
+           * Additional transaction-specific fields that vary by source
+           */
+          export interface AdditionalInfo {
+            /**
+             * Capital withdrawal amount (CDSL MF transactions)
+             */
+            capital_withdrawal?: number;
+
+            /**
+             * Units credited (demat transactions)
+             */
+            credit?: number;
+
+            /**
+             * Units debited (demat transactions)
+             */
+            debit?: number;
+
+            /**
+             * Income distribution amount (CDSL MF transactions)
+             */
+            income_distribution?: number;
+
+            /**
+             * Order/transaction reference number (demat transactions)
+             */
+            order_no?: string;
+
+            /**
+             * Price per unit (NSDL/CDSL MF transactions)
+             */
+            price?: number;
+
+            /**
+             * Stamp duty charged
+             */
+            stamp_duty?: number;
+          }
+        }
+      }
+
       export interface Equity {
         /**
          * Additional information specific to the equity
          */
-        additional_info?: unknown;
+        additional_info?: Equity.AdditionalInfo;
 
         /**
          * ISIN code of the equity
@@ -267,6 +679,11 @@ export namespace UnifiedResponse {
         name?: string;
 
         /**
+         * List of transactions for this holding (beta)
+         */
+        transactions?: Array<Equity.Transaction>;
+
+        /**
          * Number of units held
          */
         units?: number;
@@ -277,11 +694,140 @@ export namespace UnifiedResponse {
         value?: number;
       }
 
+      export namespace Equity {
+        /**
+         * Additional information specific to the equity
+         */
+        export interface AdditionalInfo {
+          /**
+           * Closing balance units for the statement period (beta)
+           */
+          close_units?: number | null;
+
+          /**
+           * Opening balance units for the statement period (beta)
+           */
+          open_units?: number | null;
+        }
+
+        /**
+         * Unified transaction schema for all holding types (MF folios, equities, bonds,
+         * etc.)
+         */
+        export interface Transaction {
+          /**
+           * Additional transaction-specific fields that vary by source
+           */
+          additional_info?: Transaction.AdditionalInfo;
+
+          /**
+           * Transaction amount in currency (computed from units × price/NAV)
+           */
+          amount?: number | null;
+
+          /**
+           * Balance units after transaction
+           */
+          balance?: number;
+
+          /**
+           * Transaction date (YYYY-MM-DD)
+           */
+          date?: string;
+
+          /**
+           * Transaction description/particulars
+           */
+          description?: string;
+
+          /**
+           * Dividend rate (for DIVIDEND_PAYOUT transactions)
+           */
+          dividend_rate?: number | null;
+
+          /**
+           * NAV/price per unit on transaction date
+           */
+          nav?: number | null;
+
+          /**
+           * Transaction type. Possible values are PURCHASE, PURCHASE_SIP, REDEMPTION,
+           * SWITCH_IN, SWITCH_IN_MERGER, SWITCH_OUT, SWITCH_OUT_MERGER, DIVIDEND_PAYOUT,
+           * DIVIDEND_REINVEST, SEGREGATION, STAMP_DUTY_TAX, TDS_TAX, STT_TAX, MISC,
+           * REVERSAL, UNKNOWN.
+           */
+          type?:
+            | 'PURCHASE'
+            | 'PURCHASE_SIP'
+            | 'REDEMPTION'
+            | 'SWITCH_IN'
+            | 'SWITCH_IN_MERGER'
+            | 'SWITCH_OUT'
+            | 'SWITCH_OUT_MERGER'
+            | 'DIVIDEND_PAYOUT'
+            | 'DIVIDEND_REINVEST'
+            | 'SEGREGATION'
+            | 'STAMP_DUTY_TAX'
+            | 'TDS_TAX'
+            | 'STT_TAX'
+            | 'MISC'
+            | 'REVERSAL'
+            | 'UNKNOWN';
+
+          /**
+           * Number of units involved in transaction
+           */
+          units?: number;
+        }
+
+        export namespace Transaction {
+          /**
+           * Additional transaction-specific fields that vary by source
+           */
+          export interface AdditionalInfo {
+            /**
+             * Capital withdrawal amount (CDSL MF transactions)
+             */
+            capital_withdrawal?: number;
+
+            /**
+             * Units credited (demat transactions)
+             */
+            credit?: number;
+
+            /**
+             * Units debited (demat transactions)
+             */
+            debit?: number;
+
+            /**
+             * Income distribution amount (CDSL MF transactions)
+             */
+            income_distribution?: number;
+
+            /**
+             * Order/transaction reference number (demat transactions)
+             */
+            order_no?: string;
+
+            /**
+             * Price per unit (NSDL/CDSL MF transactions)
+             */
+            price?: number;
+
+            /**
+             * Stamp duty charged
+             */
+            stamp_duty?: number;
+          }
+        }
+      }
+
       export interface GovernmentSecurity {
         /**
          * Additional information specific to the government security
          */
-        additional_info?: unknown;
+        additional_info?: GovernmentSecurity.AdditionalInfo;
 
         /**
          * ISIN code of the government security
@@ -294,6 +840,11 @@ export namespace UnifiedResponse {
         name?: string;
 
         /**
+         * List of transactions for this holding (beta)
+         */
+        transactions?: Array<GovernmentSecurity.Transaction>;
+
+        /**
          * Number of units held
          */
         units?: number;
@@ -303,6 +854,147 @@ export namespace UnifiedResponse {
          */
         value?: number;
       }
+
+      export namespace GovernmentSecurity {
+        /**
+         * Additional information specific to the government security
+         */
+        export interface AdditionalInfo {
+          /**
+           * Closing balance units for the statement period (beta)
+           */
+          close_units?: number | null;
+
+          /**
+           * Opening balance units for the statement period (beta)
+           */
+          open_units?: number | null;
+        }
+
+        /**
+         * Unified transaction schema for all holding types (MF folios, equities, bonds,
+         * etc.)
+         */
+        export interface Transaction {
+          /**
+           * Additional transaction-specific fields that vary by source
+           */
+          additional_info?: Transaction.AdditionalInfo;
+
+          /**
+           * Transaction amount in currency (computed from units × price/NAV)
+           */
+          amount?: number | null;
+
+          /**
+           * Balance units after transaction
+           */
+          balance?: number;
+
+          /**
+           * Transaction date (YYYY-MM-DD)
+           */
+          date?: string;
+
+          /**
+           * Transaction description/particulars
+           */
+          description?: string;
+
+          /**
+           * Dividend rate (for DIVIDEND_PAYOUT transactions)
+           */
+          dividend_rate?: number | null;
+
+          /**
+           * NAV/price per unit on transaction date
+           */
+          nav?: number | null;
+
+          /**
+           * Transaction type. Possible values are PURCHASE, PURCHASE_SIP, REDEMPTION,
+           * SWITCH_IN, SWITCH_IN_MERGER, SWITCH_OUT, SWITCH_OUT_MERGER, DIVIDEND_PAYOUT,
+           * DIVIDEND_REINVEST, SEGREGATION, STAMP_DUTY_TAX, TDS_TAX, STT_TAX, MISC,
+           * REVERSAL, UNKNOWN.
+           */
+          type?:
+            | 'PURCHASE'
+            | 'PURCHASE_SIP'
+            | 'REDEMPTION'
+            | 'SWITCH_IN'
+            | 'SWITCH_IN_MERGER'
+            | 'SWITCH_OUT'
+            | 'SWITCH_OUT_MERGER'
+            | 'DIVIDEND_PAYOUT'
+            | 'DIVIDEND_REINVEST'
+            | 'SEGREGATION'
+            | 'STAMP_DUTY_TAX'
+            | 'TDS_TAX'
+            | 'STT_TAX'
+            | 'MISC'
+            | 'REVERSAL'
+            | 'UNKNOWN';
+
+          /**
+           * Number of units involved in transaction
+           */
+          units?: number;
+        }
+
+        export namespace Transaction {
+          /**
+           * Additional transaction-specific fields that vary by source
+           */
+          export interface AdditionalInfo {
+            /**
+             * Capital withdrawal amount (CDSL MF transactions)
+             */
+            capital_withdrawal?: number;
+
+            /**
+             * Units credited (demat transactions)
+             */
+            credit?: number;
+
+            /**
+             * Units debited (demat transactions)
+             */
+            debit?: number;
+
+            /**
+             * Income distribution amount (CDSL MF transactions)
+             */
+            income_distribution?: number;
+
+            /**
+             * Order/transaction reference number (demat transactions)
+             */
+            order_no?: string;
+
+            /**
+             * Price per unit (NSDL/CDSL MF transactions)
+             */
+            price?: number;
+
+            /**
+             * Stamp duty charged
+             */
+            stamp_duty?: number;
+          }
+        }
+      }
+    }
+
+    export interface LinkedHolder {
+      /**
+       * Name of the account holder
+       */
+      name?: string;
+
+      /**
+       * PAN of the account holder
+       */
+      pan?: string;
     }
   }
 
@@ -441,6 +1133,11 @@ export namespace UnifiedResponse {
     folio_number?: string;
 
     /**
+     * List of account holders linked to this mutual fund folio
+     */
+    linked_holders?: Array<MutualFund.LinkedHolder>;
+
+    /**
      * Registrar and Transfer Agent name
      */
     registrar?: string;
@@ -472,6 +1169,18 @@ export namespace UnifiedResponse {
        * PAN KYC status
        */
       pankyc?: string;
+    }
+
+    export interface LinkedHolder {
+      /**
+       * Name of the account holder
+       */
+      name?: string;
+
+      /**
+       * PAN of the account holder
+       */
+      pan?: string;
     }
 
     export interface Scheme {
@@ -541,14 +1250,14 @@ export namespace UnifiedResponse {
         amfi?: string;
 
         /**
-         * Closing balance units (CAMS/KFintech)
+         * Closing balance units for the statement period
          */
-        close_units?: number;
+        close_units?: number | null;
 
         /**
-         * Opening balance units (CAMS/KFintech)
+         * Opening balance units for the statement period
          */
-        open_units?: number;
+        open_units?: number | null;
 
         /**
          * RTA code for the scheme (CAMS/KFintech)
@@ -568,11 +1277,20 @@ export namespace UnifiedResponse {
         percentage?: number;
       }
 
+      /**
+       * Unified transaction schema for all holding types (MF folios, equities, bonds,
+       * etc.)
+       */
       export interface Transaction {
         /**
-         * Transaction amount
+         * Additional transaction-specific fields that vary by source
          */
-        amount?: number;
+        additional_info?: Transaction.AdditionalInfo;
+
+        /**
+         * Transaction amount in currency (computed from units × price/NAV)
+         */
+        amount?: number | null;
 
         /**
          * Balance units after transaction
@@ -580,38 +1298,188 @@ export namespace UnifiedResponse {
         balance?: number;
 
         /**
-         * Transaction date
+         * Transaction date (YYYY-MM-DD)
          */
         date?: string;
 
         /**
-         * Transaction description
+         * Transaction description/particulars
          */
         description?: string;
 
         /**
-         * Dividend rate (for dividend transactions)
+         * Dividend rate (for DIVIDEND_PAYOUT transactions)
          */
-        dividend_rate?: number;
+        dividend_rate?: number | null;
 
         /**
-         * NAV on transaction date
+         * NAV/price per unit on transaction date
          */
-        nav?: number;
+        nav?: number | null;
 
         /**
-         * Transaction type detected based on description. Possible values are
-         * PURCHASE,PURCHASE_SIP,REDEMPTION,SWITCH_IN,SWITCH_IN_MERGER,SWITCH_OUT,SWITCH_OUT_MERGER,DIVIDEND_PAYOUT,DIVIDEND_REINVESTMENT,SEGREGATION,STAMP_DUTY_TAX,TDS_TAX,STT_TAX,MISC.
-         * If dividend_rate is present, then possible values are dividend_rate is
-         * applicable only for DIVIDEND_PAYOUT and DIVIDEND_REINVESTMENT.
+         * Transaction type. Possible values are PURCHASE, PURCHASE_SIP, REDEMPTION,
+         * SWITCH_IN, SWITCH_IN_MERGER, SWITCH_OUT, SWITCH_OUT_MERGER, DIVIDEND_PAYOUT,
+         * DIVIDEND_REINVEST, SEGREGATION, STAMP_DUTY_TAX, TDS_TAX, STT_TAX, MISC,
+         * REVERSAL, UNKNOWN.
          */
-        type?: string;
+        type?:
+          | 'PURCHASE'
+          | 'PURCHASE_SIP'
+          | 'REDEMPTION'
+          | 'SWITCH_IN'
+          | 'SWITCH_IN_MERGER'
+          | 'SWITCH_OUT'
+          | 'SWITCH_OUT_MERGER'
+          | 'DIVIDEND_PAYOUT'
+          | 'DIVIDEND_REINVEST'
+          | 'SEGREGATION'
+          | 'STAMP_DUTY_TAX'
+          | 'TDS_TAX'
+          | 'STT_TAX'
+          | 'MISC'
+          | 'REVERSAL'
+          | 'UNKNOWN';
 
         /**
-         * Number of units involved
+         * Number of units involved in transaction
          */
         units?: number;
       }
+
+      export namespace Transaction {
+        /**
+         * Additional transaction-specific fields that vary by source
+         */
+        export interface AdditionalInfo {
+          /**
+           * Capital withdrawal amount (CDSL MF transactions)
+           */
+          capital_withdrawal?: number;
+
+          /**
+           * Units credited (demat transactions)
+           */
+          credit?: number;
+
+          /**
+           * Units debited (demat transactions)
+           */
+          debit?: number;
+
+          /**
+           * Income distribution amount (CDSL MF transactions)
+           */
+          income_distribution?: number;
+
+          /**
+           * Order/transaction reference number (demat transactions)
+           */
+          order_no?: string;
+
+          /**
+           * Price per unit (NSDL/CDSL MF transactions)
+           */
+          price?: number;
+
+          /**
+           * Stamp duty charged
+           */
+          stamp_duty?: number;
+        }
+      }
+    }
+  }
+
+  export interface Np {
+    /**
+     * Additional information specific to the NPS account
+     */
+    additional_info?: unknown;
+
+    /**
+     * Central Record Keeping Agency name
+     */
+    cra?: string;
+
+    funds?: Array<Np.Fund>;
+
+    /**
+     * List of account holders linked to this NPS account
+     */
+    linked_holders?: Array<Np.LinkedHolder>;
+
+    /**
+     * Permanent Retirement Account Number (PRAN)
+     */
+    pran?: string;
+
+    /**
+     * Total value of the NPS account
+     */
+    value?: number;
+  }
+
+  export namespace Np {
+    export interface Fund {
+      /**
+       * Additional information specific to the NPS fund
+       */
+      additional_info?: Fund.AdditionalInfo;
+
+      /**
+       * Cost of investment
+       */
+      cost?: number;
+
+      /**
+       * Name of the NPS fund
+       */
+      name?: string;
+
+      /**
+       * Net Asset Value per unit
+       */
+      nav?: number;
+
+      /**
+       * Number of units held
+       */
+      units?: number;
+
+      /**
+       * Current market value of the holding
+       */
+      value?: number;
+    }
+
+    export namespace Fund {
+      /**
+       * Additional information specific to the NPS fund
+       */
+      export interface AdditionalInfo {
+        /**
+         * Fund manager name
+         */
+        manager?: string;
+
+        /**
+         * NPS tier (Tier I or Tier II)
+         */
+        tier?: 1 | 2 | null;
+      }
+    }
+
+    export interface LinkedHolder {
+      /**
+       * Name of the account holder
+       */
+      name?: string;
+
+      /**
+       * PAN of the account holder
+       */
+      pan?: string;
     }
   }
 
@@ -631,6 +1499,8 @@ export namespace UnifiedResponse {
       insurance?: Accounts.Insurance;
 
       mutual_funds?: Accounts.MutualFunds;
+
+      nps?: Accounts.Nps;
     }
 
     export namespace Accounts {
@@ -669,6 +1539,18 @@ export namespace UnifiedResponse {
          */
         total_value?: number;
       }
+
+      export interface Nps {
+        /**
+         * Number of NPS accounts
+         */
+        count?: number;
+
+        /**
+         * Total value of NPS accounts
+         */
+        total_value?: number;
+      }
     }
   }
 }
@@ -680,12 +1562,12 @@ export interface CasParserCamsKfintechParams {
   password?: string;
 
   /**
-   * Base64 encoded CAS PDF file
+   * Base64 encoded CAS PDF file (required if pdf_url not provided)
    */
   pdf_file?: string;
 
   /**
-   * URL to the CAS PDF file
+   * URL to the CAS PDF file (required if pdf_file not provided)
    */
   pdf_url?: string;
 }
@@ -697,12 +1579,12 @@ export interface CasParserCdslParams {
   password?: string;
 
   /**
-   * Base64 encoded CAS PDF file
+   * Base64 encoded CAS PDF file (required if pdf_url not provided)
    */
   pdf_file?: string;
 
   /**
-   * URL to the CAS PDF file
+   * URL to the CAS PDF file (required if pdf_file not provided)
    */
   pdf_url?: string;
 }
@@ -714,12 +1596,12 @@ export interface CasParserNsdlParams {
   password?: string;
 
   /**
-   * Base64 encoded CAS PDF file
+   * Base64 encoded CAS PDF file (required if pdf_url not provided)
    */
   pdf_file?: string;
 
   /**
-   * URL to the CAS PDF file
+   * URL to the CAS PDF file (required if pdf_file not provided)
    */
   pdf_url?: string;
 }
@@ -731,12 +1613,12 @@ export interface CasParserSmartParseParams {
   password?: string;
 
   /**
-   * Base64 encoded CAS PDF file
+   * Base64 encoded CAS PDF file (required if pdf_url not provided)
    */
   pdf_file?: string;
 
   /**
-   * URL to the CAS PDF file
+   * URL to the CAS PDF file (required if pdf_file not provided)
    */
   pdf_url?: string;
 }

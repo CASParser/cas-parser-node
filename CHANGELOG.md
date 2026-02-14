@@ -1,5 +1,70 @@
 # Changelog
 
+## 1.5.0 (2026-02-14)
+
+Full Changelog: [v1.4.1...v1.5.0](https://github.com/CASParser/cas-parser-node/compare/v1.4.1...v1.5.0)
+
+### Features
+
+* **api:** api update ([b944bed](https://github.com/CASParser/cas-parser-node/commit/b944bedc18587bce5f196925b243c1fb06627207))
+* **api:** api update ([af9b876](https://github.com/CASParser/cas-parser-node/commit/af9b876e705aa393015cf79d917c968e4c888d02))
+* **api:** api update ([0c09872](https://github.com/CASParser/cas-parser-node/commit/0c09872dbb4088a98f77562e5609003c2366bbfd))
+* **api:** api update ([17e0044](https://github.com/CASParser/cas-parser-node/commit/17e00442b40feb5b6c5c300b39b660787b99d23b))
+* **api:** api update ([3047e70](https://github.com/CASParser/cas-parser-node/commit/3047e70310ddf1dd571c70c4683b01041579bf5f))
+* **api:** api update ([7f71235](https://github.com/CASParser/cas-parser-node/commit/7f712351a3d5349fff33bf321ab946a58a8ae015))
+* **mcp:** add docs search tool ([e2afa83](https://github.com/CASParser/cas-parser-node/commit/e2afa8394a7f891e90526dffeab493f4033ebfe0))
+* **mcp:** add option for including docs tools ([e39c90e](https://github.com/CASParser/cas-parser-node/commit/e39c90ed1a75114d95ccae8183f69983331bf7c2))
+* **mcp:** enable experimental docs search tool ([86b23ff](https://github.com/CASParser/cas-parser-node/commit/86b23ff7a185038d52d18395f7cccb68716affed))
+* **mcp:** enable optional code execution tool on http mcp servers ([c65e4a3](https://github.com/CASParser/cas-parser-node/commit/c65e4a343bc9f6d6064e5c3a416630ef3880aa9e))
+
+
+### Bug Fixes
+
+* **ci:** set permissions for DXT publish action ([461a411](https://github.com/CASParser/cas-parser-node/commit/461a411c1491f80b951618ec83a117667da2c786))
+* **mcpb:** pin @anthropic-ai/mcpb version ([3a1120e](https://github.com/CASParser/cas-parser-node/commit/3a1120e08ae1f95374532f8711918b20ad6b74c1))
+* **mcp:** fix cli argument parsing logic ([6d18c3d](https://github.com/CASParser/cas-parser-node/commit/6d18c3d887c074a25205c62dd3a461fff1424d28))
+* **mcp:** resolve a linting issue in server code ([691d0c1](https://github.com/CASParser/cas-parser-node/commit/691d0c124350d54df029a9fa2873a85369615f7d))
+* **mcp:** return tool execution error on jq failure ([b36d83b](https://github.com/CASParser/cas-parser-node/commit/b36d83bad328f0cfe7eb66ec2472ab0611ea079b))
+
+
+### Performance Improvements
+
+* faster formatting ([5e72001](https://github.com/CASParser/cas-parser-node/commit/5e72001cfce74462351337f831f066cfdd500db4))
+
+
+### Chores
+
+* **codegen:** internal codegen update ([63d6cd7](https://github.com/CASParser/cas-parser-node/commit/63d6cd75e8ec5d1985cbaf203bd60a4172c3cbd6))
+* do not install brew dependencies in ./scripts/bootstrap by default ([d4fb00e](https://github.com/CASParser/cas-parser-node/commit/d4fb00e57c79b1b2420cd1fd4d3843ee1e73675d))
+* extract some types in mcp docs ([464c4ad](https://github.com/CASParser/cas-parser-node/commit/464c4adaf3e55bba56c65b932686b196057816c8))
+* **internal:** codegen related update ([03494e0](https://github.com/CASParser/cas-parser-node/commit/03494e0cfbecc96d136297acb7cc3c44ec622c63))
+* **internal:** codegen related update ([4d1a0f4](https://github.com/CASParser/cas-parser-node/commit/4d1a0f4799890a888f01eb528ca0d2d3a798b0cd))
+* **internal:** codegen related update ([22c7ea2](https://github.com/CASParser/cas-parser-node/commit/22c7ea2ba63601478bc3d9ad534ff0df493f4c8c))
+* **internal:** fix incremental formatting in some cases ([170eef2](https://github.com/CASParser/cas-parser-node/commit/170eef2a9573b4a2c3a51f4a8979a4d8cb49ce77))
+* **internal:** gitignore .mcpb files ([037b423](https://github.com/CASParser/cas-parser-node/commit/037b423d403f4af547043cc73164df04fcbe8115))
+* **internal:** grammar fix (it's -&gt; its) ([0f7008c](https://github.com/CASParser/cas-parser-node/commit/0f7008c68019fc03ae354f85839784008e838eac))
+* **internal:** ignore .eslintcache ([475202b](https://github.com/CASParser/cas-parser-node/commit/475202b2ce09234a57356ce5a1dd466f3122e9a8))
+* **internal:** remove .eslintcache ([8897700](https://github.com/CASParser/cas-parser-node/commit/8897700e7ebf141e8416adf62a78a679e37c55bc))
+* **internal:** remove deprecated `compilerOptions.baseUrl` from tsconfig.json ([3e2894e](https://github.com/CASParser/cas-parser-node/commit/3e2894e798b721339c48214a6b8b2d932a3e2c02))
+* **internal:** use npm pack for build uploads ([080eee4](https://github.com/CASParser/cas-parser-node/commit/080eee4a0de5730b86eabe4cdd9bf6831ed69713))
+* **jsdoc:** fix [@link](https://github.com/link) annotations to refer only to parts of the package‘s public interface ([2c53c6a](https://github.com/CASParser/cas-parser-node/commit/2c53c6a40eae947ff82bf62021471d770f3154a0))
+* mcp code tool explicit error message when missing a run function ([c1688e1](https://github.com/CASParser/cas-parser-node/commit/c1688e1762adac87ce781019f0c7e3797d6cbc20))
+* **mcp:** add friendlier MCP code tool errors on incorrect method invocations ([92613e9](https://github.com/CASParser/cas-parser-node/commit/92613e96bb14ed9de8d1042cbb30d580d44a4fa7))
+* **mcp:** add line numbers to code tool errors ([b3c083e](https://github.com/CASParser/cas-parser-node/commit/b3c083e9e828fa712b60904be1ab82a43679615c))
+* **mcp:** allow pointing `docs_search` tool at other URLs ([5df72aa](https://github.com/CASParser/cas-parser-node/commit/5df72aac38114806d999acd0e266eb6c6abff4cc))
+* **mcp:** clarify http auth error ([63e29fe](https://github.com/CASParser/cas-parser-node/commit/63e29fee0c13d900bab2f1abdc905c1cc519138a))
+* **mcp:** rename dxt to mcpb ([4206154](https://github.com/CASParser/cas-parser-node/commit/4206154f0e8c7f82ce8c62b0729e4859af7fbda9))
+* **mcp:** upgrade jq-web ([fb5ee4c](https://github.com/CASParser/cas-parser-node/commit/fb5ee4cee2cfc01cb3718e7b71b6e0573e1128aa))
+* update lockfile ([952858c](https://github.com/CASParser/cas-parser-node/commit/952858c419b88f6a5205daece2c9ecdac5324dd1))
+* update SDK settings ([6669b0b](https://github.com/CASParser/cas-parser-node/commit/6669b0bc8763e9d38c711d269f90837d6c4c3120))
+* use structured error when code execution tool errors ([0b9eb86](https://github.com/CASParser/cas-parser-node/commit/0b9eb86e3ee6d9e2a35b396453bf4fbec66dc905))
+
+
+### Documentation
+
+* **mcp:** add a README button for one-click add to Cursor ([f57f923](https://github.com/CASParser/cas-parser-node/commit/f57f9234638bd30b09ee62fb45e4374d78e3b93f))
+* **mcp:** add a README link to add server to VS Code or Claude Code ([d687a4a](https://github.com/CASParser/cas-parser-node/commit/d687a4a380963a0e493b8a106e6c30f88e3d0047))
+
 ## 1.4.1 (2025-09-12)
 
 Full Changelog: [v1.4.0...v1.4.1](https://github.com/CASParser/cas-parser-node/compare/v1.4.0...v1.4.1)

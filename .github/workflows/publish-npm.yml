@@ -16,9 +16,11 @@ jobs:
   publish:
     name: publish
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Set up Node
         uses: actions/setup-node@v3
@@ -43,4 +45,6 @@ jobs:
       - name: Upload MCP Server DXT GitHub release asset
         run: |
           gh release upload ${{ github.event.release.tag_name }} \
-            packages/mcp-server/cas_parser_node_api.dxt
+            packages/mcp-server/cas_parser_node_api.mcpb
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
