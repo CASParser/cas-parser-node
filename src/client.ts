@@ -16,15 +16,39 @@ import * as Errors from './core/error';
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
-import { CasGenerator } from './resources/cas-generator';
+import { AccessToken, AccessTokenCreateParams, AccessTokenCreateResponse } from './resources/access-token';
 import {
-  CasParserCamsKfintechParams,
-  CasParserCdslParams,
-  CasParserNsdlParams,
-  CasParserResource,
-  CasParserSmartParseParams,
+  CamsKfintech,
+  CamsKfintechParseParams,
+  LinkedHolder,
+  Transaction,
   UnifiedResponse,
-} from './resources/cas-parser';
+} from './resources/cams-kfintech';
+import { ContractNote, ContractNoteParseParams, ContractNoteParseResponse } from './resources/contract-note';
+import { CreditCheckResponse, Credits } from './resources/credits';
+import {
+  Inbox,
+  InboxCheckConnectionStatusParams,
+  InboxCheckConnectionStatusResponse,
+  InboxConnectEmailParams,
+  InboxConnectEmailResponse,
+  InboxDisconnectEmailParams,
+  InboxDisconnectEmailResponse,
+  InboxListCasFilesParams,
+  InboxListCasFilesResponse,
+} from './resources/inbox';
+import { Kfintech, KfintechGenerateCasParams, KfintechGenerateCasResponse } from './resources/kfintech';
+import {
+  LogCreateParams,
+  LogCreateResponse,
+  LogGetSummaryParams,
+  LogGetSummaryResponse,
+  Logs,
+} from './resources/logs';
+import { Nsdl, NsdlParseParams } from './resources/nsdl';
+import { Smart, SmartParseCasPdfParams } from './resources/smart';
+import { VerifyToken, VerifyTokenVerifyResponse } from './resources/verify-token';
+import { Cdsl, CdslParsePdfParams } from './resources/cdsl/cdsl';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
@@ -38,6 +62,13 @@ import {
 } from './internal/utils/log';
 import { isEmptyObj } from './internal/utils/values';
 
+const environments = {
+  production: 'https://portfolio-parser.api.casparser.in',
+  environment_1: 'https://client-apis.casparser.in',
+  environment_2: 'http://localhost:5000',
+};
+type Environment = keyof typeof environments;
+
 export interface ClientOptions {
   /**
    * Your API key for authentication.
@@ -45,6 +76,16 @@ export interface ClientOptions {
    *
    */
   apiKey?: string | undefined;
+
+  /**
+   * Specifies the environment to use for the API.
+   *
+   * Each environment maps to a different base URL:
+   * - `production` corresponds to `https://portfolio-parser.api.casparser.in`
+   * - `environment_1` corresponds to `https://client-apis.casparser.in`
+   * - `environment_2` corresponds to `http://localhost:5000`
+   */
+  environment?: Environment | undefined;
 
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
@@ -137,6 +178,7 @@ export class CasParser {
    * API Client for interfacing with the Cas Parser API.
    *
    * @param {string | undefined} [opts.apiKey=process.env['CAS_PARSER_API_KEY'] ?? undefined]
+   * @param {Environment} [opts.environment=production] - Specifies the environment URL to use for the API.
    * @param {string} [opts.baseURL=process.env['CAS_PARSER_BASE_URL'] ?? https://portfolio-parser.api.casparser.in] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
@@ -159,10 +201,17 @@ export class CasParser {
     const options: ClientOptions = {
       apiKey,
       ...opts,
-      baseURL: baseURL || `https://portfolio-parser.api.casparser.in`,
+      baseURL,
+      environment: opts.environment ?? 'production',
     };
 
-    this.baseURL = options.baseURL!;
+    if (baseURL && opts.environment) {
+      throw new Errors.CasParserError(
+        'Ambiguous URL; The `baseURL` option (or CAS_PARSER_BASE_URL env var) and the `environment` option are given. If you want to use the environment you must pass baseURL: null',
+      );
+    }
+
+    this.baseURL = options.baseURL || environments[options.environment || 'production'];
     this.timeout = options.timeout ?? CasParser.DEFAULT_TIMEOUT /* 1 minute */;
     this.logger = options.logger ?? console;
     const defaultLogLevel = 'warn';
@@ -188,7 +237,8 @@ export class CasParser {
   withOptions(options: Partial<ClientOptions>): this {
     const client = new (this.constructor as any as new (props: ClientOptions) => typeof this)({
       ...this._options,
-      baseURL: this.baseURL,
+      environment: options.environment ? options.environment : undefined,
+      baseURL: options.environment ? undefined : this.baseURL,
       maxRetries: this.maxRetries,
       timeout: this.timeout,
       logger: this.logger,
@@ -205,7 +255,7 @@ export class CasParser {
    * Check whether the base URL is set to its default.
    */
   #baseURLOverridden(): boolean {
-    return this.baseURL !== 'https://portfolio-parser.api.casparser.in';
+    return this.baseURL !== environments[this._options.environment || 'production'];
   }
 
   protected defaultQuery(): Record<string, string | undefined> | undefined {
@@ -731,24 +781,87 @@ export class CasParser {
 
   static toFile = Uploads.toFile;
 
-  casParser: API.CasParserResource = new API.CasParserResource(this);
-  casGenerator: API.CasGenerator = new API.CasGenerator(this);
+  credits: API.Credits = new API.Credits(this);
+  logs: API.Logs = new API.Logs(this);
+  accessToken: API.AccessToken = new API.AccessToken(this);
+  verifyToken: API.VerifyToken = new API.VerifyToken(this);
+  camsKfintech: API.CamsKfintech = new API.CamsKfintech(this);
+  cdsl: API.Cdsl = new API.Cdsl(this);
+  contractNote: API.ContractNote = new API.ContractNote(this);
+  inbox: API.Inbox = new API.Inbox(this);
+  kfintech: API.Kfintech = new API.Kfintech(this);
+  nsdl: API.Nsdl = new API.Nsdl(this);
+  smart: API.Smart = new API.Smart(this);
 }
 
-CasParser.CasParserResource = CasParserResource;
-CasParser.CasGenerator = CasGenerator;
+CasParser.Credits = Credits;
+CasParser.Logs = Logs;
+CasParser.AccessToken = AccessToken;
+CasParser.VerifyToken = VerifyToken;
+CasParser.CamsKfintech = CamsKfintech;
+CasParser.Cdsl = Cdsl;
+CasParser.ContractNote = ContractNote;
+CasParser.Inbox = Inbox;
+CasParser.Kfintech = Kfintech;
+CasParser.Nsdl = Nsdl;
+CasParser.Smart = Smart;
 
 export declare namespace CasParser {
   export type RequestOptions = Opts.RequestOptions;
 
+  export { Credits as Credits, type CreditCheckResponse as CreditCheckResponse };
+
   export {
-    CasParserResource as CasParserResource,
-    type UnifiedResponse as UnifiedResponse,
-    type CasParserCamsKfintechParams as CasParserCamsKfintechParams,
-    type CasParserCdslParams as CasParserCdslParams,
-    type CasParserNsdlParams as CasParserNsdlParams,
-    type CasParserSmartParseParams as CasParserSmartParseParams,
+    Logs as Logs,
+    type LogCreateResponse as LogCreateResponse,
+    type LogGetSummaryResponse as LogGetSummaryResponse,
+    type LogCreateParams as LogCreateParams,
+    type LogGetSummaryParams as LogGetSummaryParams,
   };
 
-  export { CasGenerator as CasGenerator };
+  export {
+    AccessToken as AccessToken,
+    type AccessTokenCreateResponse as AccessTokenCreateResponse,
+    type AccessTokenCreateParams as AccessTokenCreateParams,
+  };
+
+  export { VerifyToken as VerifyToken, type VerifyTokenVerifyResponse as VerifyTokenVerifyResponse };
+
+  export {
+    CamsKfintech as CamsKfintech,
+    type LinkedHolder as LinkedHolder,
+    type Transaction as Transaction,
+    type UnifiedResponse as UnifiedResponse,
+    type CamsKfintechParseParams as CamsKfintechParseParams,
+  };
+
+  export { Cdsl as Cdsl, type CdslParsePdfParams as CdslParsePdfParams };
+
+  export {
+    ContractNote as ContractNote,
+    type ContractNoteParseResponse as ContractNoteParseResponse,
+    type ContractNoteParseParams as ContractNoteParseParams,
+  };
+
+  export {
+    Inbox as Inbox,
+    type InboxCheckConnectionStatusResponse as InboxCheckConnectionStatusResponse,
+    type InboxConnectEmailResponse as InboxConnectEmailResponse,
+    type InboxDisconnectEmailResponse as InboxDisconnectEmailResponse,
+    type InboxListCasFilesResponse as InboxListCasFilesResponse,
+    type InboxCheckConnectionStatusParams as InboxCheckConnectionStatusParams,
+    type InboxConnectEmailParams as InboxConnectEmailParams,
+    type InboxDisconnectEmailParams as InboxDisconnectEmailParams,
+    type InboxListCasFilesParams as InboxListCasFilesParams,
+  };
+
+  export {
+    Kfintech as Kfintech,
+    type KfintechGenerateCasResponse as KfintechGenerateCasResponse,
+    type KfintechGenerateCasParams as KfintechGenerateCasParams,
+  };
+
+  export { Nsdl as Nsdl, type NsdlParseParams as NsdlParseParams };
+
+  export { Smart as Smart, type SmartParseCasPdfParams as SmartParseCasPdfParams };
 }
