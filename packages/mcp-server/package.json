@@ -1,6 +1,6 @@
 {
-  "name": "cas-parser-node-mcp",
-  "version": "1.5.1",
+  "name": "cas-parser-mcp",
+  "version": "1.6.0",
   "description": "The official MCP Server for the Cas Parser API",
   "author": "Cas Parser <sameer@casparser.in>",
   "types": "dist/index.d.ts",
@@ -13,7 +13,7 @@
   },
   "homepage": "https://github.com/CASParser/cas-parser-node/tree/main/packages/mcp-server#readme",
   "license": "Apache-2.0",
-  "packageManager": "yarn@1.22.22",
+  "packageManager": "pnpm@10.27.0",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -21,16 +21,15 @@
   "scripts": {
     "test": "jest",
     "build": "bash ./build",
-    "prepack": "echo 'to pack, run yarn build && (cd dist; yarn pack)' && exit 1",
-    "prepublishOnly": "echo 'to publish, run yarn build && (cd dist; yarn publish)' && exit 1",
+    "prepack": "echo 'to pack, run pnpm build && (cd dist; pnpm pack)' && exit 1",
+    "prepublishOnly": "echo 'to publish, run pnpm build && (cd dist; pnpm publish)' && exit 1",
     "format": "prettier --write --cache --cache-strategy metadata . !dist",
-    "prepare": "npm run build",
     "tsn": "ts-node -r tsconfig-paths/register",
     "lint": "eslint --ext ts,js .",
     "fix": "eslint --fix --ext ts,js ."
   },
   "dependencies": {
-    "cas-parser-node": "file:../../dist/",
+    "cas-parser": "workspace:*",
     "@cloudflare/cabidela": "^0.2.4",
     "@modelcontextprotocol/sdk": "^1.25.2",
     "@valtown/deno-http-worker": "^0.0.21",
@@ -74,8 +73,8 @@
     "tsconfig-paths": "^4.0.0"
   },
   "imports": {
-    "cas-parser-node-mcp": ".",
-    "cas-parser-node-mcp/*": "./src/*"
+    "cas-parser-mcp": ".",
+    "cas-parser-mcp/*": "./src/*"
   },
   "exports": {
     ".": {

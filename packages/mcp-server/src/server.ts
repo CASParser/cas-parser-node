@@ -7,8 +7,8 @@ import {
   ListToolsRequestSchema,
   SetLevelRequestSchema,
 } from '@modelcontextprotocol/sdk/types.js';
-import { ClientOptions } from 'cas-parser-node';
-import CasParser from 'cas-parser-node';
+import { ClientOptions } from 'cas-parser';
+import CasParser from 'cas-parser';
 import { codeTool } from './code-tool';
 import docsSearchTool from './docs-search-tool';
 import { McpOptions } from './options';
@@ -55,8 +55,8 @@ async function getInstructions() {
 export const newMcpServer = async () =>
   new McpServer(
     {
-      name: 'cas_parser_node_api',
-      version: '1.5.1',
+      name: 'cas_parser_api',
+      version: '1.6.0',
     },
     {
       instructions: await getInstructions(),
@@ -91,6 +91,7 @@ export async function initMcpServer(params: {
   };
 
   let client = new CasParser({
+    ...{ environment: (readEnv('CAS_PARSER_ENVIRONMENT') || undefined) as any },
     logger,
     ...params.clientOptions,
     defaultHeaders: {

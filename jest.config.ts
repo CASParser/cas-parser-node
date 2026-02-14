@@ -7,8 +7,8 @@ const config: JestConfigWithTsJest = {
     '^.+\\.(t|j)sx?$': ['@swc/jest', { sourceMaps: 'inline' }],
   },
   moduleNameMapper: {
-    '^cas-parser-node$': '<rootDir>/src/index.ts',
-    '^cas-parser-node/(.*)$': '<rootDir>/src/$1',
+    '^cas-parser$': '<rootDir>/src/index.ts',
+    '^cas-parser/(.*)$': '<rootDir>/src/$1',
   },
   modulePathIgnorePatterns: [
     '<rootDir>/ecosystem-tests/',

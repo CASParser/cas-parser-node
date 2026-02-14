@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.6.0 (2026-02-14)
+
+Full Changelog: [v1.5.1...v1.6.0](https://github.com/CASParser/cas-parser-node/compare/v1.5.1...v1.6.0)
+
+### Features
+
+* **api:** manual updates ([c483f9f](https://github.com/CASParser/cas-parser-node/commit/c483f9fa85bda72c8cd35cb36b84b7b618b7ecc9))
+
+
+### Chores
+
+* configure new SDK language ([c5b4f8a](https://github.com/CASParser/cas-parser-node/commit/c5b4f8a53aa3d56d53802f1dcca10188b614bc47))
+* update SDK settings ([165d960](https://github.com/CASParser/cas-parser-node/commit/165d960d998ef169f8cdbd05377ee5c386202d19))
+
 ## 1.5.1 (2026-02-14)
 
 Full Changelog: [v1.5.0...v1.5.1](https://github.com/CASParser/cas-parser-node/compare/v1.5.0...v1.5.1)

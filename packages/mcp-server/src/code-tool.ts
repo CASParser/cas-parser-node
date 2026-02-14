@@ -5,7 +5,7 @@ import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import { readEnv, requireValue } from './util';
 import { WorkerInput, WorkerOutput } from './code-tool-types';
 import { SdkMethod } from './methods';
-import { CasParser } from 'cas-parser-node';
+import { CasParser } from 'cas-parser';
 
 const prompt = `Runs JavaScript code to interact with the Cas Parser API.
 
@@ -15,9 +15,9 @@ For example:
 
 \`\`\`
 async function run(client) {
-  const unifiedResponse = await client.casParser.smartParse({ password: 'ABCDF', pdf_url: 'https://your-cas-pdf-url-here.com' });
+  const response = await client.credits.check();
 
-  console.log(unifiedResponse.demat_accounts);
+  console.log(response.enabled_features);
 }
 \`\`\`
 
@@ -94,14 +94,17 @@ export function codeTool(params: { blockedMethods: SdkMethod[] | undefined }): M
             readEnv('CAS_PARSER_API_KEY') ?? client.apiKey,
             'set CAS_PARSER_API_KEY environment variable or provide apiKey client option',
           ),
-          CAS_PARSER_BASE_URL: readEnv('CAS_PARSER_BASE_URL') ?? client.baseURL ?? undefined,
+          CAS_PARSER_BASE_URL:
+            readEnv('CAS_PARSER_BASE_URL') ?? readEnv('CAS_PARSER_ENVIRONMENT') ?
+              undefined
+            : client.baseURL ?? undefined,
         }),
       },
       body: JSON.stringify({
         project_name: 'cas-parser',
         code,
         intent,
-        client_opts: {},
+        client_opts: { environment: (readEnv('CAS_PARSER_ENVIRONMENT') || undefined) as any },
       } satisfies WorkerInput),
     });
 
