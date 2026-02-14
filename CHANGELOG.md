@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.5.1 (2026-02-14)
+
+Full Changelog: [v1.5.0...v1.5.1](https://github.com/CASParser/cas-parser-node/compare/v1.5.0...v1.5.1)
+
+### Chores
+
+* **internal:** configure MCP Server hosting ([ef69e28](https://github.com/CASParser/cas-parser-node/commit/ef69e288bdb8047c419c4aa1ff72ce1aedf1f93d))
+
 ## 1.5.0 (2026-02-14)
 
 Full Changelog: [v1.4.1...v1.5.0](https://github.com/CASParser/cas-parser-node/compare/v1.4.1...v1.5.0)
