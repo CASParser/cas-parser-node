@@ -8,8 +8,8 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "paths": {
-      "cas-parser/*": ["./src/*"],
-      "cas-parser": ["./src/index.ts"]
+      "cas-parser-node/*": ["./src/*"],
+      "cas-parser-node": ["./src/index.ts"]
     },
     "noEmit": true,
 

@@ -83,7 +83,7 @@ importers:
       '@valtown/deno-http-worker':
         specifier: ^0.0.21
         version: 0.0.21
-      cas-parser:
+      cas-parser-node:
         specifier: workspace:*
         version: link:../..
       cookie-parser:
