@@ -8,7 +8,7 @@ const client = new CasParser({
 });
 
 describe('resource kfintech', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('generateCas: only required params', async () => {
     const responsePromise = client.kfintech.generateCas({
       email: 'user@example.com',
@@ -25,7 +25,7 @@ describe('resource kfintech', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('generateCas: required and optional params', async () => {
     const response = await client.kfintech.generateCas({
       email: 'user@example.com',

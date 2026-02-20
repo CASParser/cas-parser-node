@@ -8,7 +8,7 @@ const client = new CasParser({
 });
 
 describe('resource camsKfintech', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('parse', async () => {
     const responsePromise = client.camsKfintech.parse({});
     const rawResponse = await responsePromise.asResponse();

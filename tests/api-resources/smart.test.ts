@@ -8,7 +8,7 @@ const client = new CasParser({
 });
 
 describe('resource smart', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('parseCasPdf', async () => {
     const responsePromise = client.smart.parseCasPdf({});
     const rawResponse = await responsePromise.asResponse();
