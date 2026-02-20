@@ -8,7 +8,7 @@ const client = new CasParser({
 });
 
 describe('resource cdsl', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('parsePdf', async () => {
     const responsePromise = client.cdsl.parsePdf({});
     const rawResponse = await responsePromise.asResponse();

@@ -8,7 +8,7 @@ const client = new CasParser({
 });
 
 describe('resource inbox', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('checkConnectionStatus: only required params', async () => {
     const responsePromise = client.inbox.checkConnectionStatus({ 'x-inbox-token': 'x-inbox-token' });
     const rawResponse = await responsePromise.asResponse();
@@ -20,12 +20,12 @@ describe('resource inbox', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('checkConnectionStatus: required and optional params', async () => {
     const response = await client.inbox.checkConnectionStatus({ 'x-inbox-token': 'x-inbox-token' });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('connectEmail: only required params', async () => {
     const responsePromise = client.inbox.connectEmail({ redirect_uri: 'https://yourapp.com/oauth-callback' });
     const rawResponse = await responsePromise.asResponse();
@@ -37,7 +37,7 @@ describe('resource inbox', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('connectEmail: required and optional params', async () => {
     const response = await client.inbox.connectEmail({
       redirect_uri: 'https://yourapp.com/oauth-callback',
@@ -45,7 +45,7 @@ describe('resource inbox', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('disconnectEmail: only required params', async () => {
     const responsePromise = client.inbox.disconnectEmail({ 'x-inbox-token': 'x-inbox-token' });
     const rawResponse = await responsePromise.asResponse();
@@ -57,12 +57,12 @@ describe('resource inbox', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('disconnectEmail: required and optional params', async () => {
     const response = await client.inbox.disconnectEmail({ 'x-inbox-token': 'x-inbox-token' });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('listCasFiles: only required params', async () => {
     const responsePromise = client.inbox.listCasFiles({ 'x-inbox-token': 'x-inbox-token' });
     const rawResponse = await responsePromise.asResponse();
@@ -74,7 +74,7 @@ describe('resource inbox', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('listCasFiles: required and optional params', async () => {
     const response = await client.inbox.listCasFiles({
       'x-inbox-token': 'x-inbox-token',
