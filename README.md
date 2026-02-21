@@ -36,9 +36,9 @@ const client = new CasParser({
   environment: 'environment_1', // or 'production' | 'environment_2'; defaults to 'production'
 });
 
-const response = await client.credits.check();
+const unifiedResponse = await client.camsKfintech.parse();
 
-console.log(response.enabled_features);
+console.log(unifiedResponse.demat_accounts);
 ```
 
 ### Request & Response types
@@ -54,7 +54,7 @@ const client = new CasParser({
   environment: 'environment_1', // or 'production' | 'environment_2'; defaults to 'production'
 });
 
-const response: CasParser.CreditCheckResponse = await client.credits.check();
+const unifiedResponse: CasParser.UnifiedResponse = await client.camsKfintech.parse();
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -67,7 +67,7 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-const response = await client.credits.check().catch(async (err) => {
+const unifiedResponse = await client.camsKfintech.parse().catch(async (err) => {
   if (err instanceof CasParser.APIError) {
     console.log(err.status); // 400
     console.log(err.name); // BadRequestError
@@ -107,7 +107,7 @@ const client = new CasParser({
 });
 
 // Or, configure per-request:
-await client.credits.check({
+await client.camsKfintech.parse({
   maxRetries: 5,
 });
 ```
@@ -124,7 +124,7 @@ const client = new CasParser({
 });
 
 // Override per-request:
-await client.credits.check({
+await client.camsKfintech.parse({
   timeout: 5 * 1000,
 });
 ```
@@ -147,13 +147,13 @@ Unlike `.asResponse()` this method consumes the body, returning once it is parse
 ```ts
 const client = new CasParser();
 
-const response = await client.credits.check().asResponse();
+const response = await client.camsKfintech.parse().asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: response, response: raw } = await client.credits.check().withResponse();
+const { data: unifiedResponse, response: raw } = await client.camsKfintech.parse().withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(response.enabled_features);
+console.log(unifiedResponse.demat_accounts);
 ```
 
 ### Logging
@@ -233,7 +233,7 @@ parameter. This library doesn't validate at runtime that the request matches the
 send will be sent as-is.
 
 ```ts
-client.credits.check({
+client.camsKfintech.parse({
   // ...
   // @ts-expect-error baz is not yet public
   baz: 'undocumented option',

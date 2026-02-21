@@ -16,7 +16,7 @@ import * as Errors from './core/error';
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
-import { AccessToken, AccessTokenCreateParams, AccessTokenCreateResponse } from './resources/access-token';
+import { AccessToken } from './resources/access-token';
 import {
   CamsKfintech,
   CamsKfintechParseParams,
@@ -25,7 +25,7 @@ import {
   UnifiedResponse,
 } from './resources/cams-kfintech';
 import { ContractNote, ContractNoteParseParams, ContractNoteParseResponse } from './resources/contract-note';
-import { CreditCheckResponse, Credits } from './resources/credits';
+import { Credits } from './resources/credits';
 import {
   Inbox,
   InboxCheckConnectionStatusParams,
@@ -38,16 +38,10 @@ import {
   InboxListCasFilesResponse,
 } from './resources/inbox';
 import { Kfintech, KfintechGenerateCasParams, KfintechGenerateCasResponse } from './resources/kfintech';
-import {
-  LogCreateParams,
-  LogCreateResponse,
-  LogGetSummaryParams,
-  LogGetSummaryResponse,
-  Logs,
-} from './resources/logs';
+import { Logs } from './resources/logs';
 import { Nsdl, NsdlParseParams } from './resources/nsdl';
 import { Smart, SmartParseCasPdfParams } from './resources/smart';
-import { VerifyToken, VerifyTokenVerifyResponse } from './resources/verify-token';
+import { VerifyToken } from './resources/verify-token';
 import { Cdsl, CdslParsePdfParams } from './resources/cdsl/cdsl';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
@@ -817,23 +811,13 @@ CasParser.Smart = Smart;
 export declare namespace CasParser {
   export type RequestOptions = Opts.RequestOptions;
 
-  export { Credits as Credits, type CreditCheckResponse as CreditCheckResponse };
+  export { Credits as Credits };
 
-  export {
-    Logs as Logs,
-    type LogCreateResponse as LogCreateResponse,
-    type LogGetSummaryResponse as LogGetSummaryResponse,
-    type LogCreateParams as LogCreateParams,
-    type LogGetSummaryParams as LogGetSummaryParams,
-  };
+  export { Logs as Logs };
 
-  export {
-    AccessToken as AccessToken,
-    type AccessTokenCreateResponse as AccessTokenCreateResponse,
-    type AccessTokenCreateParams as AccessTokenCreateParams,
-  };
+  export { AccessToken as AccessToken };
 
-  export { VerifyToken as VerifyToken, type VerifyTokenVerifyResponse as VerifyTokenVerifyResponse };
+  export { VerifyToken as VerifyToken };
 
   export {
     CamsKfintech as CamsKfintech,
