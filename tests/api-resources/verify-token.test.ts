@@ -8,7 +8,7 @@ const client = new CasParser({
 });
 
 describe('resource verifyToken', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('verify', async () => {
     const responsePromise = client.verifyToken.verify();
     const rawResponse = await responsePromise.asResponse();

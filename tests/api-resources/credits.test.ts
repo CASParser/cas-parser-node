@@ -8,7 +8,7 @@ const client = new CasParser({
 });
 
 describe('resource credits', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('check', async () => {
     const responsePromise = client.credits.check();
     const rawResponse = await responsePromise.asResponse();

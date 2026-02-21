@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.7.2 (2026-02-20)
+
+Full Changelog: [v1.7.1...v1.7.2](https://github.com/CASParser/cas-parser-node/compare/v1.7.1...v1.7.2)
+
+### Bug Fixes
+
+* **mcp:** initialize SDK lazily to avoid failing the connection on init errors ([2989ad0](https://github.com/CASParser/cas-parser-node/commit/2989ad0e371056cdf52be17d4b18b990533f1514))
+
+
+### Chores
+
+* **internal/client:** fix form-urlencoded requests ([f39cb7f](https://github.com/CASParser/cas-parser-node/commit/f39cb7f6c2ad7c20da495ded91c644e432596425))
+* **internal:** allow setting x-stainless-api-key header on mcp server requests ([5b3baf7](https://github.com/CASParser/cas-parser-node/commit/5b3baf7ead67ae4a2e371ceda87d5d9e97019c5d))
+* **internal:** cache fetch instruction calls in MCP server ([335fe62](https://github.com/CASParser/cas-parser-node/commit/335fe623fd4ec8add20d330ab4e85db3165f8e81))
+* **internal:** remove mock server code ([c06dabf](https://github.com/CASParser/cas-parser-node/commit/c06dabff5d1c4bbc99e6691a54646299a1ba74c9))
+* **mcp:** correctly update version in sync with sdk ([0d611f4](https://github.com/CASParser/cas-parser-node/commit/0d611f42d2477e8cbb3e1e746a5f48bc209a3502))
+* update mock server docs ([89099af](https://github.com/CASParser/cas-parser-node/commit/89099af92c2f5dfff6649e325cfe1d1f08fc9d6c))
+
 ## 1.7.1 (2026-02-14)
 
 Full Changelog: [v1.7.0...v1.7.1](https://github.com/CASParser/cas-parser-node/compare/v1.7.0...v1.7.1)
