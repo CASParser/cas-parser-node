@@ -11,36 +11,6 @@ export type SdkMethod = {
 
 export const sdkMethods: SdkMethod[] = [
   {
-    clientCallName: 'client.credits.check',
-    fullyQualifiedName: 'credits.check',
-    httpMethod: 'post',
-    httpPath: '/credits',
-  },
-  {
-    clientCallName: 'client.logs.create',
-    fullyQualifiedName: 'logs.create',
-    httpMethod: 'post',
-    httpPath: '/logs',
-  },
-  {
-    clientCallName: 'client.logs.getSummary',
-    fullyQualifiedName: 'logs.getSummary',
-    httpMethod: 'post',
-    httpPath: '/logs/summary',
-  },
-  {
-    clientCallName: 'client.accessToken.create',
-    fullyQualifiedName: 'accessToken.create',
-    httpMethod: 'post',
-    httpPath: '/v1/access-token',
-  },
-  {
-    clientCallName: 'client.verifyToken.verify',
-    fullyQualifiedName: 'verifyToken.verify',
-    httpMethod: 'post',
-    httpPath: '/v1/verify-token',
-  },
-  {
     clientCallName: 'client.camsKfintech.parse',
     fullyQualifiedName: 'camsKfintech.parse',
     httpMethod: 'post',

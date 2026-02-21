@@ -1,44 +1,10 @@
 # Credits
 
-Types:
-
-- <code><a href="./src/resources/credits.ts">CreditCheckResponse</a></code>
-
-Methods:
-
-- <code title="post /credits">client.credits.<a href="./src/resources/credits.ts">check</a>() -> CreditCheckResponse</code>
-
 # Logs
-
-Types:
-
-- <code><a href="./src/resources/logs.ts">LogCreateResponse</a></code>
-- <code><a href="./src/resources/logs.ts">LogGetSummaryResponse</a></code>
-
-Methods:
-
-- <code title="post /logs">client.logs.<a href="./src/resources/logs.ts">create</a>({ ...params }) -> LogCreateResponse</code>
-- <code title="post /logs/summary">client.logs.<a href="./src/resources/logs.ts">getSummary</a>({ ...params }) -> LogGetSummaryResponse</code>
 
 # AccessToken
 
-Types:
-
-- <code><a href="./src/resources/access-token.ts">AccessTokenCreateResponse</a></code>
-
-Methods:
-
-- <code title="post /v1/access-token">client.accessToken.<a href="./src/resources/access-token.ts">create</a>({ ...params }) -> AccessTokenCreateResponse</code>
-
 # VerifyToken
-
-Types:
-
-- <code><a href="./src/resources/verify-token.ts">VerifyTokenVerifyResponse</a></code>
-
-Methods:
-
-- <code title="post /v1/verify-token">client.verifyToken.<a href="./src/resources/verify-token.ts">verify</a>() -> VerifyTokenVerifyResponse</code>
 
 # CamsKfintech
 
