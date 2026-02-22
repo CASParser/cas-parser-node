@@ -205,6 +205,11 @@ export namespace InboxListCasFilesResponse {
     original_filename?: string;
 
     /**
+     * Email address of the CAS authority who sent this
+     */
+    sender_email?: string;
+
+    /**
      * File size in bytes
      */
     size?: number;
