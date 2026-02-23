@@ -15,13 +15,12 @@ import { getInstructions } from './instructions';
 import { McpOptions } from './options';
 import { blockedMethodsForCodeTool } from './methods';
 import { HandlerFunction, McpRequestContext, ToolCallResult, McpTool } from './types';
-import { readEnv } from './util';
 
 export const newMcpServer = async (stainlessApiKey: string | undefined) =>
   new McpServer(
     {
       name: 'cas_parser_node_api',
-      version: '1.8.0',
+      version: '1.9.0',
     },
     {
       instructions: await getInstructions(stainlessApiKey),
@@ -65,7 +64,6 @@ export async function initMcpServer(params: {
     if (!_client) {
       try {
         _client = new CasParser({
-          ...{ environment: (readEnv('CAS_PARSER_ENVIRONMENT') || undefined) as any },
           logger,
           ...params.clientOptions,
           defaultHeaders: {

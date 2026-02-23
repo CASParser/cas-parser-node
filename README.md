@@ -4,7 +4,7 @@
 
 This library provides convenient access to the Cas Parser REST API from server-side TypeScript or JavaScript.
 
-The REST API documentation can be found on [docs.casparser.in](https://docs.casparser.in). The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found on [casparser.in](https://casparser.in/docs). The full API of this library can be found in [api.md](api.md).
 
 It is generated with [Stainless](https://www.stainless.com/).
 
@@ -33,7 +33,6 @@ import CasParser from 'cas-parser-node';
 
 const client = new CasParser({
   apiKey: process.env['CAS_PARSER_API_KEY'], // This is the default and can be omitted
-  environment: 'environment_1', // or 'production' | 'environment_2'; defaults to 'production'
 });
 
 const response = await client.credits.check();
@@ -51,7 +50,6 @@ import CasParser from 'cas-parser-node';
 
 const client = new CasParser({
   apiKey: process.env['CAS_PARSER_API_KEY'], // This is the default and can be omitted
-  environment: 'environment_1', // or 'production' | 'environment_2'; defaults to 'production'
 });
 
 const response: CasParser.CreditCheckResponse = await client.credits.check();
