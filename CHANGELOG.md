@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.8.0 (2026-02-23)
+
+Full Changelog: [v1.7.2...v1.8.0](https://github.com/CASParser/cas-parser-node/compare/v1.7.2...v1.8.0)
+
+### Features
+
+* **api:** api update ([58b6b46](https://github.com/CASParser/cas-parser-node/commit/58b6b46652f008b870fa189dc960c2d53e1a3887))
+* **api:** api update ([a7e9bf9](https://github.com/CASParser/cas-parser-node/commit/a7e9bf9a5e23696d476b150f3149f853994d4f6c))
+* **api:** api update ([c7c17cd](https://github.com/CASParser/cas-parser-node/commit/c7c17cd05e594d81b830765d2904c95b6387c1d1))
+* **api:** manual updates ([d666a0b](https://github.com/CASParser/cas-parser-node/commit/d666a0b46b2d37de44fd443a92fd4b883a2ba98d))
+
 ## 1.7.2 (2026-02-20)
 
 Full Changelog: [v1.7.1...v1.7.2](https://github.com/CASParser/cas-parser-node/compare/v1.7.1...v1.7.2)
