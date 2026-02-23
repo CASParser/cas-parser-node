@@ -205,7 +205,8 @@ export namespace InboxListCasFilesResponse {
     original_filename?: string;
 
     /**
-     * Email address of the CAS authority who sent this
+     * Email address of the CAS authority (CDSL, NSDL, CAMS, or KFintech) who
+     * originally sent this statement
      */
     sender_email?: string;
 
