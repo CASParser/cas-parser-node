@@ -27,6 +27,15 @@ import {
 import { ContractNote, ContractNoteParseParams, ContractNoteParseResponse } from './resources/contract-note';
 import { CreditCheckResponse, Credits } from './resources/credits';
 import {
+  InboundEmail,
+  InboundEmailCreateParams,
+  InboundEmailCreateResponse,
+  InboundEmailDeleteResponse,
+  InboundEmailListParams,
+  InboundEmailListResponse,
+  InboundEmailRetrieveResponse,
+} from './resources/inbound-email';
+import {
   Inbox,
   InboxCheckConnectionStatusParams,
   InboxCheckConnectionStatusResponse,
@@ -800,6 +809,7 @@ export class CasParser {
   kfintech: API.Kfintech = new API.Kfintech(this);
   nsdl: API.Nsdl = new API.Nsdl(this);
   smart: API.Smart = new API.Smart(this);
+  inboundEmail: API.InboundEmail = new API.InboundEmail(this);
 }
 
 CasParser.Credits = Credits;
@@ -813,6 +823,7 @@ CasParser.Inbox = Inbox;
 CasParser.Kfintech = Kfintech;
 CasParser.Nsdl = Nsdl;
 CasParser.Smart = Smart;
+CasParser.InboundEmail = InboundEmail;
 
 export declare namespace CasParser {
   export type RequestOptions = Opts.RequestOptions;
@@ -872,4 +883,14 @@ export declare namespace CasParser {
   export { Nsdl as Nsdl, type NsdlParseParams as NsdlParseParams };
 
   export { Smart as Smart, type SmartParseCasPdfParams as SmartParseCasPdfParams };
+
+  export {
+    InboundEmail as InboundEmail,
+    type InboundEmailCreateResponse as InboundEmailCreateResponse,
+    type InboundEmailRetrieveResponse as InboundEmailRetrieveResponse,
+    type InboundEmailListResponse as InboundEmailListResponse,
+    type InboundEmailDeleteResponse as InboundEmailDeleteResponse,
+    type InboundEmailCreateParams as InboundEmailCreateParams,
+    type InboundEmailListParams as InboundEmailListParams,
+  };
 }

@@ -10,7 +10,7 @@ export class VerifyToken extends APIResource {
    * issues.
    */
   verify(options?: RequestOptions): APIPromise<VerifyTokenVerifyResponse> {
-    return this._client.post('/v1/verify-token', options);
+    return this._client.post('/v1/token/verify', options);
   }
 }
 

@@ -6,7 +6,7 @@ Types:
 
 Methods:
 
-- <code title="post /credits">client.credits.<a href="./src/resources/credits.ts">check</a>() -> CreditCheckResponse</code>
+- <code title="post /v1/credits">client.credits.<a href="./src/resources/credits.ts">check</a>() -> CreditCheckResponse</code>
 
 # Logs
 
@@ -17,8 +17,8 @@ Types:
 
 Methods:
 
-- <code title="post /logs">client.logs.<a href="./src/resources/logs.ts">create</a>({ ...params }) -> LogCreateResponse</code>
-- <code title="post /logs/summary">client.logs.<a href="./src/resources/logs.ts">getSummary</a>({ ...params }) -> LogGetSummaryResponse</code>
+- <code title="post /v1/usage">client.logs.<a href="./src/resources/logs.ts">create</a>({ ...params }) -> LogCreateResponse</code>
+- <code title="post /v1/usage/summary">client.logs.<a href="./src/resources/logs.ts">getSummary</a>({ ...params }) -> LogGetSummaryResponse</code>
 
 # AccessToken
 
@@ -28,7 +28,7 @@ Types:
 
 Methods:
 
-- <code title="post /v1/access-token">client.accessToken.<a href="./src/resources/access-token.ts">create</a>({ ...params }) -> AccessTokenCreateResponse</code>
+- <code title="post /v1/token">client.accessToken.<a href="./src/resources/access-token.ts">create</a>({ ...params }) -> AccessTokenCreateResponse</code>
 
 # VerifyToken
 
@@ -38,7 +38,7 @@ Types:
 
 Methods:
 
-- <code title="post /v1/verify-token">client.verifyToken.<a href="./src/resources/verify-token.ts">verify</a>() -> VerifyTokenVerifyResponse</code>
+- <code title="post /v1/token/verify">client.verifyToken.<a href="./src/resources/verify-token.ts">verify</a>() -> VerifyTokenVerifyResponse</code>
 
 # CamsKfintech
 
@@ -117,3 +117,19 @@ Methods:
 Methods:
 
 - <code title="post /v4/smart/parse">client.smart.<a href="./src/resources/smart.ts">parseCasPdf</a>({ ...params }) -> UnifiedResponse</code>
+
+# InboundEmail
+
+Types:
+
+- <code><a href="./src/resources/inbound-email.ts">InboundEmailCreateResponse</a></code>
+- <code><a href="./src/resources/inbound-email.ts">InboundEmailRetrieveResponse</a></code>
+- <code><a href="./src/resources/inbound-email.ts">InboundEmailListResponse</a></code>
+- <code><a href="./src/resources/inbound-email.ts">InboundEmailDeleteResponse</a></code>
+
+Methods:
+
+- <code title="post /v4/inbound-email">client.inboundEmail.<a href="./src/resources/inbound-email.ts">create</a>({ ...params }) -> InboundEmailCreateResponse</code>
+- <code title="get /v4/inbound-email/{inbound_email_id}">client.inboundEmail.<a href="./src/resources/inbound-email.ts">retrieve</a>(inboundEmailID) -> InboundEmailRetrieveResponse</code>
+- <code title="get /v4/inbound-email">client.inboundEmail.<a href="./src/resources/inbound-email.ts">list</a>({ ...params }) -> InboundEmailListResponse</code>
+- <code title="delete /v4/inbound-email/{inbound_email_id}">client.inboundEmail.<a href="./src/resources/inbound-email.ts">delete</a>(inboundEmailID) -> InboundEmailDeleteResponse</code>

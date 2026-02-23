@@ -11,6 +11,8 @@ export class Logs extends APIResource {
    * Returns a list of API calls with timestamps, features used, status codes, and
    * credits consumed. Useful for monitoring usage patterns and debugging.
    *
+   * **Legacy path:** `/logs` (still supported)
+   *
    * @example
    * ```ts
    * const log = await client.logs.create();
@@ -20,7 +22,7 @@ export class Logs extends APIResource {
     body: LogCreateParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<LogCreateResponse> {
-    return this._client.post('/logs', { body, ...options });
+    return this._client.post('/v1/usage', { body, ...options });
   }
 
   /**
@@ -28,6 +30,8 @@ export class Logs extends APIResource {
    *
    * Useful for understanding which API features are being used most and tracking
    * usage trends.
+   *
+   * **Legacy path:** `/logs/summary` (still supported)
    *
    * @example
    * ```ts
@@ -38,7 +42,7 @@ export class Logs extends APIResource {
     body: LogGetSummaryParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<LogGetSummaryResponse> {
-    return this._client.post('/logs/summary', { body, ...options });
+    return this._client.post('/v1/usage/summary', { body, ...options });
   }
 }
 

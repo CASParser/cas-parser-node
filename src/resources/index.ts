@@ -12,6 +12,15 @@ export { Cdsl, type CdslParsePdfParams } from './cdsl/cdsl';
 export { ContractNote, type ContractNoteParseResponse, type ContractNoteParseParams } from './contract-note';
 export { Credits, type CreditCheckResponse } from './credits';
 export {
+  InboundEmail,
+  type InboundEmailCreateResponse,
+  type InboundEmailRetrieveResponse,
+  type InboundEmailListResponse,
+  type InboundEmailDeleteResponse,
+  type InboundEmailCreateParams,
+  type InboundEmailListParams,
+} from './inbound-email';
+export {
   Inbox,
   type InboxCheckConnectionStatusResponse,
   type InboxConnectEmailResponse,

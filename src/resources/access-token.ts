@@ -11,6 +11,8 @@ export class AccessToken extends APIResource {
    * **Use this endpoint from your backend** to create tokens that can be safely
    * passed to frontend/SDK.
    *
+   * **Legacy path:** `/v1/access-token` (still supported)
+   *
    * Access tokens:
    *
    * - Are prefixed with `at_` for easy identification
@@ -27,7 +29,7 @@ export class AccessToken extends APIResource {
     body: AccessTokenCreateParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<AccessTokenCreateResponse> {
-    return this._client.post('/v1/access-token', { body, ...options });
+    return this._client.post('/v1/token', { body, ...options });
   }
 }
 

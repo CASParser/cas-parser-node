@@ -17,7 +17,7 @@ export class Credits extends APIResource {
    * Credits reset at the start of each billing period.
    */
   check(options?: RequestOptions): APIPromise<CreditCheckResponse> {
-    return this._client.post('/credits', options);
+    return this._client.post('/v1/credits', options);
   }
 }
 
