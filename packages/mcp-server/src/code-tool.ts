@@ -103,17 +103,14 @@ export function codeTool({ blockedMethods }: { blockedMethods: SdkMethod[] | und
             readEnv('CAS_PARSER_API_KEY') ?? client.apiKey,
             'set CAS_PARSER_API_KEY environment variable or provide apiKey client option',
           ),
-          CAS_PARSER_BASE_URL:
-            readEnv('CAS_PARSER_BASE_URL') ?? readEnv('CAS_PARSER_ENVIRONMENT') ?
-              undefined
-            : client.baseURL ?? undefined,
+          CAS_PARSER_BASE_URL: readEnv('CAS_PARSER_BASE_URL') ?? client.baseURL ?? undefined,
         }),
       },
       body: JSON.stringify({
         project_name: 'cas-parser',
         code,
         intent,
-        client_opts: { environment: (readEnv('CAS_PARSER_ENVIRONMENT') || undefined) as any },
+        client_opts: {},
       } satisfies WorkerInput),
     });
 
