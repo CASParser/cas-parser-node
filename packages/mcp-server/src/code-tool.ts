@@ -21,9 +21,9 @@ For example:
 
 \`\`\`
 async function run(client) {
-  const unifiedResponse = await client.camsKfintech.parse();
+  const response = await client.credits.check();
 
-  console.log(unifiedResponse.demat_accounts);
+  console.log(response.enabled_features);
 }
 \`\`\`
 

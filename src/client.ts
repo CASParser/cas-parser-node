@@ -16,7 +16,7 @@ import * as Errors from './core/error';
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
-import { AccessToken } from './resources/access-token';
+import { AccessToken, AccessTokenCreateParams, AccessTokenCreateResponse } from './resources/access-token';
 import {
   CamsKfintech,
   CamsKfintechParseParams,
@@ -25,7 +25,16 @@ import {
   UnifiedResponse,
 } from './resources/cams-kfintech';
 import { ContractNote, ContractNoteParseParams, ContractNoteParseResponse } from './resources/contract-note';
-import { Credits } from './resources/credits';
+import { CreditCheckResponse, Credits } from './resources/credits';
+import {
+  InboundEmail,
+  InboundEmailCreateParams,
+  InboundEmailCreateResponse,
+  InboundEmailDeleteResponse,
+  InboundEmailListParams,
+  InboundEmailListResponse,
+  InboundEmailRetrieveResponse,
+} from './resources/inbound-email';
 import {
   Inbox,
   InboxCheckConnectionStatusParams,
@@ -38,10 +47,16 @@ import {
   InboxListCasFilesResponse,
 } from './resources/inbox';
 import { Kfintech, KfintechGenerateCasParams, KfintechGenerateCasResponse } from './resources/kfintech';
-import { Logs } from './resources/logs';
+import {
+  LogCreateParams,
+  LogCreateResponse,
+  LogGetSummaryParams,
+  LogGetSummaryResponse,
+  Logs,
+} from './resources/logs';
 import { Nsdl, NsdlParseParams } from './resources/nsdl';
 import { Smart, SmartParseCasPdfParams } from './resources/smart';
-import { VerifyToken } from './resources/verify-token';
+import { VerifyToken, VerifyTokenVerifyResponse } from './resources/verify-token';
 import { Cdsl, CdslParsePdfParams } from './resources/cdsl/cdsl';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
@@ -794,6 +809,7 @@ export class CasParser {
   kfintech: API.Kfintech = new API.Kfintech(this);
   nsdl: API.Nsdl = new API.Nsdl(this);
   smart: API.Smart = new API.Smart(this);
+  inboundEmail: API.InboundEmail = new API.InboundEmail(this);
 }
 
 CasParser.Credits = Credits;
@@ -807,17 +823,28 @@ CasParser.Inbox = Inbox;
 CasParser.Kfintech = Kfintech;
 CasParser.Nsdl = Nsdl;
 CasParser.Smart = Smart;
+CasParser.InboundEmail = InboundEmail;
 
 export declare namespace CasParser {
   export type RequestOptions = Opts.RequestOptions;
 
-  export { Credits as Credits };
+  export { Credits as Credits, type CreditCheckResponse as CreditCheckResponse };
 
-  export { Logs as Logs };
+  export {
+    Logs as Logs,
+    type LogCreateResponse as LogCreateResponse,
+    type LogGetSummaryResponse as LogGetSummaryResponse,
+    type LogCreateParams as LogCreateParams,
+    type LogGetSummaryParams as LogGetSummaryParams,
+  };
 
-  export { AccessToken as AccessToken };
+  export {
+    AccessToken as AccessToken,
+    type AccessTokenCreateResponse as AccessTokenCreateResponse,
+    type AccessTokenCreateParams as AccessTokenCreateParams,
+  };
 
-  export { VerifyToken as VerifyToken };
+  export { VerifyToken as VerifyToken, type VerifyTokenVerifyResponse as VerifyTokenVerifyResponse };
 
   export {
     CamsKfintech as CamsKfintech,
@@ -856,4 +883,14 @@ export declare namespace CasParser {
   export { Nsdl as Nsdl, type NsdlParseParams as NsdlParseParams };
 
   export { Smart as Smart, type SmartParseCasPdfParams as SmartParseCasPdfParams };
+
+  export {
+    InboundEmail as InboundEmail,
+    type InboundEmailCreateResponse as InboundEmailCreateResponse,
+    type InboundEmailRetrieveResponse as InboundEmailRetrieveResponse,
+    type InboundEmailListResponse as InboundEmailListResponse,
+    type InboundEmailDeleteResponse as InboundEmailDeleteResponse,
+    type InboundEmailCreateParams as InboundEmailCreateParams,
+    type InboundEmailListParams as InboundEmailListParams,
+  };
 }

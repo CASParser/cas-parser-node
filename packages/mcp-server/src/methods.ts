@@ -11,6 +11,36 @@ export type SdkMethod = {
 
 export const sdkMethods: SdkMethod[] = [
   {
+    clientCallName: 'client.credits.check',
+    fullyQualifiedName: 'credits.check',
+    httpMethod: 'post',
+    httpPath: '/v1/credits',
+  },
+  {
+    clientCallName: 'client.logs.create',
+    fullyQualifiedName: 'logs.create',
+    httpMethod: 'post',
+    httpPath: '/v1/usage',
+  },
+  {
+    clientCallName: 'client.logs.getSummary',
+    fullyQualifiedName: 'logs.getSummary',
+    httpMethod: 'post',
+    httpPath: '/v1/usage/summary',
+  },
+  {
+    clientCallName: 'client.accessToken.create',
+    fullyQualifiedName: 'accessToken.create',
+    httpMethod: 'post',
+    httpPath: '/v1/token',
+  },
+  {
+    clientCallName: 'client.verifyToken.verify',
+    fullyQualifiedName: 'verifyToken.verify',
+    httpMethod: 'post',
+    httpPath: '/v1/token/verify',
+  },
+  {
     clientCallName: 'client.camsKfintech.parse',
     fullyQualifiedName: 'camsKfintech.parse',
     httpMethod: 'post',
@@ -81,6 +111,30 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'smart.parseCasPdf',
     httpMethod: 'post',
     httpPath: '/v4/smart/parse',
+  },
+  {
+    clientCallName: 'client.inboundEmail.create',
+    fullyQualifiedName: 'inboundEmail.create',
+    httpMethod: 'post',
+    httpPath: '/v4/inbound-email',
+  },
+  {
+    clientCallName: 'client.inboundEmail.retrieve',
+    fullyQualifiedName: 'inboundEmail.retrieve',
+    httpMethod: 'get',
+    httpPath: '/v4/inbound-email/{inbound_email_id}',
+  },
+  {
+    clientCallName: 'client.inboundEmail.list',
+    fullyQualifiedName: 'inboundEmail.list',
+    httpMethod: 'get',
+    httpPath: '/v4/inbound-email',
+  },
+  {
+    clientCallName: 'client.inboundEmail.delete',
+    fullyQualifiedName: 'inboundEmail.delete',
+    httpMethod: 'delete',
+    httpPath: '/v4/inbound-email/{inbound_email_id}',
   },
 ];
 
