@@ -60,7 +60,7 @@ $ yarn link cas-parser-node
 # With pnpm
 $ pnpm link --global
 $ cd ../my-package
-$ pnpm link -—global cas-parser-node
+$ pnpm link --global cas-parser-node
 ```
 
 ## Running tests
