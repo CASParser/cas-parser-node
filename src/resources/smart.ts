@@ -6,6 +6,9 @@ import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 import { maybeMultipartFormRequestOptions } from '../internal/uploads';
 
+/**
+ * Endpoints for parsing CAS PDF files from different sources.
+ */
 export class Smart extends APIResource {
   /**
    * This endpoint parses CAS (Consolidated Account Statement) PDF files from NSDL,

@@ -5,6 +5,9 @@ import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 import { maybeMultipartFormRequestOptions } from '../internal/uploads';
 
+/**
+ * Endpoints for parsing Contract Note PDF files from various SEBI brokers like Zerodha, Groww, Upstox, ICICI etc.
+ */
 export class ContractNote extends APIResource {
   /**
    * This endpoint parses Contract Note PDF files from various brokers including

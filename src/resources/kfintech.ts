@@ -4,6 +4,9 @@ import { APIResource } from '../core/resource';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 
+/**
+ * Endpoints for generating new CAS documents via email mailback (KFintech).
+ */
 export class Kfintech extends APIResource {
   /**
    * Generate CAS via KFintech mailback. The CAS PDF will be sent to the investor's
