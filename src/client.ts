@@ -11,6 +11,7 @@ import type { APIResponseProps } from './internal/parse';
 import { getPlatformHeaders } from './internal/detect-platform';
 import * as Shims from './internal/shims';
 import * as Opts from './internal/request-options';
+import { stringifyQuery } from './internal/utils/query';
 import { VERSION } from './version';
 import * as Errors from './core/error';
 import * as Uploads from './core/uploads';
@@ -256,21 +257,8 @@ export class CasParser {
   /**
    * Basic re-implementation of `qs.stringify` for primitive types.
    */
-  protected stringifyQuery(query: Record<string, unknown>): string {
-    return Object.entries(query)
-      .filter(([_, value]) => typeof value !== 'undefined')
-      .map(([key, value]) => {
-        if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
-          return `${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
-        }
-        if (value === null) {
-          return `${encodeURIComponent(key)}=`;
-        }
-        throw new Errors.CasParserError(
-          `Cannot stringify type ${typeof value}; Expected string, number, boolean, or null. If you need to pass nested query parameters, you can manually encode them, e.g. { query: { 'foo[key1]': value1, 'foo[key2]': value2 } }, and please open a GitHub issue requesting better support for your use case.`,
-        );
-      })
-      .join('&');
+  protected stringifyQuery(query: object | Record<string, unknown>): string {
+    return stringifyQuery(query);
   }
 
   private getUserAgent(): string {
@@ -307,7 +295,7 @@ export class CasParser {
     }
 
     if (typeof query === 'object' && query && !Array.isArray(query)) {
-      url.search = this.stringifyQuery(query as Record<string, unknown>);
+      url.search = this.stringifyQuery(query);
     }
 
     return url.toString();
@@ -746,7 +734,7 @@ export class CasParser {
     ) {
       return {
         bodyHeaders: { 'content-type': 'application/x-www-form-urlencoded' },
-        body: this.stringifyQuery(body as Record<string, unknown>),
+        body: this.stringifyQuery(body),
       };
     } else {
       return this.#encoder({ body, headers });
@@ -772,17 +760,98 @@ export class CasParser {
 
   static toFile = Uploads.toFile;
 
+  /**
+   * Endpoints for checking API quota and credits usage.
+   * These endpoints help you monitor your API usage and remaining quota.
+   *
+   */
   credits: API.Credits = new API.Credits(this);
+  /**
+   * Endpoints for checking API quota and credits usage.
+   * These endpoints help you monitor your API usage and remaining quota.
+   *
+   */
   logs: API.Logs = new API.Logs(this);
+  /**
+   * Endpoints for managing access tokens for the Portfolio Connect SDK.
+   * Use these to generate short-lived `at_` prefixed tokens that can be safely passed to frontend applications.
+   * Access tokens can be used in place of API keys on all v4 endpoints.
+   *
+   */
   accessToken: API.AccessToken = new API.AccessToken(this);
+  /**
+   * Endpoints for managing access tokens for the Portfolio Connect SDK.
+   * Use these to generate short-lived `at_` prefixed tokens that can be safely passed to frontend applications.
+   * Access tokens can be used in place of API keys on all v4 endpoints.
+   *
+   */
   verifyToken: API.VerifyToken = new API.VerifyToken(this);
+  /**
+   * Endpoints for parsing CAS PDF files from different sources.
+   */
   camsKfintech: API.CamsKfintech = new API.CamsKfintech(this);
+  /**
+   * Endpoints for parsing CAS PDF files from different sources.
+   */
   cdsl: API.Cdsl = new API.Cdsl(this);
+  /**
+   * Endpoints for parsing Contract Note PDF files from various SEBI brokers like Zerodha, Groww, Upstox, ICICI etc.
+   */
   contractNote: API.ContractNote = new API.ContractNote(this);
+  /**
+   * Endpoints for importing CAS files directly from user email inboxes.
+   *
+   * **Supported Providers:** Gmail (more coming soon)
+   *
+   * **How it works:**
+   * 1. Call `POST /v4/inbox/connect` to get an OAuth URL
+   * 2. Redirect user to the OAuth URL for consent
+   * 3. User is redirected back to your `redirect_uri` with an encrypted `inbox_token`
+   * 4. Use the token to list/fetch CAS files from their inbox (`/v4/inbox/cas`)
+   * 5. Files are uploaded to temporary cloud storage (URLs expire in 24 hours)
+   *
+   * **Security:**
+   * - Read-only access (we cannot send emails)
+   * - Tokens are encrypted with server-side secret
+   * - User can revoke access anytime via `/v4/inbox/disconnect`
+   *
+   */
   inbox: API.Inbox = new API.Inbox(this);
+  /**
+   * Endpoints for generating new CAS documents via email mailback (KFintech).
+   */
   kfintech: API.Kfintech = new API.Kfintech(this);
+  /**
+   * Endpoints for parsing CAS PDF files from different sources.
+   */
   nsdl: API.Nsdl = new API.Nsdl(this);
+  /**
+   * Endpoints for parsing CAS PDF files from different sources.
+   */
   smart: API.Smart = new API.Smart(this);
+  /**
+   * Create dedicated inbound email addresses for investors to forward their CAS statements.
+   *
+   * **Use Case:** Your app wants to collect CAS statements from users without requiring OAuth or file upload.
+   *
+   * **How it works:**
+   * 1. Call `POST /v4/inbound-email` to create a unique inbound email address
+   * 2. Display this email to your user: "Forward your CAS statement to ie_xxx@import.casparser.in"
+   * 3. When user forwards a CAS email, we verify sender authenticity (SPF/DKIM) and call your webhook
+   * 4. Your webhook receives email metadata + attachment download URLs
+   *
+   * **Sender Validation:**
+   * - Only emails from verified CAS authorities are processed:
+   *   - CDSL: `eCAS@cdslstatement.com`
+   *   - NSDL: `NSDL-CAS@nsdl.co.in`
+   *   - CAMS: `donotreply@camsonline.com`
+   *   - KFintech: `samfS@kfintech.com`
+   * - Emails failing SPF/DKIM/DMARC are rejected
+   * - Forwarded emails must contain the original sender in headers
+   *
+   * **Billing:** 0.2 credits per successfully processed valid email
+   *
+   */
   inboundEmail: API.InboundEmail = new API.InboundEmail(this);
 }
 

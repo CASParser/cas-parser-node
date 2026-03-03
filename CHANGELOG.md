@@ -1,5 +1,31 @@
 # Changelog
 
+## 1.10.0 (2026-03-03)
+
+Full Changelog: [v1.9.0...v1.10.0](https://github.com/CASParser/cas-parser-node/compare/v1.9.0...v1.10.0)
+
+### Features
+
+* **mcp:** add an option to disable code tool ([1165824](https://github.com/CASParser/cas-parser-node/commit/11658245be3d4578a6d22fc5c9a88cb466f92818))
+
+
+### Bug Fixes
+
+* **docs/contributing:** correct pnpm link command ([bebfdc3](https://github.com/CASParser/cas-parser-node/commit/bebfdc36309d111760b974d2edbc1a4119cdf98d))
+* **mcp:** update prompt ([5edb3a0](https://github.com/CASParser/cas-parser-node/commit/5edb3a0114fc591318fdbe56f91ba030d330fdaf))
+
+
+### Chores
+
+* **internal:** codegen related update ([75fc710](https://github.com/CASParser/cas-parser-node/commit/75fc710f26be8f812d0eac1d5135dc55f0dce865))
+* **internal:** codegen related update ([f58a313](https://github.com/CASParser/cas-parser-node/commit/f58a3133b6db1eb3646979d451dc8c1effb4a0db))
+* **internal:** fix MCP Dockerfiles so they can be built without buildkit ([257f07b](https://github.com/CASParser/cas-parser-node/commit/257f07b1064815e62c07a1208646bc14b4c43319))
+* **internal:** fix MCP Dockerfiles so they can be built without buildkit ([a6fd091](https://github.com/CASParser/cas-parser-node/commit/a6fd0912c1dbeb077f4c232d3a382d19ad6f3164))
+* **internal:** make MCP code execution location configurable via a flag ([231dc58](https://github.com/CASParser/cas-parser-node/commit/231dc58a7c5593b87d91f8e9d2ba6012aabf55a5))
+* **internal:** move stringifyQuery implementation to internal function ([7048aa6](https://github.com/CASParser/cas-parser-node/commit/7048aa6345edf172e3e162f9492175dd3bbe75cb))
+* **internal:** upgrade @modelcontextprotocol/sdk and hono ([a2d2c9b](https://github.com/CASParser/cas-parser-node/commit/a2d2c9b82e991f3f5df7df42379f2a49aec798ad))
+* **internal:** upgrade pnpm version ([57c291d](https://github.com/CASParser/cas-parser-node/commit/57c291d980615daf189e09e2e4949b1e9ac2c0c8))
+
 ## 1.9.0 (2026-02-23)
 
 Full Changelog: [v1.8.0...v1.9.0](https://github.com/CASParser/cas-parser-node/compare/v1.8.0...v1.9.0)
