@@ -5,6 +5,10 @@ import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
+/**
+ * Endpoints for fetching CAS documents with instant download.
+ * Currently supports CDSL via OTP authentication.
+ */
 export class Fetch extends APIResource {
   /**
    * **Step 1 of 2**: Request OTP for CDSL CAS fetch.

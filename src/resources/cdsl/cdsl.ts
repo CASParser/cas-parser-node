@@ -14,6 +14,9 @@ import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 import { maybeMultipartFormRequestOptions } from '../../internal/uploads';
 
+/**
+ * Endpoints for parsing CAS PDF files from different sources.
+ */
 export class Cdsl extends APIResource {
   fetch: FetchAPI.Fetch = new FetchAPI.Fetch(this._client);
 

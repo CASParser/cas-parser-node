@@ -4,6 +4,10 @@ import { APIResource } from '../core/resource';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 
+/**
+ * Endpoints for checking API quota and credits usage.
+ * These endpoints help you monitor your API usage and remaining quota.
+ */
 export class Logs extends APIResource {
   /**
    * Retrieve detailed API usage logs for your account.
