@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.10.1 (2026-03-07)
+
+Full Changelog: [v1.10.0...v1.10.1](https://github.com/CASParser/cas-parser-node/compare/v1.10.0...v1.10.1)
+
+### Bug Fixes
+
+* **client:** preserve URL params already embedded in path ([4463ff7](https://github.com/CASParser/cas-parser-node/commit/4463ff7c902ccf318892d2b1ce7976b9d0dca5a1))
+
+
+### Chores
+
+* **ci:** skip uploading artifacts on stainless-internal branches ([884f203](https://github.com/CASParser/cas-parser-node/commit/884f20313d10951ef4413f6b3a258025cc2ee2b3))
+* **internal:** codegen related update ([9add47e](https://github.com/CASParser/cas-parser-node/commit/9add47ed236c49b558a6498e12908a4a6ea45da2))
+* **internal:** codegen related update ([ccf33c8](https://github.com/CASParser/cas-parser-node/commit/ccf33c894ed6ff3f9ec9728ca3b6304893b05269))
+* **internal:** use x-stainless-mcp-client-envs header for MCP remote code tool calls ([9ddb632](https://github.com/CASParser/cas-parser-node/commit/9ddb632b1c81bbbc71aa368509b26b95f35a32e9))
+* **mcp-server:** improve instructions ([30dda75](https://github.com/CASParser/cas-parser-node/commit/30dda75bbcbef7632d04ba868e455370704a3c61))
+* **mcp-server:** return access instructions for 404 without API key ([fdb885a](https://github.com/CASParser/cas-parser-node/commit/fdb885a459f35993fa0b4b07f079a8167cadbe9b))
+
 ## 1.10.0 (2026-03-03)
 
 Full Changelog: [v1.9.0...v1.10.0](https://github.com/CASParser/cas-parser-node/compare/v1.9.0...v1.10.0)
