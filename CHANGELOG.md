@@ -1,5 +1,34 @@
 # Changelog
 
+## 1.10.2 (2026-03-17)
+
+Full Changelog: [v1.10.1...v1.10.2](https://github.com/CASParser/cas-parser-node/compare/v1.10.1...v1.10.2)
+
+### Chores
+
+* **internal:** codegen related update ([42785e5](https://github.com/CASParser/cas-parser-node/commit/42785e5ad046d551e6c851d7521203a176354433))
+* **internal:** codegen related update ([4515206](https://github.com/CASParser/cas-parser-node/commit/4515206424c06f436dc61bea1994c56cb687c394))
+* **internal:** codegen related update ([f91eb0e](https://github.com/CASParser/cas-parser-node/commit/f91eb0e9800b5d0f970f31e97d06355aa6d3df77))
+* **internal:** codegen related update ([c38d136](https://github.com/CASParser/cas-parser-node/commit/c38d136006bcbf2f05e1642b1098c6d785c32af2))
+* **internal:** codegen related update ([44b93cc](https://github.com/CASParser/cas-parser-node/commit/44b93cccf487ebf941d1c947e4d3320338e22f77))
+* **internal:** codegen related update ([4005e2f](https://github.com/CASParser/cas-parser-node/commit/4005e2f3a16bba4dccfdfad92e3ff03696d67d10))
+* **internal:** codegen related update ([a9f558a](https://github.com/CASParser/cas-parser-node/commit/a9f558abca126a4b575f9015dd6550706c60783a))
+* **internal:** codegen related update ([da227d9](https://github.com/CASParser/cas-parser-node/commit/da227d988d02d7a168bc84b5d1e7ae5094390747))
+* **internal:** codegen related update ([57415da](https://github.com/CASParser/cas-parser-node/commit/57415dabd939521c07a8fcf745624f790dcbdf3e))
+* **internal:** codegen related update ([5040a3f](https://github.com/CASParser/cas-parser-node/commit/5040a3f99ad8354df704b5fd383f503f2d704e8a))
+* **internal:** make generated MCP servers compatible with Cloudflare worker environments ([d44814b](https://github.com/CASParser/cas-parser-node/commit/d44814bb29c75f80ea39a7e51b8c0ec495672e0f))
+* **internal:** support x-stainless-mcp-client-envs header in MCP servers ([a97ef55](https://github.com/CASParser/cas-parser-node/commit/a97ef55a49629a248550f498201d884891b41aec))
+* **internal:** support x-stainless-mcp-client-permissions headers in MCP servers ([c7cc5dc](https://github.com/CASParser/cas-parser-node/commit/c7cc5dc4378b6b76af659ca87b91bedeee47b76c))
+* **internal:** tweak CI branches ([5a31470](https://github.com/CASParser/cas-parser-node/commit/5a31470b7bbf42e03a4ca9a8948c5bf6212ec749))
+* **internal:** update dependencies to address dependabot vulnerabilities ([67cd264](https://github.com/CASParser/cas-parser-node/commit/67cd26484b9ab683bf8101210ac9ae285c86eab2))
+* **internal:** update lock file ([e95138b](https://github.com/CASParser/cas-parser-node/commit/e95138b5d2cdf73a4474d11d52beb2ad8a966c89))
+* **internal:** update lockfile ([9f834de](https://github.com/CASParser/cas-parser-node/commit/9f834de4889c6439090b17132ab987376603740c))
+
+
+### Refactors
+
+* update sdk ([b972fe0](https://github.com/CASParser/cas-parser-node/commit/b972fe0ffc1dc4b3ab81afb47c86a0e306f06120))
+
 ## 1.10.1 (2026-03-07)
 
 Full Changelog: [v1.10.0...v1.10.1](https://github.com/CASParser/cas-parser-node/compare/v1.10.0...v1.10.1)
