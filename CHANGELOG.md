@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.10.3 (2026-03-27)
+
+Full Changelog: [v1.10.2...v1.10.3](https://github.com/CASParser/cas-parser-node/compare/v1.10.2...v1.10.3)
+
+### Chores
+
+* **ci:** skip lint on metadata-only changes ([c586cc0](https://github.com/CASParser/cas-parser-node/commit/c586cc0ec3026afa1ebce62cd27df64c9324745d))
+* **internal:** fix MCP server TS errors that occur with required client options ([a284756](https://github.com/CASParser/cas-parser-node/commit/a284756cb83eb774ab2483a1581b7b180e474f94))
+* **internal:** support custom-instructions-path flag in MCP servers ([8089550](https://github.com/CASParser/cas-parser-node/commit/8089550962d4a008a8a39f6662576f792da4221a))
+* **internal:** update gitignore ([c3d5073](https://github.com/CASParser/cas-parser-node/commit/c3d50737ff158aa5dd43743005fb68ee23a7ea05))
+
 ## 1.10.2 (2026-03-17)
 
 Full Changelog: [v1.10.1...v1.10.2](https://github.com/CASParser/cas-parser-node/compare/v1.10.1...v1.10.2)
