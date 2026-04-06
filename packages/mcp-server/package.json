@@ -1,6 +1,6 @@
 {
   "name": "cas-parser-node-mcp",
-  "version": "1.10.3",
+  "version": "1.10.4",
   "description": "The official MCP Server for the Cas Parser API",
   "author": "Cas Parser <sameer@casparser.in>",
   "types": "dist/index.d.ts",
