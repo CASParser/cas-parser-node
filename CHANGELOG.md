@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.10.4 (2026-04-03)
+
+Full Changelog: [v1.10.3...v1.10.4](https://github.com/CASParser/cas-parser-node/compare/v1.10.3...v1.10.4)
+
+### Bug Fixes
+
+* **internal:** gitignore generated `oidc` dir ([b1df6bc](https://github.com/CASParser/cas-parser-node/commit/b1df6bc1d207373ba90e1087250c4efc615b8ade))
+
+
+### Chores
+
+* **ci:** escape input path in publish-npm workflow ([f795a47](https://github.com/CASParser/cas-parser-node/commit/f795a4790d772af4853ac232b9f23e1b325ea54c))
+* **internal:** codegen related update ([b032db4](https://github.com/CASParser/cas-parser-node/commit/b032db4ed25377b86ff33d36d6c9e38b9b486348))
+* **internal:** improve local docs search for MCP servers ([d83f66b](https://github.com/CASParser/cas-parser-node/commit/d83f66b9f8757aeb8023add6f1bba21e6e284475))
+* **internal:** improve local docs search for MCP servers ([8def340](https://github.com/CASParser/cas-parser-node/commit/8def34059bbf2620e2e85b115948e47e4fe6cfca))
+* **internal:** support local docs search in MCP servers ([e90f399](https://github.com/CASParser/cas-parser-node/commit/e90f399089d7e5cadd0892126834455ca6617ed4))
+* **internal:** support type annotations when running MCP in local execution mode ([8c230cf](https://github.com/CASParser/cas-parser-node/commit/8c230cfd7fdd9068a8475f239fc0cdaff329987d))
+* **mcp-server:** add support for session id, forward client info ([9908707](https://github.com/CASParser/cas-parser-node/commit/9908707d2c43b2ad1bf4ead7613ea952319587ff))
+* **mcp-server:** log client info ([a6f08fa](https://github.com/CASParser/cas-parser-node/commit/a6f08fa3e605b5c63d0a40aac854ef924cccaea2))
+
 ## 1.10.3 (2026-03-27)
 
 Full Changelog: [v1.10.2...v1.10.3](https://github.com/CASParser/cas-parser-node/compare/v1.10.2...v1.10.3)
