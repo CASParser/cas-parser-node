@@ -1,6 +1,6 @@
 {
   "name": "cas-parser-node",
-  "version": "1.10.4",
+  "version": "1.10.5",
   "description": "The official TypeScript library for the Cas Parser API",
   "author": "Cas Parser <sameer@casparser.in>",
   "types": "dist/index.d.ts",

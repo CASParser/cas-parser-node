@@ -28,7 +28,7 @@ export const newMcpServer = async ({
   new McpServer(
     {
       name: 'cas_parser_node_api',
-      version: '1.10.4',
+      version: '1.10.5',
     },
     {
       instructions: await getInstructions({ stainlessApiKey, customInstructionsPath }),
