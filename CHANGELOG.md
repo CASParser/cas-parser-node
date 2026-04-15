@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.10.5 (2026-04-10)
+
+Full Changelog: [v1.10.4...v1.10.5](https://github.com/CASParser/cas-parser-node/compare/v1.10.4...v1.10.5)
+
+### Chores
+
+* **internal:** codegen related update ([7902be3](https://github.com/CASParser/cas-parser-node/commit/7902be366765677101a75a4fde4e7fbb8acea0b9))
+* **internal:** fix MCP server import ordering ([7ce0466](https://github.com/CASParser/cas-parser-node/commit/7ce04669a1f6764d14b6f3d970bca7a8378b6c71))
+* **internal:** show error causes in MCP servers when running in local mode ([ec19dfb](https://github.com/CASParser/cas-parser-node/commit/ec19dfb70337d9b8277d48f1a577771b715306ac))
+* **mcp-server:** increase local docs search result count from 5 to 10 ([ecf40a9](https://github.com/CASParser/cas-parser-node/commit/ecf40a97b897395380ac733b2172d05b8f763896))
+
 ## 1.10.4 (2026-04-03)
 
 Full Changelog: [v1.10.3...v1.10.4](https://github.com/CASParser/cas-parser-node/compare/v1.10.3...v1.10.4)
