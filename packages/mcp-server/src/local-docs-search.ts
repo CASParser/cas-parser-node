@@ -992,12 +992,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     response:
       "{ allowed_sources?: 'cdsl' | 'nsdl' | 'cams' | 'kfintech'[]; callback_url?: string; created_at?: string; email?: string; inbound_email_id?: string; metadata?: object; reference?: string; status?: 'active' | 'paused'; updated_at?: string; }",
     markdown:
-      "## retrieve\n\n`client.inboundEmail.retrieve(inbound_email_id: string): { allowed_sources?: 'cdsl' | 'nsdl' | 'cams' | 'kfintech'[]; callback_url?: string; created_at?: string; email?: string; inbound_email_id?: string; metadata?: object; reference?: string; status?: 'active' | 'paused'; updated_at?: string; }`\n\n**get** `/v4/inbound-email/{inbound_email_id}`\n\nRetrieve details of a specific mailbox including statistics.\n\n\n### Parameters\n\n- `inbound_email_id: string`\n\n### Returns\n\n- `{ allowed_sources?: 'cdsl' | 'nsdl' | 'cams' | 'kfintech'[]; callback_url?: string; created_at?: string; email?: string; inbound_email_id?: string; metadata?: object; reference?: string; status?: 'active' | 'paused'; updated_at?: string; }`\n  An inbound email address for receiving forwarded CAS emails\n\n  - `allowed_sources?: 'cdsl' | 'nsdl' | 'cams' | 'kfintech'[]`\n  - `callback_url?: string`\n  - `created_at?: string`\n  - `email?: string`\n  - `inbound_email_id?: string`\n  - `metadata?: object`\n  - `reference?: string`\n  - `status?: 'active' | 'paused'`\n  - `updated_at?: string`\n\n### Example\n\n```typescript\nimport CasParser from 'cas-parser-node';\n\nconst client = new CasParser();\n\nconst inboundEmail = await client.inboundEmail.retrieve('ie_a1b2c3d4e5f6');\n\nconsole.log(inboundEmail);\n```",
+      "## retrieve\n\n`client.inboundEmail.retrieve(inbound_email_id: string): { allowed_sources?: 'cdsl' | 'nsdl' | 'cams' | 'kfintech'[]; callback_url?: string; created_at?: string; email?: string; inbound_email_id?: string; metadata?: object; reference?: string; status?: 'active' | 'paused'; updated_at?: string; }`\n\n**get** `/v4/inbound-email/{inbound_email_id}`\n\nRetrieve details of a specific mailbox including statistics.\n\n\n### Parameters\n\n- `inbound_email_id: string`\n\n### Returns\n\n- `{ allowed_sources?: 'cdsl' | 'nsdl' | 'cams' | 'kfintech'[]; callback_url?: string; created_at?: string; email?: string; inbound_email_id?: string; metadata?: object; reference?: string; status?: 'active' | 'paused'; updated_at?: string; }`\n  An inbound email address for receiving forwarded CAS emails\n\n  - `allowed_sources?: 'cdsl' | 'nsdl' | 'cams' | 'kfintech'[]`\n  - `callback_url?: string`\n  - `created_at?: string`\n  - `email?: string`\n  - `inbound_email_id?: string`\n  - `metadata?: object`\n  - `reference?: string`\n  - `status?: 'active' | 'paused'`\n  - `updated_at?: string`\n\n### Example\n\n```typescript\nimport CasParser from 'cas-parser-node';\n\nconst client = new CasParser();\n\nconst inboundEmail = await client.inboundEmail.retrieve('inbound_email_id');\n\nconsole.log(inboundEmail);\n```",
     perLanguage: {
       go: {
         method: 'client.InboundEmail.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/CASParser/cas-parser-go"\n\t"github.com/CASParser/cas-parser-go/option"\n)\n\nfunc main() {\n\tclient := casparser.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tinboundEmail, err := client.InboundEmail.Get(context.TODO(), "ie_a1b2c3d4e5f6")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", inboundEmail.InboundEmailID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/CASParser/cas-parser-go"\n\t"github.com/CASParser/cas-parser-go/option"\n)\n\nfunc main() {\n\tclient := casparser.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tinboundEmail, err := client.InboundEmail.Get(context.TODO(), "inbound_email_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", inboundEmail.InboundEmailID)\n}\n',
       },
       http: {
         example:
@@ -1006,22 +1006,22 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       java: {
         method: 'inboundEmail().retrieve',
         example:
-          'package com.cas_parser.api.example;\n\nimport com.cas_parser.api.client.CasParserClient;\nimport com.cas_parser.api.client.okhttp.CasParserOkHttpClient;\nimport com.cas_parser.api.models.inboundemail.InboundEmailRetrieveParams;\nimport com.cas_parser.api.models.inboundemail.InboundEmailRetrieveResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        CasParserClient client = CasParserOkHttpClient.fromEnv();\n\n        InboundEmailRetrieveResponse inboundEmail = client.inboundEmail().retrieve("ie_a1b2c3d4e5f6");\n    }\n}',
+          'package com.cas_parser.api.example;\n\nimport com.cas_parser.api.client.CasParserClient;\nimport com.cas_parser.api.client.okhttp.CasParserOkHttpClient;\nimport com.cas_parser.api.models.inboundemail.InboundEmailRetrieveParams;\nimport com.cas_parser.api.models.inboundemail.InboundEmailRetrieveResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        CasParserClient client = CasParserOkHttpClient.fromEnv();\n\n        InboundEmailRetrieveResponse inboundEmail = client.inboundEmail().retrieve("inbound_email_id");\n    }\n}',
       },
       php: {
         method: 'inboundEmail->retrieve',
         example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$inboundEmail = $client->inboundEmail->retrieve('ie_a1b2c3d4e5f6');\n\nvar_dump($inboundEmail);",
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$inboundEmail = $client->inboundEmail->retrieve('inbound_email_id');\n\nvar_dump($inboundEmail);",
       },
       python: {
         method: 'inbound_email.retrieve',
         example:
-          'import os\nfrom cas_parser import CasParser\n\nclient = CasParser(\n    api_key=os.environ.get("CAS_PARSER_API_KEY"),  # This is the default and can be omitted\n)\ninbound_email = client.inbound_email.retrieve(\n    "ie_a1b2c3d4e5f6",\n)\nprint(inbound_email.inbound_email_id)',
+          'import os\nfrom cas_parser import CasParser\n\nclient = CasParser(\n    api_key=os.environ.get("CAS_PARSER_API_KEY"),  # This is the default and can be omitted\n)\ninbound_email = client.inbound_email.retrieve(\n    "inbound_email_id",\n)\nprint(inbound_email.inbound_email_id)',
       },
       typescript: {
         method: 'client.inboundEmail.retrieve',
         example:
-          "import CasParser from 'cas-parser-node';\n\nconst client = new CasParser({\n  apiKey: process.env['CAS_PARSER_API_KEY'], // This is the default and can be omitted\n});\n\nconst inboundEmail = await client.inboundEmail.retrieve('ie_a1b2c3d4e5f6');\n\nconsole.log(inboundEmail.inbound_email_id);",
+          "import CasParser from 'cas-parser-node';\n\nconst client = new CasParser({\n  apiKey: process.env['CAS_PARSER_API_KEY'], // This is the default and can be omitted\n});\n\nconst inboundEmail = await client.inboundEmail.retrieve('inbound_email_id');\n\nconsole.log(inboundEmail.inbound_email_id);",
       },
     },
   },

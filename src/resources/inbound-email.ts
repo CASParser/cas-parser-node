@@ -54,7 +54,7 @@ export class InboundEmail extends APIResource {
    * @example
    * ```ts
    * const inboundEmail = await client.inboundEmail.retrieve(
-   *   'ie_a1b2c3d4e5f6',
+   *   'inbound_email_id',
    * );
    * ```
    */
