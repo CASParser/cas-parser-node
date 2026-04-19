@@ -22,7 +22,7 @@ describe('resource inboundEmail', () => {
 
   // Mock server tests are disabled
   test.skip('retrieve', async () => {
-    const responsePromise = client.inboundEmail.retrieve('ie_a1b2c3d4e5f6');
+    const responsePromise = client.inboundEmail.retrieve('inbound_email_id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
