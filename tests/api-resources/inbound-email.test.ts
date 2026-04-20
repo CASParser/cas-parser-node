@@ -9,10 +9,8 @@ const client = new CasParser({
 
 describe('resource inboundEmail', () => {
   // Mock server tests are disabled
-  test.skip('create: only required params', async () => {
-    const responsePromise = client.inboundEmail.create({
-      callback_url: 'https://api.yourapp.com/webhooks/cas-email',
-    });
+  test.skip('create', async () => {
+    const responsePromise = client.inboundEmail.create({});
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -23,19 +21,8 @@ describe('resource inboundEmail', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('create: required and optional params', async () => {
-    const response = await client.inboundEmail.create({
-      callback_url: 'https://api.yourapp.com/webhooks/cas-email',
-      alias: 'john-portfolio',
-      allowed_sources: ['cdsl', 'nsdl'],
-      metadata: { plan: 'premium', source: 'onboarding' },
-      reference: 'user_12345',
-    });
-  });
-
-  // Mock server tests are disabled
   test.skip('retrieve', async () => {
-    const responsePromise = client.inboundEmail.retrieve('ie_a1b2c3d4e5f6');
+    const responsePromise = client.inboundEmail.retrieve('inbound_email_id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;

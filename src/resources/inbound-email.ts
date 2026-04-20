@@ -30,33 +30,18 @@ import { path } from '../internal/utils/path';
 export class InboundEmail extends APIResource {
   /**
    * Create a dedicated inbound email address for collecting CAS statements via email
-   * forwarding.
+   * forwarding. When an investor forwards a CAS email to this address, we verify the
+   * sender and make the file available to you.
    *
-   * **How it works:**
+   * `callback_url` is **optional**:
    *
-   * 1. Create an inbound email with your webhook URL
-   * 2. Display the email address to your user (e.g., "Forward your CAS to
-   *    ie_xxx@import.casparser.in")
-   * 3. When an investor forwards a CAS email, we verify the sender and deliver to
-   *    your webhook
-   *
-   * **Webhook Delivery:**
-   *
-   * - We POST to your `callback_url` with JSON body containing files (matching
-   *   EmailCASFile schema)
-   * - Failed deliveries are retried automatically with exponential backoff
-   *
-   * **Inactivity:**
-   *
-   * - Inbound emails with no activity in 30 days are marked inactive
-   * - Active inbound emails remain operational indefinitely
+   * - **Set it** — we POST each parsed email to your webhook as it arrives.
+   * - **Omit it** — retrieve files via `GET /v4/inbound-email/{id}/files` without
+   *   building a webhook consumer.
    *
    * @example
    * ```ts
-   * const inboundEmail = await client.inboundEmail.create({
-   *   callback_url:
-   *     'https://api.yourapp.com/webhooks/cas-email',
-   * });
+   * const inboundEmail = await client.inboundEmail.create();
    * ```
    */
   create(body: InboundEmailCreateParams, options?: RequestOptions): APIPromise<InboundEmailCreateResponse> {
@@ -69,7 +54,7 @@ export class InboundEmail extends APIResource {
    * @example
    * ```ts
    * const inboundEmail = await client.inboundEmail.retrieve(
-   *   'ie_a1b2c3d4e5f6',
+   *   'inbound_email_id',
    * );
    * ```
    */
@@ -121,9 +106,10 @@ export interface InboundEmailCreateResponse {
   allowed_sources?: Array<'cdsl' | 'nsdl' | 'cams' | 'kfintech'>;
 
   /**
-   * Webhook URL for email notifications
+   * Webhook URL for email notifications. `null` means files are only retrievable via
+   * `GET /v4/inbound-email/{id}/files` (pull delivery).
    */
-  callback_url?: string;
+  callback_url?: string | null;
 
   /**
    * When the mailbox was created
@@ -171,9 +157,10 @@ export interface InboundEmailRetrieveResponse {
   allowed_sources?: Array<'cdsl' | 'nsdl' | 'cams' | 'kfintech'>;
 
   /**
-   * Webhook URL for email notifications
+   * Webhook URL for email notifications. `null` means files are only retrievable via
+   * `GET /v4/inbound-email/{id}/files` (pull delivery).
    */
-  callback_url?: string;
+  callback_url?: string | null;
 
   /**
    * When the mailbox was created
@@ -237,9 +224,10 @@ export namespace InboundEmailListResponse {
     allowed_sources?: Array<'cdsl' | 'nsdl' | 'cams' | 'kfintech'>;
 
     /**
-     * Webhook URL for email notifications
+     * Webhook URL for email notifications. `null` means files are only retrievable via
+     * `GET /v4/inbound-email/{id}/files` (pull delivery).
      */
-    callback_url?: string;
+    callback_url?: string | null;
 
     /**
      * When the mailbox was created
@@ -286,19 +274,9 @@ export interface InboundEmailDeleteResponse {
 
 export interface InboundEmailCreateParams {
   /**
-   * Webhook URL where we POST email notifications. Must be HTTPS in production (HTTP
-   * allowed for localhost during development).
-   */
-  callback_url: string;
-
-  /**
-   * Optional custom email prefix for user-friendly addresses.
-   *
-   * - Must be 3-32 characters
-   * - Alphanumeric + hyphens only
-   * - Must start and end with letter/number
-   * - Example: `john-portfolio@import.casparser.in`
-   * - If omitted, generates random ID like `ie_abc123xyz@import.casparser.in`
+   * Optional custom email prefix (e.g. `john-portfolio@import.casparser.in`). 3-32
+   * chars, alphanumeric + hyphens, must start/end with a letter or number. If
+   * omitted, a random ID is generated.
    */
   alias?: string;
 
@@ -311,6 +289,13 @@ export interface InboundEmailCreateParams {
    * - `kfintech` → samfS@kfintech.com
    */
   allowed_sources?: Array<'cdsl' | 'nsdl' | 'cams' | 'kfintech'>;
+
+  /**
+   * Optional webhook URL where we POST parsed emails. Must be HTTPS in production
+   * (HTTP allowed for localhost). If omitted, retrieve files via
+   * `GET /v4/inbound-email/{id}/files`.
+   */
+  callback_url?: string | null;
 
   /**
    * Optional key-value pairs (max 10) to include in webhook payload. Useful for
