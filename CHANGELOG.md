@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.12.0 (2026-05-01)
+
+Full Changelog: [v1.11.0...v1.12.0](https://github.com/CASParser/cas-parser-node/compare/v1.11.0...v1.12.0)
+
+### Features
+
+* support setting headers via env ([2899c1d](https://github.com/CASParser/cas-parser-node/commit/2899c1d771c88fbea5a46a906f2ba5f4828de4d7))
+
+
+### Chores
+
+* avoid formatting file that gets changed during releases ([c604d6b](https://github.com/CASParser/cas-parser-node/commit/c604d6b90111464182c5578685042405c6e5553d))
+* **format:** run eslint and prettier separately ([8efd708](https://github.com/CASParser/cas-parser-node/commit/8efd708dd0f3a1b990aa6ce02bc82d7fa522b914))
+* **internal:** codegen related update ([e66b969](https://github.com/CASParser/cas-parser-node/commit/e66b9693629dd385f5070009f4157fe2bf448477))
+* **internal:** more robust bootstrap script ([9a06591](https://github.com/CASParser/cas-parser-node/commit/9a0659124c81613c52a6238c2c75dd5338057524))
+* **internal:** update docs ordering ([a824668](https://github.com/CASParser/cas-parser-node/commit/a824668824fe6e792b240c1a41cdbebdfa6a6751))
+* restructure docs search code ([203f62a](https://github.com/CASParser/cas-parser-node/commit/203f62a11d9314fa6deb79c1239af3f7099944f5))
+
 ## 1.11.0 (2026-04-19)
 
 Full Changelog: [v1.10.5...v1.11.0](https://github.com/CASParser/cas-parser-node/compare/v1.10.5...v1.11.0)
