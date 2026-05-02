@@ -106,8 +106,8 @@ export interface InboundEmailCreateResponse {
   allowed_sources?: Array<'cdsl' | 'nsdl' | 'cams' | 'kfintech'>;
 
   /**
-   * Webhook URL for email notifications. Empty string (`""`) means files are only
-   * retrievable via `GET /v4/inbound-email/{id}/files` (SDK / pull mode).
+   * Webhook URL for email notifications. If set, we POST each parsed email here. If
+   * omitted, files are only retrievable via `GET /v4/inbound-email/{id}/files`.
    */
   callback_url?: string;
 
@@ -157,8 +157,8 @@ export interface InboundEmailRetrieveResponse {
   allowed_sources?: Array<'cdsl' | 'nsdl' | 'cams' | 'kfintech'>;
 
   /**
-   * Webhook URL for email notifications. Empty string (`""`) means files are only
-   * retrievable via `GET /v4/inbound-email/{id}/files` (SDK / pull mode).
+   * Webhook URL for email notifications. If set, we POST each parsed email here. If
+   * omitted, files are only retrievable via `GET /v4/inbound-email/{id}/files`.
    */
   callback_url?: string;
 
@@ -224,8 +224,8 @@ export namespace InboundEmailListResponse {
     allowed_sources?: Array<'cdsl' | 'nsdl' | 'cams' | 'kfintech'>;
 
     /**
-     * Webhook URL for email notifications. Empty string (`""`) means files are only
-     * retrievable via `GET /v4/inbound-email/{id}/files` (SDK / pull mode).
+     * Webhook URL for email notifications. If set, we POST each parsed email here. If
+     * omitted, files are only retrievable via `GET /v4/inbound-email/{id}/files`.
      */
     callback_url?: string;
 
