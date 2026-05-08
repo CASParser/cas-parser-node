@@ -1,5 +1,26 @@
 # Changelog
 
+## 1.13.0 (2026-05-08)
+
+Full Changelog: [v1.12.0...v1.13.0](https://github.com/CASParser/cas-parser-node/compare/v1.12.0...v1.13.0)
+
+### Features
+
+* **api:** api update ([0116ca5](https://github.com/CASParser/cas-parser-node/commit/0116ca5490a4dcc51738a366f5664cdb6c6ee973))
+* **api:** api update ([e997de1](https://github.com/CASParser/cas-parser-node/commit/e997de1bf4b9578656c61393865da3deb365a1db))
+
+
+### Chores
+
+* redact api-key headers in debug logs ([3418679](https://github.com/CASParser/cas-parser-node/commit/341867954aff79f0a3f5deeaac38c231a8f55203))
+
+
+### Documentation
+
+* clarify forwards compat behavior ([978bb0b](https://github.com/CASParser/cas-parser-node/commit/978bb0b17d57a90b1071a83d46b8a1f1aa417eaa))
+* update logging docs ([6024e55](https://github.com/CASParser/cas-parser-node/commit/6024e55d27dee093886f8d99efdab0f0002a4871))
+* update with proxy auth info ([1164937](https://github.com/CASParser/cas-parser-node/commit/11649372a063f6dd9c92ad70b017abbaf9fa3b6f))
+
 ## 1.12.0 (2026-05-01)
 
 Full Changelog: [v1.11.0...v1.12.0](https://github.com/CASParser/cas-parser-node/compare/v1.11.0...v1.12.0)
