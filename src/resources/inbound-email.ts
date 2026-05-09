@@ -49,7 +49,7 @@ export class InboundEmail extends APIResource {
   }
 
   /**
-   * Retrieve details of a specific mailbox including statistics.
+   * Retrieve details of a specific inbound email including statistics.
    *
    * @example
    * ```ts
@@ -63,8 +63,8 @@ export class InboundEmail extends APIResource {
   }
 
   /**
-   * List all mailboxes associated with your API key. Returns active and inactive
-   * mailboxes (deleted mailboxes are excluded).
+   * List all inbound emails associated with your API key. Returns active and paused
+   * inbound emails (deleted ones are excluded).
    *
    * @example
    * ```ts
@@ -106,13 +106,13 @@ export interface InboundEmailCreateResponse {
   allowed_sources?: Array<'cdsl' | 'nsdl' | 'cams' | 'kfintech'>;
 
   /**
-   * Webhook URL for email notifications. `null` means files are only retrievable via
-   * `GET /v4/inbound-email/{id}/files` (pull delivery).
+   * Webhook URL for email notifications. If set, we POST each parsed email here. If
+   * omitted, files are only retrievable via `GET /v4/inbound-email/{id}/files`.
    */
-  callback_url?: string | null;
+  callback_url?: string;
 
   /**
-   * When the mailbox was created
+   * When the inbound email was created
    */
   created_at?: string;
 
@@ -137,12 +137,12 @@ export interface InboundEmailCreateResponse {
   reference?: string | null;
 
   /**
-   * Current mailbox status
+   * Current inbound email lifecycle status
    */
   status?: 'active' | 'paused';
 
   /**
-   * When the mailbox was last updated
+   * When the inbound email was last updated
    */
   updated_at?: string;
 }
@@ -157,13 +157,13 @@ export interface InboundEmailRetrieveResponse {
   allowed_sources?: Array<'cdsl' | 'nsdl' | 'cams' | 'kfintech'>;
 
   /**
-   * Webhook URL for email notifications. `null` means files are only retrievable via
-   * `GET /v4/inbound-email/{id}/files` (pull delivery).
+   * Webhook URL for email notifications. If set, we POST each parsed email here. If
+   * omitted, files are only retrievable via `GET /v4/inbound-email/{id}/files`.
    */
-  callback_url?: string | null;
+  callback_url?: string;
 
   /**
-   * When the mailbox was created
+   * When the inbound email was created
    */
   created_at?: string;
 
@@ -188,12 +188,12 @@ export interface InboundEmailRetrieveResponse {
   reference?: string | null;
 
   /**
-   * Current mailbox status
+   * Current inbound email lifecycle status
    */
   status?: 'active' | 'paused';
 
   /**
-   * When the mailbox was last updated
+   * When the inbound email was last updated
    */
   updated_at?: string;
 }
@@ -224,13 +224,13 @@ export namespace InboundEmailListResponse {
     allowed_sources?: Array<'cdsl' | 'nsdl' | 'cams' | 'kfintech'>;
 
     /**
-     * Webhook URL for email notifications. `null` means files are only retrievable via
-     * `GET /v4/inbound-email/{id}/files` (pull delivery).
+     * Webhook URL for email notifications. If set, we POST each parsed email here. If
+     * omitted, files are only retrievable via `GET /v4/inbound-email/{id}/files`.
      */
-    callback_url?: string | null;
+    callback_url?: string;
 
     /**
-     * When the mailbox was created
+     * When the inbound email was created
      */
     created_at?: string;
 
@@ -255,12 +255,12 @@ export namespace InboundEmailListResponse {
     reference?: string | null;
 
     /**
-     * Current mailbox status
+     * Current inbound email lifecycle status
      */
     status?: 'active' | 'paused';
 
     /**
-     * When the mailbox was last updated
+     * When the inbound email was last updated
      */
     updated_at?: string;
   }
