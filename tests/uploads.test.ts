@@ -1,7 +1,6 @@
 import fs from 'fs';
 import type { ResponseLike } from 'cas-parser-node/internal/to-file';
 import { toFile } from 'cas-parser-node/core/uploads';
-import { File } from 'node:buffer';
 
 class MyClass {
   name: string = 'foo';
