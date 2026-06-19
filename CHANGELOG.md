@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.13.1 (2026-06-17)
+
+Full Changelog: [v1.13.0...v1.13.1](https://github.com/CASParser/cas-parser-node/compare/v1.13.0...v1.13.1)
+
+### Bug Fixes
+
+* **client:** send content-type header for requests with an omitted optional body ([2fe41cb](https://github.com/CASParser/cas-parser-node/commit/2fe41cb34218c540ded078bb04eaa49588c730e5))
+* **typescript:** upgrade tsc-multi so that it works with Node 26 ([145b2ae](https://github.com/CASParser/cas-parser-node/commit/145b2ae95005fb8e5e23d75a06baac49e9e2f147))
+
+
+### Chores
+
+* **tests:** remove redundant File import ([cffd663](https://github.com/CASParser/cas-parser-node/commit/cffd66364ee33ddbe6fd3f64267f4cf4813b1b84))
+
 ## 1.13.0 (2026-05-08)
 
 Full Changelog: [v1.12.0...v1.13.0](https://github.com/CASParser/cas-parser-node/compare/v1.12.0...v1.13.0)
