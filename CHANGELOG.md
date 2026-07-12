@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.13.2 (2026-07-12)
+
+Full Changelog: [v1.13.1...v1.13.2](https://github.com/CASParser/cas-parser-node/compare/v1.13.1...v1.13.2)
+
+### Bug Fixes
+
+* **ci:** bump @arethetypeswrong/cli to ^0.18.0 and run CI workflows on Node 24 ([ef78e4a](https://github.com/CASParser/cas-parser-node/commit/ef78e4ab1b7b83badae72a8e396910ed0a965037))
+
 ## 1.13.1 (2026-06-17)
 
 Full Changelog: [v1.13.0...v1.13.1](https://github.com/CASParser/cas-parser-node/compare/v1.13.0...v1.13.1)
