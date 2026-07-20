@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.14.0 (2026-07-18)
+
+Full Changelog: [v1.13.2...v1.14.0](https://github.com/CASParser/cas-parser-node/compare/v1.13.2...v1.14.0)
+
+### Features
+
+* **stlc:** configurable CI runner and private-production-repo support in workflow templates ([973c65c](https://github.com/CASParser/cas-parser-node/commit/973c65c571fef36b2207881c02a5efbfa00b6616))
+
 ## 1.13.2 (2026-07-12)
 
 Full Changelog: [v1.13.1...v1.13.2](https://github.com/CASParser/cas-parser-node/compare/v1.13.1...v1.13.2)
