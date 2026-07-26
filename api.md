@@ -98,14 +98,6 @@ Methods:
 
 # Kfintech
 
-Types:
-
-- <code><a href="./src/resources/kfintech.ts">KfintechGenerateCasResponse</a></code>
-
-Methods:
-
-- <code title="post /v4/kfintech/generate">client.kfintech.<a href="./src/resources/kfintech.ts">generateCas</a>({ ...params }) -> KfintechGenerateCasResponse</code>
-
 # Nsdl
 
 Methods:

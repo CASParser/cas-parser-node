@@ -95,12 +95,6 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v4/inbox/cas',
   },
   {
-    clientCallName: 'client.kfintech.generateCas',
-    fullyQualifiedName: 'kfintech.generateCas',
-    httpMethod: 'post',
-    httpPath: '/v4/kfintech/generate',
-  },
-  {
     clientCallName: 'client.nsdl.parse',
     fullyQualifiedName: 'nsdl.parse',
     httpMethod: 'post',

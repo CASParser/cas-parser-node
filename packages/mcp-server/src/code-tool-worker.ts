@@ -122,7 +122,6 @@ const fuse = new Fuse(
     'client.inbox.connectEmail',
     'client.inbox.disconnectEmail',
     'client.inbox.listCasFiles',
-    'client.kfintech.generateCas',
     'client.nsdl.parse',
     'client.smart.parseCasPdf',
     'client.inboundEmail.create',
