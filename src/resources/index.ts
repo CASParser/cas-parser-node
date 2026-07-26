@@ -31,7 +31,7 @@ export {
   type InboxDisconnectEmailParams,
   type InboxListCasFilesParams,
 } from './inbox';
-export { Kfintech, type KfintechGenerateCasResponse, type KfintechGenerateCasParams } from './kfintech';
+export { Kfintech } from './kfintech';
 export {
   Logs,
   type LogCreateResponse,

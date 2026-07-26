@@ -47,7 +47,7 @@ import {
   InboxListCasFilesParams,
   InboxListCasFilesResponse,
 } from './resources/inbox';
-import { Kfintech, KfintechGenerateCasParams, KfintechGenerateCasResponse } from './resources/kfintech';
+import { Kfintech } from './resources/kfintech';
 import {
   LogCreateParams,
   LogCreateResponse,
@@ -838,9 +838,6 @@ export class CasParser {
    *
    */
   inbox: API.Inbox = new API.Inbox(this);
-  /**
-   * Endpoints for generating new CAS documents via email mailback (KFintech).
-   */
   kfintech: API.Kfintech = new API.Kfintech(this);
   /**
    * Endpoints for parsing CAS PDF files from different sources.
@@ -938,11 +935,7 @@ export declare namespace CasParser {
     type InboxListCasFilesParams as InboxListCasFilesParams,
   };
 
-  export {
-    Kfintech as Kfintech,
-    type KfintechGenerateCasResponse as KfintechGenerateCasResponse,
-    type KfintechGenerateCasParams as KfintechGenerateCasParams,
-  };
+  export { Kfintech as Kfintech };
 
   export { Nsdl as Nsdl, type NsdlParseParams as NsdlParseParams };
 
