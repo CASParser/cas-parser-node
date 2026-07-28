@@ -696,57 +696,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     },
   },
   {
-    name: 'generate_cas',
-    endpoint: '/v4/kfintech/generate',
-    httpMethod: 'post',
-    summary: 'KFintech CAS Generator (Email Mailback)',
-    description:
-      "Generate CAS via KFintech mailback. The CAS PDF will be sent to the investor's email.\n\nThis is an async operation - the investor receives the CAS via email within a few minutes.\nFor instant CAS retrieval, use CDSL Fetch (`/v4/cdsl/fetch`).\n",
-    stainlessPath: '(resource) kfintech > (method) generate_cas',
-    qualified: 'client.kfintech.generateCas',
-    params: [
-      'email: string;',
-      'from_date: string;',
-      'password: string;',
-      'to_date: string;',
-      'pan_no?: string;',
-    ],
-    response: '{ msg?: string; status?: string; }',
-    markdown:
-      "## generate_cas\n\n`client.kfintech.generateCas(email: string, from_date: string, password: string, to_date: string, pan_no?: string): { msg?: string; status?: string; }`\n\n**post** `/v4/kfintech/generate`\n\nGenerate CAS via KFintech mailback. The CAS PDF will be sent to the investor's email.\n\nThis is an async operation - the investor receives the CAS via email within a few minutes.\nFor instant CAS retrieval, use CDSL Fetch (`/v4/cdsl/fetch`).\n\n\n### Parameters\n\n- `email: string`\n  Email address to receive the CAS document\n\n- `from_date: string`\n  Start date (YYYY-MM-DD)\n\n- `password: string`\n  Password for the PDF\n\n- `to_date: string`\n  End date (YYYY-MM-DD)\n\n- `pan_no?: string`\n  PAN number (optional)\n\n### Returns\n\n- `{ msg?: string; status?: string; }`\n\n  - `msg?: string`\n  - `status?: string`\n\n### Example\n\n```typescript\nimport CasParser from 'cas-parser-node';\n\nconst client = new CasParser();\n\nconst response = await client.kfintech.generateCas({\n  email: 'user@example.com',\n  from_date: '2023-01-01',\n  password: 'Abcdefghi12$',\n  to_date: '2023-12-31',\n});\n\nconsole.log(response);\n```",
-    perLanguage: {
-      typescript: {
-        method: 'client.kfintech.generateCas',
-        example:
-          "import CasParser from 'cas-parser-node';\n\nconst client = new CasParser({\n  apiKey: process.env['CAS_PARSER_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.kfintech.generateCas({\n  email: 'user@example.com',\n  from_date: '2023-01-01',\n  password: 'Abcdefghi12$',\n  to_date: '2023-12-31',\n});\n\nconsole.log(response.msg);",
-      },
-      python: {
-        method: 'kfintech.generate_cas',
-        example:
-          'import os\nfrom cas_parser import CasParser\n\nclient = CasParser(\n    api_key=os.environ.get("CAS_PARSER_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.kfintech.generate_cas(\n    email="user@example.com",\n    from_date="2023-01-01",\n    password="Abcdefghi12$",\n    to_date="2023-12-31",\n)\nprint(response.msg)',
-      },
-      java: {
-        method: 'kfintech().generateCas',
-        example:
-          'package com.cas_parser.api.example;\n\nimport com.cas_parser.api.client.CasParserClient;\nimport com.cas_parser.api.client.okhttp.CasParserOkHttpClient;\nimport com.cas_parser.api.models.kfintech.KfintechGenerateCasParams;\nimport com.cas_parser.api.models.kfintech.KfintechGenerateCasResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        CasParserClient client = CasParserOkHttpClient.fromEnv();\n\n        KfintechGenerateCasParams params = KfintechGenerateCasParams.builder()\n            .email("user@example.com")\n            .fromDate("2023-01-01")\n            .password("Abcdefghi12$")\n            .toDate("2023-12-31")\n            .build();\n        KfintechGenerateCasResponse response = client.kfintech().generateCas(params);\n    }\n}',
-      },
-      go: {
-        method: 'client.Kfintech.GenerateCas',
-        example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/CASParser/cas-parser-go"\n\t"github.com/CASParser/cas-parser-go/option"\n)\n\nfunc main() {\n\tclient := casparser.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Kfintech.GenerateCas(context.TODO(), casparser.KfintechGenerateCasParams{\n\t\tEmail:    "user@example.com",\n\t\tFromDate: "2023-01-01",\n\t\tPassword: "Abcdefghi12$",\n\t\tToDate:   "2023-12-31",\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response.Msg)\n}\n',
-      },
-      php: {
-        method: 'kfintech->generateCas',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$response = $client->kfintech->generateCas(\n  email: 'user@example.com',\n  fromDate: '2023-01-01',\n  password: 'Abcdefghi12$',\n  toDate: '2023-12-31',\n  panNo: 'ABCDE1234F',\n);\n\nvar_dump($response);",
-      },
-      http: {
-        example:
-          'curl https://api.casparser.in/v4/kfintech/generate \\\n    -H \'Content-Type: application/json\' \\\n    -H "x-api-key: $CAS_PARSER_API_KEY" \\\n    -d \'{\n          "email": "user@example.com",\n          "from_date": "2023-01-01",\n          "password": "Abcdefghi12$",\n          "to_date": "2023-12-31",\n          "pan_no": "ABCDE1234F"\n        }\'',
-      },
-    },
-  },
-  {
     name: 'parse',
     endpoint: '/v4/nsdl/parse',
     httpMethod: 'post',
