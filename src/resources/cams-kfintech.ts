@@ -762,6 +762,12 @@ export namespace UnifiedResponse {
         close_units?: number | null;
 
         /**
+         * Whether the scheme is held in demat form (CAMS/KFintech). true = Demat, false =
+         * Non-Demat, null = not specified.
+         */
+        is_demat?: boolean | null;
+
+        /**
          * Opening balance units for the statement period
          */
         open_units?: number | null;
