@@ -166,6 +166,11 @@ export interface InboxConnectEmailResponse {
    */
   oauth_url?: string;
 
+  /**
+   * The provider this OAuth URL was generated for
+   */
+  provider?: 'gmail' | 'outlook';
+
   status?: string;
 }
 
@@ -255,6 +260,17 @@ export interface InboxConnectEmailParams {
    * Your callback URL to receive the inbox_token (must be http or https)
    */
   redirect_uri: string;
+
+  /**
+   * Mail provider to connect. Defaults to `gmail`.
+   *
+   * - `gmail` - Google accounts
+   * - `outlook` - Microsoft accounts
+   *
+   * Any value other than `outlook` is treated as `gmail`. The resolved provider is
+   * returned in the response.
+   */
+  provider?: 'gmail' | 'outlook';
 
   /**
    * State parameter for CSRF protection (returned in redirect)

@@ -569,20 +569,20 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       "Initiate OAuth flow to connect user's email inbox.\n\nReturns an `oauth_url` that you should redirect the user to. After authorization,\nthey are redirected back to your `redirect_uri` with the following query parameters:\n\n**On success:**\n- `inbox_token` - Encrypted token to store client-side\n- `email` - Email address of the connected account\n- `state` - Your original state parameter (for CSRF verification)\n\n**On error:**\n- `error` - Error code (e.g., `access_denied`, `token_exchange_failed`)\n- `state` - Your original state parameter\n\n**Store the `inbox_token` client-side** and use it for all subsequent inbox API calls.\n",
     stainlessPath: '(resource) inbox > (method) connect_email',
     qualified: 'client.inbox.connectEmail',
-    params: ['redirect_uri: string;', 'state?: string;'],
-    response: '{ expires_in?: number; oauth_url?: string; status?: string; }',
+    params: ['redirect_uri: string;', "provider?: 'gmail' | 'outlook';", 'state?: string;'],
+    response: "{ expires_in?: number; oauth_url?: string; provider?: 'gmail' | 'outlook'; status?: string; }",
     markdown:
-      "## connect_email\n\n`client.inbox.connectEmail(redirect_uri: string, state?: string): { expires_in?: number; oauth_url?: string; status?: string; }`\n\n**post** `/v4/inbox/connect`\n\nInitiate OAuth flow to connect user's email inbox.\n\nReturns an `oauth_url` that you should redirect the user to. After authorization,\nthey are redirected back to your `redirect_uri` with the following query parameters:\n\n**On success:**\n- `inbox_token` - Encrypted token to store client-side\n- `email` - Email address of the connected account\n- `state` - Your original state parameter (for CSRF verification)\n\n**On error:**\n- `error` - Error code (e.g., `access_denied`, `token_exchange_failed`)\n- `state` - Your original state parameter\n\n**Store the `inbox_token` client-side** and use it for all subsequent inbox API calls.\n\n\n### Parameters\n\n- `redirect_uri: string`\n  Your callback URL to receive the inbox_token (must be http or https)\n\n- `state?: string`\n  State parameter for CSRF protection (returned in redirect)\n\n### Returns\n\n- `{ expires_in?: number; oauth_url?: string; status?: string; }`\n\n  - `expires_in?: number`\n  - `oauth_url?: string`\n  - `status?: string`\n\n### Example\n\n```typescript\nimport CasParser from 'cas-parser-node';\n\nconst client = new CasParser();\n\nconst response = await client.inbox.connectEmail({ redirect_uri: 'https://yourapp.com/oauth-callback' });\n\nconsole.log(response);\n```",
+      "## connect_email\n\n`client.inbox.connectEmail(redirect_uri: string, provider?: 'gmail' | 'outlook', state?: string): { expires_in?: number; oauth_url?: string; provider?: 'gmail' | 'outlook'; status?: string; }`\n\n**post** `/v4/inbox/connect`\n\nInitiate OAuth flow to connect user's email inbox.\n\nReturns an `oauth_url` that you should redirect the user to. After authorization,\nthey are redirected back to your `redirect_uri` with the following query parameters:\n\n**On success:**\n- `inbox_token` - Encrypted token to store client-side\n- `email` - Email address of the connected account\n- `state` - Your original state parameter (for CSRF verification)\n\n**On error:**\n- `error` - Error code (e.g., `access_denied`, `token_exchange_failed`)\n- `state` - Your original state parameter\n\n**Store the `inbox_token` client-side** and use it for all subsequent inbox API calls.\n\n\n### Parameters\n\n- `redirect_uri: string`\n  Your callback URL to receive the inbox_token (must be http or https)\n\n- `provider?: 'gmail' | 'outlook'`\n  Mail provider to connect. Defaults to `gmail`.\n\n- `gmail` - Google accounts\n- `outlook` - Microsoft accounts\n\nAny value other than `outlook` is treated as `gmail`. The\nresolved provider is returned in the response.\n\n- `state?: string`\n  State parameter for CSRF protection (returned in redirect)\n\n### Returns\n\n- `{ expires_in?: number; oauth_url?: string; provider?: 'gmail' | 'outlook'; status?: string; }`\n\n  - `expires_in?: number`\n  - `oauth_url?: string`\n  - `provider?: 'gmail' | 'outlook'`\n  - `status?: string`\n\n### Example\n\n```typescript\nimport CasParser from 'cas-parser-node';\n\nconst client = new CasParser();\n\nconst response = await client.inbox.connectEmail({ redirect_uri: 'https://yourapp.com/oauth-callback' });\n\nconsole.log(response);\n```",
     perLanguage: {
       typescript: {
         method: 'client.inbox.connectEmail',
         example:
-          "import CasParser from 'cas-parser-node';\n\nconst client = new CasParser({\n  apiKey: process.env['CAS_PARSER_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.inbox.connectEmail({\n  redirect_uri: 'https://yourapp.com/oauth-callback',\n});\n\nconsole.log(response.expires_in);",
+          "import CasParser from 'cas-parser-node';\n\nconst client = new CasParser({\n  apiKey: process.env['CAS_PARSER_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.inbox.connectEmail({\n  redirect_uri: 'https://yourapp.com/oauth-callback',\n});\n\nconsole.log(response.provider);",
       },
       python: {
         method: 'inbox.connect_email',
         example:
-          'import os\nfrom cas_parser import CasParser\n\nclient = CasParser(\n    api_key=os.environ.get("CAS_PARSER_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.inbox.connect_email(\n    redirect_uri="https://yourapp.com/oauth-callback",\n)\nprint(response.expires_in)',
+          'import os\nfrom cas_parser import CasParser\n\nclient = CasParser(\n    api_key=os.environ.get("CAS_PARSER_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.inbox.connect_email(\n    redirect_uri="https://yourapp.com/oauth-callback",\n)\nprint(response.provider)',
       },
       java: {
         method: 'inbox().connectEmail',
@@ -592,16 +592,16 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Inbox.ConnectEmail',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/CASParser/cas-parser-go"\n\t"github.com/CASParser/cas-parser-go/option"\n)\n\nfunc main() {\n\tclient := casparser.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Inbox.ConnectEmail(context.TODO(), casparser.InboxConnectEmailParams{\n\t\tRedirectUri: "https://yourapp.com/oauth-callback",\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response.ExpiresIn)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/CASParser/cas-parser-go"\n\t"github.com/CASParser/cas-parser-go/option"\n)\n\nfunc main() {\n\tclient := casparser.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Inbox.ConnectEmail(context.TODO(), casparser.InboxConnectEmailParams{\n\t\tRedirectUri: "https://yourapp.com/oauth-callback",\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response.Provider)\n}\n',
       },
       php: {
         method: 'inbox->connectEmail',
         example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$response = $client->inbox->connectEmail(\n  redirectUri: 'https://yourapp.com/oauth-callback', state: 'abc123'\n);\n\nvar_dump($response);",
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$response = $client->inbox->connectEmail(\n  redirectUri: 'https://yourapp.com/oauth-callback',\n  provider: 'outlook',\n  state: 'abc123',\n);\n\nvar_dump($response);",
       },
       http: {
         example:
-          'curl https://api.casparser.in/v4/inbox/connect \\\n    -H \'Content-Type: application/json\' \\\n    -H "x-api-key: $CAS_PARSER_API_KEY" \\\n    -d \'{\n          "redirect_uri": "https://yourapp.com/oauth-callback",\n          "state": "abc123"\n        }\'',
+          'curl https://api.casparser.in/v4/inbox/connect \\\n    -H \'Content-Type: application/json\' \\\n    -H "x-api-key: $CAS_PARSER_API_KEY" \\\n    -d \'{\n          "redirect_uri": "https://yourapp.com/oauth-callback",\n          "provider": "outlook",\n          "state": "abc123"\n        }\'',
       },
     },
   },
