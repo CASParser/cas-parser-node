@@ -41,6 +41,7 @@ describe('resource inbox', () => {
   test.skip('connectEmail: required and optional params', async () => {
     const response = await client.inbox.connectEmail({
       redirect_uri: 'https://yourapp.com/oauth-callback',
+      provider: 'outlook',
       state: 'abc123',
     });
   });
