@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.17.1 (2026-09-01)
+
+Full Changelog: [v1.17.0...v1.17.1](https://github.com/CASParser/cas-parser-node/compare/v1.17.0...v1.17.1)
+
+### Documentation
+
+* **mcp:** document code execution modes and the local code runner ([f2ddf13](https://github.com/CASParser/cas-parser-node/commit/f2ddf135f7b3aa540c9ec200cbc9e700d1cdbb10))
+
 ## 1.17.0 (2026-08-14)
 
 Full Changelog: [v1.16.0...v1.17.0](https://github.com/CASParser/cas-parser-node/compare/v1.16.0...v1.17.0)
